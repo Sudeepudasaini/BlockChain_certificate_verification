@@ -8,20 +8,20 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 w-full bg-white border-b border-gray-100 shadow-sm z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="app-container">
+        <div className="flex justify-between items-center py-3">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">⛓️</span>
             </div>
-            <span className="font-bold text-xl text-blue-dark">CertChain</span>
+            <span className="font-bold text-xl text-primary-700">CertChain</span>
           </Link>
 
           {!isAuthenticated && (
-            <div className="hidden md:flex items-center gap-1">
-              <Link to="/" className="px-4 py-2 text-gray-700 hover:text-primary-600 transition-all">Home</Link>
-              <Link to="/verify" className="px-4 py-2 text-gray-700 hover:text-primary-600 transition-all">Verify</Link>
-              <a href="#features" className="px-4 py-2 text-gray-700 hover:text-primary-600 transition-all">About</a>
+            <div className="hidden md:flex items-center gap-3">
+              <Link to="/" className="px-3 py-2 text-gray-700 hover:text-primary-600 transition-all text-sm">Home</Link>
+              <Link to="/verify" className="px-3 py-2 text-gray-700 hover:text-primary-600 transition-all text-sm">Verify</Link>
+              <a href="#features" className="px-3 py-2 text-gray-700 hover:text-primary-600 transition-all text-sm">About</a>
             </div>
           )}
 
@@ -30,12 +30,13 @@ const Navbar = () => {
               <>
                 <div className="hidden sm:flex items-center gap-3">
                   <span className="text-sm font-medium">{user?.name}</span>
-                  <span className="px-3 py-1 bg-primary-100 text-primary-600 text-xs font-semibold rounded-full">
+                  <span className="px-3 py-1 bg-primary-50 text-primary-600 text-xs font-semibold rounded-full">
                     {user?.role}
                   </span>
                   <button
                     onClick={logout}
-                    className="px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-all text-sm font-medium"
+                    className="px-3 py-2 bg-red-50 text-red-600 rounded-md hover:bg-red-100 transition-all text-sm font-medium"
+                    aria-label="Logout"
                   >
                     Logout
                   </button>
@@ -43,10 +44,10 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to="/login" className="hidden sm:inline px-4 py-2 text-primary-600 border border-primary-600 rounded-lg hover:bg-primary-50 transition-all font-medium">
+                <Link to="/login" className="hidden sm:inline px-3 py-2 text-primary-600 border border-primary-200 rounded-md hover:bg-primary-50 transition-all font-medium">
                   Log In
                 </Link>
-                <Link to="/login" className="hidden sm:inline px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium">
+                <Link to="/login" className="hidden sm:inline px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-all font-medium">
                   Get Started
                 </Link>
               </>

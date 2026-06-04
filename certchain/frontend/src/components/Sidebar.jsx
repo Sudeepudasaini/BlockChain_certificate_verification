@@ -37,9 +37,9 @@ const Sidebar = ({ role }) => {
   const navItems = getNavItems()
 
   return (
-    <div className="w-60 bg-blue-dark text-white min-h-screen p-6 fixed left-0 top-16">
+    <div className="w-64 bg-blue-dark text-white min-h-screen p-6 fixed left-0 top-16 overflow-auto">
       <div className="mb-8">
-        <h2 className="text-xl font-bold">
+        <h2 className="text-lg font-bold leading-tight">
           {role === 'admin' && '👨‍💼 Admin Portal'}
           {role === 'university' && '🏢 University Portal'}
           {role === 'student' && '🎓 Student Portal'}
@@ -53,14 +53,14 @@ const Sidebar = ({ role }) => {
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+              `flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-sm ${
                 isActive
-                  ? 'bg-primary-600 text-white border-l-4 border-primary-400'
-                  : 'text-gray-200 hover:bg-blue-dark/50'
+                  ? 'bg-primary-700 text-white shadow-inner border-l-4 border-primary-400'
+                  : 'text-gray-200 hover:bg-blue-dark/60 hover:text-white'
               }`
             }
           >
-            <span>{item.icon}</span>
+            <span className="text-lg">{item.icon}</span>
             <span className="font-medium">{item.label}</span>
           </NavLink>
         ))}
@@ -68,7 +68,8 @@ const Sidebar = ({ role }) => {
 
       <button
         onClick={logout}
-        className="w-full mt-8 px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all font-medium"
+        className="w-full mt-8 px-4 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-all font-medium text-sm"
+        aria-label="Logout"
       >
         Logout
       </button>
