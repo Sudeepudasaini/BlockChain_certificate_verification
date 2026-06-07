@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const UniversityProfile = require("../models/UniversityProfile");
 const jwt = require("jsonwebtoken");
 
 const generateToken = (userId) => {
@@ -9,21 +10,48 @@ const generateToken = (userId) => {
 
 const register = async (req, res) => {
   try {
-    const { name, email, password, role, universityName, studentId } = req.body;
+    const {
+      name,
+      email,
+      password,
+      role,
+      universityName,
+      studentId,
+      website,
+      address,
+      description,
+    } = req.body;
 
-    let user = await User.findOne({ email });
+    const normalizedEmail = email?.toLowerCase().trim();
+
+    if (!name || !normalizedEmail || !password || !role) {
+      return res.status(400).json({ error: "Name, email, password and role are required" });
+    }
+
+    let user = await User.findOne({ email: normalizedEmail });
     if (user) {
       return res.status(400).json({ error: "User already exists" });
     }
 
     user = await User.create({
       name,
-      email,
+      email: normalizedEmail,
       password,
-      role: role || "student",
-      universityName,
-      studentId,
+      role,
+      universityName: role === "university" ? universityName || name : undefined,
+      studentId: role === "student" ? studentId : undefined,
     });
+
+    if (role === "university") {
+      await UniversityProfile.create({
+        user: user._id,
+        universityName: universityName || name,
+        website,
+        address,
+        description,
+        contactEmail: normalizedEmail,
+      });
+    }
 
     const token = generateToken(user._id);
     const userResponse = {
@@ -49,7 +77,8 @@ const login = async (req, res) => {
       return res.status(400).json({ error: "Email and password required" });
     }
 
-    const user = await User.findOne({ email });
+    const normalizedEmail = email.toLowerCase().trim();
+    const user = await User.findOne({ email: normalizedEmail });
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
     }

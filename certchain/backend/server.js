@@ -9,7 +9,11 @@ const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
-connectDB();
+const startServer = async () => {
+  await connectDB();
+};
+
+startServer();
 
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());

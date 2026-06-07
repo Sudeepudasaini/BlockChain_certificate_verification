@@ -14,6 +14,7 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
       trim: true,
+      index: true,
     },
     password: {
       type: String,
@@ -24,12 +25,16 @@ const UserSchema = new mongoose.Schema(
       type: String,
       enum: ["admin", "university", "student", "verifier"],
       default: "student",
+      index: true,
     },
     universityName: {
       type: String,
+      trim: true,
     },
     studentId: {
       type: String,
+      trim: true,
+      index: true,
     },
     isActive: {
       type: Boolean,
@@ -46,11 +51,12 @@ const UserSchema = new mongoose.Schema(
 // Pre-save hook to hash password
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    next();
+    return next();
   }
 
   const salt = await bcryptjs.genSalt(10);
   this.password = await bcryptjs.hash(this.password, salt);
+  next();
 });
 
 // Method to match password

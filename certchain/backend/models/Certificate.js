@@ -6,32 +6,47 @@ const CertificateSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      index: true,
     },
     studentName: {
       type: String,
       required: true,
+      trim: true,
     },
     studentId: {
       type: String,
-      required: true,
+      trim: true,
     },
     studentEmail: {
       type: String,
+      required: true,
+      lowercase: true,
+      trim: true,
+      index: true,
+    },
+    studentUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     degree: {
       type: String,
       required: true,
+      trim: true,
     },
     major: {
       type: String,
+      trim: true,
     },
     universityName: {
       type: String,
       required: true,
+      trim: true,
     },
     issuedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+      index: true,
     },
     issueDate: {
       type: Date,
@@ -39,21 +54,32 @@ const CertificateSchema = new mongoose.Schema(
     },
     graduationYear: {
       type: String,
-      required: true,
+      trim: true,
+    },
+    metadata: {
+      type: Object,
+      default: {},
     },
     sha256Hash: {
       type: String,
       required: true,
+      trim: true,
     },
     blockchainTxHash: {
       type: String,
+      trim: true,
     },
     blockchainStored: {
       type: Boolean,
       default: false,
     },
-    filePath: {
+    originalFilePath: {
       type: String,
+      trim: true,
+    },
+    certificateFilePath: {
+      type: String,
+      trim: true,
     },
     qrCode: {
       type: String,
@@ -61,10 +87,6 @@ const CertificateSchema = new mongoose.Schema(
     isRevoked: {
       type: Boolean,
       default: false,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
     },
   },
   { timestamps: true }

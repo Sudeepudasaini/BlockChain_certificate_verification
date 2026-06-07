@@ -1,8 +1,25 @@
 import React, { useState } from 'react'
-import QRCode from 'qrcode.react'
+import api from '../api/axios'
+import { toast } from 'react-toastify'
 
 const CertificateCard = ({ certificate, showActions = true }) => {
   const [showQR, setShowQR] = useState(false)
+
+  const handleDownload = async () => {
+    try {
+      const response = await api.get(`/certificates/${certificate.certId}/download`, { responseType: 'blob' })
+      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', `${certificate.certId}.pdf`)
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      window.URL.revokeObjectURL(url)
+    } catch (error) {
+      toast.error('Download failed')
+    }
+  }
 
   return (
     <div className="card-base hover:shadow-md">
@@ -57,7 +74,7 @@ const CertificateCard = ({ certificate, showActions = true }) => {
       {/* Actions */}
       {showActions && (
         <div className="flex gap-3">
-          <button className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-all font-medium text-sm">
+          <button onClick={handleDownload} className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-all font-medium text-sm">
             📥 Download
           </button>
           <button

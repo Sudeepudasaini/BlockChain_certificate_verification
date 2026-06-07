@@ -3,6 +3,21 @@ import Sidebar from '../../components/Sidebar'
 import api from '../../api/axios'
 import { toast } from 'react-toastify'
 import LoadingSpinner from '../../components/LoadingSpinner'
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from 'recharts'
+
+const chartColors = ['#4f46e5', '#10b981', '#f59e0b', '#ef4444']
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null)
@@ -23,7 +38,7 @@ const AdminDashboard = () => {
       ])
 
       setStats(statsRes.data)
-      setCertificates(certsRes.data.certificates?.slice(0, 10) || [])
+      setCertificates(certsRes.data.certificates || [])
       setUsers(usersRes.data.users || [])
     } catch (error) {
       toast.error('Failed to fetch data')
@@ -34,23 +49,31 @@ const AdminDashboard = () => {
 
   if (loading) return <LoadingSpinner />
 
+  const roleData = stats?.usersByRole?.map((item) => ({ name: item._id, value: item.count })) || []
+  const certificatesPerMonth = Array.from({ length: 6 }, (_, index) => {
+    const month = new Date()
+    month.setMonth(month.getMonth() - (5 - index))
+    const monthLabel = month.toLocaleString('default', { month: 'short' })
+    const count = certificates.filter(
+      (cert) => new Date(cert.issueDate).toLocaleString('default', { month: 'short' }) === monthLabel
+    ).length
+    return { month: monthLabel, count }
+  })
+
   return (
     <div className="flex">
       <Sidebar role="admin" />
 
       <div className="ml-60 flex-1">
         <div className="p-8">
-          {/* Header */}
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-4xl font-bold text-blue-dark">System Dashboard</h1>
-            <div className="flex gap-4">
-              <span className="px-4 py-2 bg-green-100 text-green-700 rounded-lg font-semibold">
-                🟢 Blockchain Connected
-              </span>
+            <div>
+              <h1 className="text-4xl font-bold text-blue-dark">System Dashboard</h1>
+              <p className="text-gray-500 mt-1">Live analytics for users, certificates, and blockchain issuance.</p>
             </div>
+            <span className="px-4 py-2 bg-green-100 text-green-700 rounded-lg font-semibold">🟢 Blockchain Connected</span>
           </div>
 
-          {/* KPI Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="card-base p-6">
               <p className="text-gray-600 text-sm font-semibold mb-2">TOTAL CERTIFICATES</p>
@@ -70,7 +93,36 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          {/* Certificates Table */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
+            <div className="card-base p-6">
+              <h2 className="text-xl font-bold text-blue-dark mb-4">Users by Role</h2>
+              <ResponsiveContainer width="100%" height={280}>
+                <PieChart>
+                  <Pie dataKey="value" data={roleData} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={2}>
+                    {roleData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={chartColors[index % chartColors.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="card-base p-6">
+              <h2 className="text-xl font-bold text-blue-dark mb-4">Certificates Issued (Last 6 Months)</h2>
+              <ResponsiveContainer width="100%" height={280}>
+                <BarChart data={certificatesPerMonth} margin={{ left: 0, right: 0, top: 10, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                  <XAxis dataKey="month" tickLine={false} axisLine={false} />
+                  <YAxis allowDecimals={false} tickLine={false} axisLine={false} />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="count" fill="#4f46e5" radius={[8, 8, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
           <div className="card-base p-6 mb-8">
             <h2 className="text-xl font-bold text-blue-dark mb-6">Recent Certificates</h2>
             <div className="overflow-x-auto">
@@ -89,21 +141,11 @@ const AdminDashboard = () => {
                       <td className="px-4 py-3">{cert.studentName}</td>
                       <td className="px-4 py-3">{cert.universityName}</td>
                       <td className="px-4 py-3">
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                            cert.isRevoked
-                              ? 'bg-red-100 text-red-700'
-                              : cert.blockchainStored
-                              ? 'bg-green-100 text-green-700'
-                              : 'bg-yellow-100 text-yellow-700'
-                          }`}
-                        >
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${cert.isRevoked ? 'bg-red-100 text-red-700' : cert.blockchainStored ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
                           {cert.isRevoked ? 'Revoked' : cert.blockchainStored ? 'Verified' : 'Pending'}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-sm text-gray-600">
-                        {new Date(cert.createdAt).toLocaleDateString()}
-                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-600">{new Date(cert.createdAt).toLocaleDateString()}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -111,9 +153,8 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          {/* Users Table */}
           <div className="card-base p-6">
-            <h2 className="text-xl font-bold text-blue-dark mb-6">Users</h2>
+            <h2 className="text-xl font-bold text-blue-dark mb-6">Recent Users</h2>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -129,19 +170,9 @@ const AdminDashboard = () => {
                     <tr key={user._id} className="border-b border-gray-100 hover:bg-gray-50">
                       <td className="px-4 py-3">{user.name}</td>
                       <td className="px-4 py-3">{user.email}</td>
+                      <td className="px-4 py-3">{user.role}</td>
                       <td className="px-4 py-3">
-                        <span className="px-3 py-1 bg-primary-100 text-primary-700 text-xs font-semibold rounded-full">
-                          {user.role}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3">
-                        <span
-                          className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                            user.isActive
-                              ? 'bg-green-100 text-green-700'
-                              : 'bg-red-100 text-red-700'
-                          }`}
-                        >
+                        <span className={`px-3 py-1 text-xs font-semibold rounded-full ${user.isActive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                           {user.isActive ? 'Active' : 'Inactive'}
                         </span>
                       </td>

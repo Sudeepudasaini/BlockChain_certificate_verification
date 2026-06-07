@@ -16,7 +16,13 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   if (allowedRoles && !allowedRoles.includes(user?.role)) {
     toast.error('You do not have permission to access this page')
-    return <Navigate to="/" />
+    const routeMap = {
+      admin: '/admin/dashboard',
+      university: '/university/dashboard',
+      student: '/student/dashboard',
+      verifier: '/verifier/dashboard',
+    }
+    return <Navigate to={routeMap[user?.role] || '/'} />
   }
 
   return children

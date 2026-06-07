@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 const IssueCertificate = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
-  const [hashPreview, setHashPreview] = useState('')
   const [formData, setFormData] = useState({
     studentName: '',
     studentId: '',
@@ -15,6 +14,9 @@ const IssueCertificate = () => {
     degree: '',
     major: '',
     graduationYear: '',
+    issueDate: '',
+    institution: '',
+    description: '',
   })
   const [file, setFile] = useState(null)
   const [uploadProgress, setUploadProgress] = useState(0)
@@ -30,34 +32,10 @@ const IssueCertificate = () => {
     setFile(e.target.files?.[0])
   }
 
-  const generateHashPreview = async () => {
-    if (!file) {
-      toast.error('Please select a file first')
-      return
-    }
-
-    try {
-      const buffer = await file.arrayBuffer()
-      const hashBuffer = await crypto.subtle.digest('SHA-256', buffer)
-      const hashArray = Array.from(new Uint8Array(hashBuffer))
-      const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
-      setHashPreview(hashHex)
-      toast.success('Hash generated!')
-    } catch (error) {
-      toast.error('Failed to generate hash')
-    }
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (
-      !formData.studentName ||
-      !formData.studentId ||
-      !formData.degree ||
-      !formData.graduationYear ||
-      !file
-    ) {
+    if (!formData.studentName || !formData.studentEmail || !formData.degree || !formData.graduationYear || !file) {
       toast.error('Please fill all required fields')
       return
     }
@@ -72,12 +50,10 @@ const IssueCertificate = () => {
       })
       formDataObj.append('certificate', file)
 
-      const response = await api.post('/certificates/issue', formDataObj, {
+      await api.post('/certificates/issue', formDataObj, {
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (progressEvent) => {
-          const percent = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
-          )
+          const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
           setUploadProgress(percent)
         },
       })
@@ -101,14 +77,11 @@ const IssueCertificate = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Form Section */}
               <div>
                 <div className="card-base p-8">
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Student Full Name *
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Student Full Name *</label>
                       <input
                         type="text"
                         name="studentName"
@@ -120,36 +93,32 @@ const IssueCertificate = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Student ID *
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Student ID</label>
                       <input
                         type="text"
                         name="studentId"
                         value={formData.studentId}
                         onChange={handleChange}
                         className="input-base"
-                        required
+                        placeholder="Optional but recommended"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Student Email
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Student Email *</label>
                       <input
                         type="email"
                         name="studentEmail"
                         value={formData.studentEmail}
                         onChange={handleChange}
                         className="input-base"
+                        placeholder="student@example.com"
+                        required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Degree / Program *
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Program *</label>
                       <input
                         type="text"
                         name="degree"
@@ -161,9 +130,7 @@ const IssueCertificate = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Major / Specialization
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Major / Specialization</label>
                       <input
                         type="text"
                         name="major"
@@ -174,9 +141,19 @@ const IssueCertificate = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Graduation Year *
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Issue Date *</label>
+                      <input
+                        type="date"
+                        name="issueDate"
+                        value={formData.issueDate}
+                        onChange={handleChange}
+                        className="input-base"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Graduation Year *</label>
                       <input
                         type="text"
                         name="graduationYear"
@@ -189,9 +166,30 @@ const IssueCertificate = () => {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Certificate File (PDF) *
-                      </label>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Institution</label>
+                      <input
+                        type="text"
+                        name="institution"
+                        value={formData.institution}
+                        onChange={handleChange}
+                        className="input-base"
+                        placeholder="University name"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Certificate Notes</label>
+                      <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        className="input-base min-h-[120px]"
+                        placeholder="Optional certificate metadata"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">Certificate File (PDF/Image) *</label>
                       <input
                         type="file"
                         onChange={handleFileChange}
@@ -201,65 +199,37 @@ const IssueCertificate = () => {
                       />
                       {file && <p className="text-sm text-green-600 mt-2">✓ {file.name}</p>}
                     </div>
-
-                    <button
-                      type="button"
-                      onClick={generateHashPreview}
-                      className="w-full px-4 py-2 bg-secondary-600 text-white rounded-lg hover:bg-secondary-700 transition-all font-semibold"
-                    >
-                      Generate Hash Preview
-                    </button>
-
-                    {hashPreview && (
-                      <div className="p-4 bg-primary-50 rounded-lg">
-                        <p className="text-xs text-gray-600 mb-2">SHA-256 HASH</p>
-                        <p className="font-mono text-xs text-primary-700 break-all">{hashPreview}</p>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
 
-              {/* Progress Section */}
               <div>
                 <div className="card-base p-8">
-                  <h3 className="text-lg font-bold text-blue-dark mb-6">Blockchain Status</h3>
-
+                  <h3 className="text-lg font-bold text-blue-dark mb-6">Issuance Summary</h3>
                   <div className="space-y-4">
-                    {[
-                      { step: 'File uploaded', done: !!file },
-                      { step: 'Hash generated', done: !!hashPreview },
-                      { step: 'Stored in database', done: false },
-                      { step: 'Deploying to blockchain', done: false },
-                      { step: 'QR code generation', done: false },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
-                        <span
-                          className={`text-lg ${
-                            item.done
-                              ? 'text-green-600'
-                              : i === 3
-                              ? 'animate-spin'
-                              : 'text-gray-400'
-                          }`}
-                        >
-                          {item.done ? '✓' : i === 3 ? '⏳' : '○'}
-                        </span>
-                        <span className={item.done ? 'text-gray-900 font-medium' : 'text-gray-600'}>
-                          {item.step}
-                        </span>
-                      </div>
-                    ))}
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <span className="text-green-600">✓</span>
+                      <span>File upload ready</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <span className="text-green-600">✓</span>
+                      <span>Metadata collected</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <span className="text-gray-400">○</span>
+                      <span>Blockchain storage</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <span className="text-gray-400">○</span>
+                      <span>QR code generation</span>
+                    </div>
                   </div>
 
                   {loading && uploadProgress > 0 && (
                     <div className="mt-6">
                       <p className="text-sm font-semibold text-gray-700 mb-2">Upload Progress</p>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-primary-600 h-2 rounded-full transition-all"
-                          style={{ width: `${uploadProgress}%` }}
-                        ></div>
+                        <div className="bg-primary-600 h-2 rounded-full transition-all" style={{ width: `${uploadProgress}%` }} />
                       </div>
                       <p className="text-xs text-gray-600 mt-2">{uploadProgress}%</p>
                     </div>
@@ -270,7 +240,7 @@ const IssueCertificate = () => {
                     disabled={loading}
                     className="w-full mt-8 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-bold disabled:opacity-50"
                   >
-                    {loading ? 'Deploying...' : 'Deploy to Blockchain'}
+                    {loading ? 'Issuing certificate...' : 'Issue Certificate'}
                   </button>
                 </div>
               </div>
