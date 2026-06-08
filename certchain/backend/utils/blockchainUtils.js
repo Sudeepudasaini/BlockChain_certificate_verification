@@ -24,9 +24,12 @@ const initializeContract = () => {
 const storeCertificateOnBlockchain = async (certId, sha256Hash) => {
   try {
     const contract = initializeContract();
-    const tx = await contract.storeCertificate(certId, sha256Hash);
+    const registered = await contract.certificateRegistered(certId);
+    const tx = registered
+      ? await contract.updateCertificateHash(certId, sha256Hash)
+      : await contract.storeCertificate(certId, sha256Hash);
     const receipt = await tx.wait(1);
-    return { txHash: receipt.hash, success: true };
+    return { txHash: receipt.hash, success: true, updated: registered };
   } catch (error) {
     console.error("Error storing certificate on blockchain:", error);
     throw error;

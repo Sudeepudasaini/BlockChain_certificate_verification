@@ -130,6 +130,23 @@
     },
     {
       "type": "function",
+      "name": "updateCertificateHash",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "certId"
+        },
+        {
+          "type": "string",
+          "name": "sha256Hash"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
       "name": "verifyCertificate",
       "constant": true,
       "stateMutability": "view",

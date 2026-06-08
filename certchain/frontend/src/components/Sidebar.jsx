@@ -37,7 +37,7 @@ const Sidebar = ({ role }) => {
   const navItems = getNavItems()
 
   return (
-    <div className="w-64 bg-blue-dark text-white min-h-screen p-6 fixed left-0 top-16 overflow-auto">
+    <div className="sidebar-panel w-64 min-h-screen p-6 fixed left-0 top-16 overflow-auto">
       <div className="mb-8">
         <h2 className="text-lg font-bold leading-tight">
           {role === 'admin' && '👨‍💼 Admin Portal'}
@@ -54,9 +54,7 @@ const Sidebar = ({ role }) => {
             to={item.path}
             className={({ isActive }) =>
               `flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-sm ${
-                isActive
-                  ? 'bg-primary-700 text-white shadow-inner border-l-4 border-primary-400'
-                  : 'text-gray-200 hover:bg-blue-dark/60 hover:text-white'
+                isActive ? 'sidebar-link-active' : 'sidebar-link'
               }`
             }
           >
@@ -68,7 +66,7 @@ const Sidebar = ({ role }) => {
 
       <button
         onClick={logout}
-        className="w-full mt-8 px-4 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-all font-medium text-sm"
+        className="w-full mt-8 btn-secondary"
         aria-label="Logout"
       >
         Logout

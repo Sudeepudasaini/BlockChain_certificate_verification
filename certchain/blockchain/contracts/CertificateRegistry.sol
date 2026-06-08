@@ -25,6 +25,12 @@ contract CertificateRegistry {
         emit CertificateStored(certId, sha256Hash, block.timestamp);
     }
 
+    function updateCertificateHash(string memory certId, string memory sha256Hash) public onlyOwner {
+        require(certificateExists[certId], "Certificate does not exist");
+        certificateHashes[certId] = sha256Hash;
+        emit CertificateStored(certId, sha256Hash, block.timestamp);
+    }
+
     function verifyCertificate(string memory certId, string memory sha256Hash) public view returns (bool) {
         if (!certificateExists[certId]) {
             return false;

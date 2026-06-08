@@ -108,6 +108,89 @@ const issueCertificate = async (req, res) => {
   }
 };
 
+const updateCertificate = async (req, res) => {
+  try {
+    const { certId } = req.params;
+    const existingCertificate = await Certificate.findOne({ certId });
+
+    if (!existingCertificate) {
+      return res.status(404).json({ error: 'Certificate not found' });
+    }
+
+    if (req.user.role === 'university' && existingCertificate.issuedBy.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ error: 'Not authorized to update this certificate' });
+    }
+
+    const {
+      studentName,
+      studentId,
+      studentEmail,
+      degree,
+      major,
+      graduationYear,
+      issueDate,
+      institution,
+      description,
+    } = req.body;
+
+    if (!studentName || !studentEmail || !degree || !graduationYear) {
+      return res.status(400).json({ error: 'Student name, email, degree, and graduation year are required' });
+    }
+
+    const formattedIssueDate = issueDate ? new Date(issueDate) : existingCertificate.issueDate || new Date();
+    const universityName = req.user.universityName || institution || existingCertificate.universityName;
+    const qrUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/verify?id=${existingCertificate.certId}`;
+
+    const updatedCertificateData = {
+      certId: existingCertificate.certId,
+      studentName,
+      studentId: studentId || '',
+      studentEmail: studentEmail.toLowerCase().trim(),
+      degree,
+      major,
+      universityName,
+      issuedBy: existingCertificate.issuedBy,
+      issueDate: formattedIssueDate,
+      graduationYear,
+      metadata: {
+        institution,
+        description,
+      },
+      originalFilePath: req.file ? req.file.path : existingCertificate.originalFilePath,
+      qrCode: existingCertificate.qrCode || (await qrcode.toDataURL(qrUrl)),
+    };
+
+    const certificateFilePath = await generateCertificatePdf({ certificate: updatedCertificateData, qrUrl });
+    const sha256Hash = generateSHA256(certificateFilePath);
+    const blockchainResult = await storeCertificateOnBlockchain(existingCertificate.certId, sha256Hash);
+    const studentUser = await User.findOne({ email: updatedCertificateData.studentEmail });
+
+    existingCertificate.studentName = updatedCertificateData.studentName;
+    existingCertificate.studentId = updatedCertificateData.studentId;
+    existingCertificate.studentEmail = updatedCertificateData.studentEmail;
+    existingCertificate.degree = updatedCertificateData.degree;
+    existingCertificate.major = updatedCertificateData.major;
+    existingCertificate.universityName = updatedCertificateData.universityName;
+    existingCertificate.issueDate = updatedCertificateData.issueDate;
+    existingCertificate.graduationYear = updatedCertificateData.graduationYear;
+    existingCertificate.metadata = updatedCertificateData.metadata;
+    existingCertificate.originalFilePath = updatedCertificateData.originalFilePath;
+    existingCertificate.certificateFilePath = certificateFilePath;
+    existingCertificate.sha256Hash = sha256Hash;
+    existingCertificate.blockchainTxHash = blockchainResult.txHash;
+    existingCertificate.blockchainStored = true;
+    existingCertificate.studentUser = studentUser?._id;
+    existingCertificate.isRevoked = false;
+
+    const updatedCertificate = await existingCertificate.save();
+    const populatedCert = await updatedCertificate.populate('issuedBy', 'name email universityName');
+
+    res.status(200).json({ certificate: populatedCert });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const getCertificates = async (req, res) => {
   try {
     const query = req.user.role === "university" ? { issuedBy: req.user._id } : {};
@@ -303,6 +386,7 @@ module.exports = {
   getCertificates,
   getCertificateById,
   getMyCertificates,
+  updateCertificate,
   verifyByUpload,
   verifyById,
   downloadCertificate,
