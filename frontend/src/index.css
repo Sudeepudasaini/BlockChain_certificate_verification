@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #4F46E5;
+  --primary-600: #4F46E5;
+  --bg: #F8FAFC;
+  --text-primary: #0F172A;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --muted: #6B7280;
+}
+
+.dark {
+  --bg: #0f172a;
+  --text-primary: #f1f5f9;
+  --card-bg: #1e293b;
+  --border-color: #334155;
+  --muted: #9CA3AF;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+/* Improved global typography */
+h1, h2, h3, h4, h5 {
+  line-height: 1.25;
+}
+p, li, label {
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Utility classes */
+.gradient-bg {
+  background: linear-gradient(135deg, #1E3A5F 0%, #4F46E5 100%);
+}
+
+.transition-all {
+  transition: all 0.2s ease-in-out;
+}
+
+.input-base {
+  @apply w-full px-4 py-2 border border-gray-200 rounded-lg bg-white text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all leading-relaxed;
+}
+
+/* Form-specific utilities used across auth pages */
+.form-label {
+  @apply block text-sm font-medium text-slate-700 mb-2;
+}
+
+.form-input {
+  @apply w-full px-4 py-3 h-11 border border-gray-200 rounded-lg bg-white text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all leading-relaxed;
+}
+
+/* Dark mode variants */
+.dark .form-label {
+  @apply text-slate-200;
+}
+.dark .form-input {
+  @apply bg-slate-700 border-slate-600 text-white placeholder-slate-300;
+}
+
+/* Outline button used on auth pages */
+.btn-outline {
+  @apply btn-base bg-white text-primary-600 border border-primary-200 hover:bg-primary-50;
+}
+.dark .btn-outline {
+  @apply bg-slate-800 text-primary-300 border-slate-700 hover:bg-slate-700;
+}
+
+/* Ensure primary button has accessible focus and dark variant */
+.btn-primary:focus-visible {
+  @apply ring-2 ring-offset-2 ring-primary-300;
+}
+.dark .btn-primary {
+  @apply bg-primary-600 text-white;
+}
+
+/* Card dark mode */
+.dark .card-base {
+  @apply bg-slate-800 border-slate-700 text-slate-100;
+}
+
+/* Legacy alias used in some auth pages */
+.card {
+  @apply card-base;
+}
+
+/* Icon inside relative input (password eye) alignment */
+.relative > button {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.relative > button svg {
+  @apply w-4 h-4;
+}
+.dark .relative > button {
+  @apply text-slate-300;
+}
+
+.btn-base {
+  @apply px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 inline-flex items-center justify-center gap-2;
+}
+
+.btn-primary {
+  @apply btn-base bg-primary-600 text-white hover:bg-primary-700 shadow-sm hover:shadow-md border border-transparent;
+}
+
+.btn-secondary {
+  @apply btn-base bg-white text-primary-600 border border-primary-200 hover:bg-primary-50;
+}
+
+.card-base {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(2,6,23,0.06);
+  transition: all 0.15s ease;
+  padding: 1.5rem;
+}
+
+/* Utility container for consistent inner padding */
+.app-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Modal improvements */
+.modal-backdrop {
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4;
+}
+.modal-panel {
+  @apply bg-white rounded-xl shadow-xl p-6 max-w-full w-[28rem];
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #1E3A5F 0%, #4F46E5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Global accessibility and text-contrast overrides */
+:root {
+  --heading-light: #111827; /* h1-h4 light */
+  --heading-dark: #F9FAFB;  /* h1-h4 dark */
+  --body-light: #1F2937;    /* p, span, li light */
+  --body-dark: #E5E7EB;     /* p, span, li dark */
+  --label-light: #6B7280;
+  --label-dark: #9CA3AF;
+  --link-color: #2563EB;
+  --link-visited: #7C3AED;
+  --badge-text-green: #166534;
+}
+
+.dark {
+  --heading: var(--heading-dark);
+  --body: var(--body-dark);
+  --label: var(--label-dark);
+}
+.light, :root {
+  --heading: var(--heading-light);
+  --body: var(--body-light);
+  --label: var(--label-light);
+}
+
+/* 1) Reset opacity inheritance for text elements */
+h1,h2,h3,h4,h5,p,li,span,label,a,small,button,code,pre { opacity: 1 !important; }
+
+/* 2) Headings */
+h1,h2,h3,h4 {
+  color: var(--heading) !important;
+  -webkit-text-fill-color: currentColor;
+}
+h1 { font-weight: 700 !important; font-size: max(16px, 1.75rem); }
+h2, h3 { font-weight: 600 !important; font-size: max(16px, 1.25rem); }
+h4 { font-weight: 500 !important; font-size: max(16px, 1rem); }
+
+/* 3) Body & paragraph text */
+p, li, span {
+  color: var(--body) !important;
+  font-size: max(15px, 0.9375rem) !important;
+  line-height: 1.7 !important;
+  font-weight: 400 !important;
+}
+
+/* 4) Labels / caption text */
+label, small, .caption, .form-label {
+  color: var(--label) !important;
+  font-size: max(12px, 0.75rem) !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+
+/* 5) Cards & frosted panels — ensure text is explicit color */
+.card, .card-base, .modal-panel, .bg-white\/5, .bg-white\/10 {
+  color: var(--body) !important;
+}
+.card h3, .card .card-title { color: var(--heading) !important; font-weight: 600 !important; }
+.card .card-subtitle, .card .meta { color: var(--label) !important; font-weight: 500 !important; }
+
+/* 6) Buttons */
+.btn-primary { color: #FFFFFF !important; font-weight: 600 !important; }
+.btn-secondary, .btn-outline { color: var(--heading) !important; font-weight: 500 !important; }
+.btn-primary[disabled], .btn-secondary[disabled], .btn-outline[disabled] { color: #9CA3AF !important; }
+
+/* 7) Badges & tags */
+.badge, .tag, .chip { font-weight: 600 !important; font-size: max(12px, 0.75rem) !important; }
+.badge.bg-green-100, .tag.bg-green-100 { color: var(--badge-text-green) !important; }
+
+/* 8) Links */
+a { color: var(--link-color) !important; text-decoration: none; }
+a:hover { text-decoration: underline !important; }
+a:visited { color: var(--link-visited) !important; }
+
+/* 9) Navigation */
+nav a, .nav-item, .sidebar a { opacity: 1 !important; }
+.nav-item.active, nav a.active, .sidebar a.active { color: var(--heading) !important; font-weight: 600 !important; }
+.nav-item, nav a { color: #4B5563 !important; font-weight: 500 !important; }
+
+/* 10) Hash / code / monospace */
+code, kbd, pre, .font-mono { color: var(--heading) !important; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace !important; background: #F3F4F6 !important; padding: 2px 6px !important; border-radius: 4px !important; }
+
+/* 11) Section headers / eyebrows */
+.eyebrow, .section-eyebrow, .eyebrow-text { color: var(--label) !important; font-weight: 600 !important; letter-spacing: 0.08em !important; text-transform: uppercase; font-size: 12px !important; }
+
+/* 12) Global anti-pattern overrides */
+/* Forcefully override common low-opacity text and weak rgba colors */
+[style*="opacity:0."] { opacity: 1 !important; }
+[style*="color: rgba(0, 0, 0, 0."] { color: var(--body) !important; }
+[style*="color: rgba(255, 255, 255, 0."] { color: var(--heading) !important; }
+
+/* Ensure nav/sidebar text not visually reduced */
+.sidebar, .sidebar * { opacity: 1 !important; }
+
+/* keep layout intact: do not alter display/spacing */
+
+/* Section dividers and consistent spacing */
+section {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Provide a card-like wrapper option for denser sections */
+.section-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
