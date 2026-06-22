@@ -155,7 +155,7 @@ const createUniversity = async (req, res) => {
   try {
     const { name, universityCode, email, password, phone, address, status } = req.body;
     if (!name || !email || !password) return res.status(400).json({ error: 'Name, email and password are required' });
-
+    console.log('createUniversity called with body:', { name, universityCode, email, phone, address, status });
     const exists = await User.findOne({ email: email.toLowerCase().trim() });
     if (exists) return res.status(400).json({ error: 'User already exists' });
 
@@ -169,6 +169,8 @@ const createUniversity = async (req, res) => {
       address,
       isActive: status !== 'disabled'
     });
+
+    console.log('createUniversity created user id:', user._id.toString());
 
     const userObj = user.toObject(); delete userObj.password;
     res.status(201).json({ university: userObj });

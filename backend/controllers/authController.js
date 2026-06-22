@@ -110,7 +110,8 @@ const login = async (req, res) => {
 
 const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id).select("-password");
+    const userId = req.user?.id || req.user?._id;
+    const user = await User.findById(userId).select("-password");
     res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -26,7 +26,7 @@ app.use("/api/certificates", certificateRoutes);
 app.use("/api/admin", adminRoutes);
 // Note: specific university/verifier routes are provided by adminRoutes.
 // Removed references to non-existent route files to avoid startup errors.
-app.use('/api/career', require('./routes/careerRoutes'))
+app.use('/api/career', require('./routes/career'))
 
 app.use((err, req, res, next) => {
   console.error('Error handler:', { message: err.message, stack: err.stack, path: req.path, method: req.method, body: req.body });

@@ -1,8 +1,96 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Sidebar from '../../components/Sidebar'
 import api from '../../api/axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+
+const AutocompleteInput = ({ name, value, onChange, suggestions = [], placeholder = '', required = false, className = '' }) => {
+  const [open, setOpen] = useState(false)
+  const [filtered, setFiltered] = useState([])
+  const [active, setActive] = useState(-1)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    function handleClick(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false)
+        setActive(-1)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  const handleInput = (e) => {
+    const v = e.target.value
+    onChange(name, v)
+    if (!v) {
+      setFiltered([])
+      setOpen(false)
+      return
+    }
+    const matches = suggestions.filter(s => String(s).toLowerCase().includes(String(v).toLowerCase())).slice(0, 5)
+    setFiltered(matches)
+    setActive(-1)
+    setOpen(matches.length > 0)
+  }
+
+  const handleKeyDown = (e) => {
+    if (!open) return
+    if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      setActive((a) => Math.min(a + 1, filtered.length - 1))
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      setActive((a) => Math.max(a - 1, 0))
+    } else if (e.key === 'Enter') {
+      if (active >= 0 && filtered[active]) {
+        e.preventDefault()
+        onChange(name, filtered[active])
+        setOpen(false)
+        setActive(-1)
+      }
+    } else if (e.key === 'Escape') {
+      setOpen(false)
+      setActive(-1)
+    }
+  }
+
+  const handleSelect = (val) => {
+    onChange(name, val)
+    setOpen(false)
+    setActive(-1)
+  }
+
+  return (
+    <div className="relative" ref={ref}>
+      <input
+        type="text"
+        name={name}
+        value={value}
+        onChange={handleInput}
+        onKeyDown={handleKeyDown}
+        placeholder={placeholder}
+        required={required}
+        className={className}
+        autoComplete="off"
+      />
+      {open && filtered.length > 0 && (
+        <div className="absolute left-0 right-0 bg-white shadow z-50 mt-1 rounded overflow-hidden">
+          {filtered.map((s, idx) => (
+            <div
+              key={s + idx}
+              onClick={() => handleSelect(s)}
+              className={`px-3 py-2 cursor-pointer ${idx === active ? 'bg-blue-50' : ''}`}
+            >
+              {s}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 const IssueCertificate = () => {
   const navigate = useNavigate()
@@ -119,11 +207,15 @@ const IssueCertificate = () => {
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">Program *</label>
-                      <input
-                        type="text"
+                      <AutocompleteInput
                         name="degree"
                         value={formData.degree}
-                        onChange={handleChange}
+                        onChange={(name, value) => setFormData(prev => ({ ...prev, [name]: value }))}
+                        suggestions={[
+                          'CSIT', 'BCA', 'BIT', 'MCA', 'BSc Computer Science',
+                          // subjects from careers (unique)
+                          'programming','networking','database','software development','web development','python','algorithms','mathematics','data structures','system administration','security','cloud','devops','infrastructure','protocols','cisco','software engineering','java','hardware','advanced programming','software architecture','project management','research','statistics','data analysis','visualization','it support','agile','testing','machine learning','deep learning','computer networks','network security','information security','operating systems','mobile platforms','human-computer interaction','automation','systems design','query optimization','data modeling','linear algebra','probability'
+                        ]}
                         className="input-base"
                         required
                       />
@@ -131,11 +223,18 @@ const IssueCertificate = () => {
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">Major / Specialization</label>
-                      <input
-                        type="text"
+                      <AutocompleteInput
                         name="major"
                         value={formData.major}
-                        onChange={handleChange}
+                        onChange={(name, value) => setFormData(prev => ({ ...prev, [name]: value }))}
+                        suggestions={[
+                          'Information technology', 'Software Engineering', 'Data Science', 'Networking',
+                          'Distributed Systems', 'Cryptography', 'Smart Contracts', 'Web Development',
+                          'Database Systems', 'Machine Learning', 'Deep Learning', 'Computer Networks',
+                          'Network Security', 'Information Security', 'Operating Systems', 'Cloud Computing',
+                          'Mobile Platforms', 'Human-Computer Interaction', 'Automation', 'Systems Design',
+                          'Query Optimization', 'Data Modeling', 'Statistics', 'Linear Algebra', 'Probability'
+                        ]}
                         className="input-base"
                       />
                     </div>

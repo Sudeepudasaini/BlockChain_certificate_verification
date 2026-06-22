@@ -33,6 +33,8 @@ import Unauthorized          from './pages/Unauthorized'
 import UniversityManagement  from './pages/admin/UniversityManagement'
 import VerifierManagement    from './pages/admin/VerifierManagement'
 import CareerCounseling      from './pages/student/CareerCounseling'
+import CareerRecommendations from './pages/CareerRecommendations'
+import SkillGapChart from './components/SkillGapChart'
 
 function App() {
   return (
@@ -175,6 +177,8 @@ function App() {
         <Route path="/student/career-counseling" element={
           <ProtectedRoute allowedRoles={["student"]}><CareerCounseling /></ProtectedRoute>
         } />
+        <Route path="/career/recommendations" element={<ProtectedRoute allowedRoles={["student","university","admin","verifier"]}><CareerRecommendations /></ProtectedRoute>} />
+        <Route path="/career/skill-gap" element={<ProtectedRoute allowedRoles={["student","university","admin","verifier"]}><SkillGapChart /></ProtectedRoute>} />
         <Route path="/admin/universities" element={
           <ProtectedRoute allowedRoles={["admin"]}><UniversityManagement /></ProtectedRoute>
         } />

@@ -31,6 +31,7 @@ const Navbar = () => {
         ) : (
           <>
             <Link to="/">Home</Link>
+            {isAuthenticated && <Link to="/career/recommendations">Career Recommendations</Link>}
             <a href="#how">How it works</a>
             <a href="#features">Features</a>
             <Link to="/verify">Verify</Link>

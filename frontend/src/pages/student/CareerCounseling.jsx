@@ -18,9 +18,29 @@ function CareerCounseling() {
   const [chatInput, setChatInput] = useState('')
   const [chatLoading, setChatLoading] = useState(false)
   const messagesEndRef = useRef(null)
+  const [aiRecs, setAiRecs] = useState([])
+  const [aiRecsLoading, setAiRecsLoading] = useState(true)
+  const [studentSkills, setStudentSkills] = useState([])
 
   useEffect(() => { fetchRecommendations() }, [])
   useEffect(() => { messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [chatMessages])
+
+  useEffect(() => {
+    async function fetchAiRecs() {
+      try {
+        const res = await api.get('/career/recommendations')
+        if (res.data.success) {
+          setAiRecs(res.data.recommendations || [])
+          setStudentSkills(res.data.studentSkills || [])
+        }
+      } catch (err) {
+        console.error('AI recs error', err)
+      } finally {
+        setAiRecsLoading(false)
+      }
+    }
+    fetchAiRecs()
+  }, [])
 
   async function fetchRecommendations() {
     try {
@@ -57,6 +77,7 @@ function CareerCounseling() {
     { key: 'roadmap',         label: 'Learning Roadmap' },
     { key: 'skills',          label: 'Skills' },
     { key: 'certifications',  label: 'Certifications' },
+    { key: 'ai-match',        label: '🎯 AI Match' },
     { key: 'ai-chat',         label: '🤖 AI Advisor' },
   ]
 
@@ -106,7 +127,7 @@ function CareerCounseling() {
                   <p className="text-white/80 mt-2 text-sm max-w-xl">{recommendations.description}</p>
                   <div className="flex gap-3 mt-4 flex-wrap">
                     <span className="bg-white/20 rounded-full px-3 py-1 text-sm">🔥 {recommendations.industryDemand} Demand</span>
-                    <span className="bg-white/20 rounded-full px-3 py-1 text-sm">{recommendations.careers.length} Career Paths</span>
+                    <span className="bg-white/20 rounded-full px-3 py-1 text-sm">{(recommendations.careers || []).length} Career Paths</span>
                     <span className="bg-white/20 rounded-full px-3 py-1 text-sm">{recommendations.demandScore}/100 Score</span>
                   </div>
                 </div>
@@ -132,7 +153,7 @@ function CareerCounseling() {
                 <div className="lg:col-span-2 card p-5">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Top Career Opportunities</h3>
                   <div className="space-y-2">
-                    {recommendations.careers.slice(0,5).map((career,i) => (
+                    {(recommendations.careers || []).slice(0,5).map((career,i) => (
                       <div key={i} onClick={()=>setSelectedCareer(career)}
                         className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer border-l-4 border-indigo-500 bg-gray-50 dark:bg-gray-800/50">
                         <div>
@@ -192,7 +213,7 @@ function CareerCounseling() {
                           <p className="text-sm font-medium text-gray-900 dark:text-white mt-2 text-center leading-tight">{step.title}</p>
                           <p className="text-xs text-gray-500 mt-1 text-center">{step.duration}</p>
                         </div>
-                        {i < recommendations.growthPath.length-1 && <div className="w-8 h-0.5 bg-gray-200 dark:bg-gray-700 flex-shrink-0 mx-1"/>}
+                        {i < ((recommendations.growthPath?.length || 0) - 1) && <div className="w-8 h-0.5 bg-gray-200 dark:bg-gray-700 flex-shrink-0 mx-1"/>}
                       </div>
                     ))}
                   </div>
@@ -203,7 +224,7 @@ function CareerCounseling() {
             {/* TAB: CAREERS */}
             {activeTab === 'careers' && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {recommendations.careers.map((career,i)=>(
+                {(recommendations.careers || []).map((career,i)=>(
                   <div key={i} onClick={()=>setSelectedCareer(career)}
                     className="card p-5 hover:shadow-lg cursor-pointer transition-all">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-3 text-lg ${career.demand==='Very High'?'bg-green-100 dark:bg-green-900/30':career.demand==='High'?'bg-blue-100 dark:bg-blue-900/30':'bg-gray-100 dark:bg-gray-700'}`}>💼</div>
@@ -299,6 +320,152 @@ function CareerCounseling() {
             )}
 
             {/* TAB: AI CHAT */}
+            {activeTab === 'ai-match' && (
+              <div className="space-y-6">
+
+                {/* Detected Skills from Certificates */}
+                <div className="card p-5">
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
+                    Skills Detected from Your Certificates
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {studentSkills.length === 0
+                      ? <span className="text-sm text-gray-400">No skills detected yet. Make sure your certificate has a degree/major.</span>
+                      : studentSkills.map(s => (
+                          <span key={s} className="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 text-sm font-medium">{s}</span>
+                        ))
+                    }
+                  </div>
+                </div>
+
+                {/* Loading state */}
+                {aiRecsLoading && (
+                  <div className="flex items-center justify-center h-40 text-gray-400">
+                    Calculating your career matches...
+                  </div>
+                )}
+
+                {/* No recommendations */}
+                {!aiRecsLoading && aiRecs.length === 0 && (
+                  <div className="card p-10 text-center text-gray-400">
+                    No matches found. Ensure your certificate has a recognized degree (CSIT, BCA, BIT, MCA) and the career database is seeded.
+                    <div className="mt-3 text-sm">Run: POST /api/career/seed to add career data.</div>
+                  </div>
+                )}
+
+                {/* Recommendation Cards */}
+                {!aiRecsLoading && aiRecs.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {aiRecs.map((rec, i) => {
+                      const percent = Math.round((Number(rec.score) || 0) * 100)
+                      const barColor = percent > 70 ? 'bg-green-500' : percent >= 40 ? 'bg-yellow-400' : 'bg-red-400'
+                      const missing = rec.skillGap || []
+
+                      // skills student already has for this career
+                      const haveSkills = (rec.skills || []).filter(sk =>
+                        studentSkills.map(x => x.toLowerCase()).includes(sk.toLowerCase())
+                      )
+
+                      return (
+                        <div key={rec.title} className="card p-5 flex flex-col gap-4 hover:shadow-lg transition-all">
+
+                          {/* Header */}
+                          <div className="flex items-start justify-between">
+                            <div>
+                              <h4 className="font-bold text-gray-900 dark:text-white text-base">{rec.title}</h4>
+                              <div className="flex gap-2 mt-1 flex-wrap">
+                                <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${
+                                  rec.level === 'entry' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                                  : rec.level === 'mid' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300'
+                                  : 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300'
+                                }`}>{rec.level}</span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400">{rec.salaryRange}</span>
+                              </div>
+                            </div>
+                            <div className="text-right flex-shrink-0">
+                              <div className="text-xs text-gray-400">Match</div>
+                              <div className={`text-xl font-bold ${percent > 70 ? 'text-green-600' : percent >= 40 ? 'text-yellow-500' : 'text-red-500'}`}>{percent}%</div>
+                            </div>
+                          </div>
+
+                          {/* Progress bar */}
+                          <div className="w-full bg-gray-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+                            <div className={`${barColor} h-2 rounded-full transition-all`} style={{ width: `${percent}%` }} />
+                          </div>
+
+                          {/* Skills you have */}
+                          <div>
+                            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5">✅ Skills You Have</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {haveSkills.length === 0
+                                ? <span className="text-xs text-gray-400">Building from scratch</span>
+                                : haveSkills.map(s => (
+                                    <span key={s} className="px-2 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 text-xs">{s}</span>
+                                  ))
+                              }
+                            </div>
+                          </div>
+
+                          {/* Skills to learn */}
+                          <div>
+                            <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5">📚 Learn Next</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {missing.length === 0
+                                ? <span className="text-xs text-green-600 font-medium">You have all required skills!</span>
+                                : missing.slice(0, 4).map(s => (
+                                    <a key={s}
+                                      href={`https://www.coursera.org/search?query=${encodeURIComponent(s)}`}
+                                      target="_blank" rel="noreferrer"
+                                      className="px-2 py-0.5 rounded-full bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 text-xs hover:bg-red-200 transition-colors cursor-pointer"
+                                      title="Find course on Coursera"
+                                    >{s} →</a>
+                                  ))
+                              }
+                            </div>
+                          </div>
+
+                          {/* Certifications */}
+                          {rec.certifications && rec.certifications.length > 0 && (
+                            <div>
+                              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5">🏆 Get Certified</p>
+                              <div className="flex flex-wrap gap-1.5">
+                                {rec.certifications.map(c => (
+                                  <span key={c} className="px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs">{c}</span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Job roles */}
+                          {rec.jobRoles && rec.jobRoles.length > 0 && (
+                            <div>
+                              <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1.5">💼 Job Roles</p>
+                              <div className="flex flex-wrap gap-1.5">
+                                {rec.jobRoles.map(r => (
+                                  <span key={r} className="px-2 py-0.5 rounded-full border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400 text-xs">{r}</span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Ask AI button */}
+                          <button
+                            className="mt-auto w-full py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition-colors"
+                            onClick={() => {
+                              setActiveTab('ai-chat')
+                              setTimeout(() => handleSendMessage(`How can I become a ${rec.title} with my current skills? What should I learn first from: ${missing.slice(0,3).join(', ')}?`), 100)
+                            }}
+                          >
+                            Ask AI About This Career
+                          </button>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+
             {activeTab === 'ai-chat' && (
               <div className="card overflow-hidden flex flex-col" style={{height:'600px'}}>
                 {/* Chat header */}

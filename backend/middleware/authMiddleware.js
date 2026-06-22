@@ -16,7 +16,8 @@ const protect = async (req, res, next) => {
       return res.status(401).json({ error: "User not found" });
     }
 
-    req.user = user;
+    // expose a minimal user object on req to avoid leaking sensitive fields
+    req.user = { id: user._id.toString(), role: user.role, email: user.email };
     next();
   } catch (error) {
     return res.status(401).json({ error: "Not authorized" });

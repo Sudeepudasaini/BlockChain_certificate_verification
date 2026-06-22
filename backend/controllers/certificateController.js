@@ -34,7 +34,9 @@ const issueCertificate = async (req, res) => {
 
     const certId = `CERT-${uuidv4()}`;
     const formattedIssueDate = issueDate ? new Date(issueDate) : new Date();
-    const universityName = req.user.universityName || institution || req.user.name;
+    // ensure we have the issuer info (req.user may be a minimal object)
+    const issuer = await User.findById(req.user.id || req.user._id).select("name email universityName");
+    const universityName = issuer?.universityName || institution || issuer?.name || req.user.name;
     const qrUrl = `${process.env.FRONTEND_URL || "http://localhost:5173"}/verify?id=${certId}`;
     const qrCode = await qrcode.toDataURL(qrUrl);
 
@@ -46,7 +48,7 @@ const issueCertificate = async (req, res) => {
       degree,
       major,
       universityName,
-      issuedBy: req.user._id,
+      issuedBy: issuer ? issuer._id : req.user.id,
       issueDate: formattedIssueDate,
       graduationYear,
       metadata: {
@@ -110,7 +112,11 @@ const issueCertificate = async (req, res) => {
 
 const getCertificates = async (req, res) => {
   try {
-    const query = req.user.role === "university" ? { issuedBy: req.user._id } : {};
+    let query = {};
+    if (req.user.role === "university") {
+      const issuer = await User.findById(req.user.id).select("_id");
+      query = { issuedBy: issuer ? issuer._id : req.user.id };
+    }
     const certificates = await Certificate.find(query).populate("issuedBy", "name email universityName");
     res.status(200).json({ certificates });
   } catch (error) {
@@ -136,7 +142,7 @@ const getCertificateById = async (req, res) => {
 const getMyCertificates = async (req, res) => {
   try {
     const certificates = await Certificate.find({
-      $or: [{ studentEmail: req.user.email }, { studentId: req.user.studentId }],
+      $or: [{ studentEmail: req.user.email }, { studentUser: req.user.id }],
     }).populate("issuedBy", "name email universityName");
     res.status(200).json({ certificates });
   } catch (error) {
