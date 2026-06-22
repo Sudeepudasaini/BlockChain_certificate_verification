@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
-import ThemeToggle from '../../components/ThemeToggle'
 
 export default function StudentRegister() {
   const [name, setName] = useState('')
@@ -121,9 +120,7 @@ export default function StudentRegister() {
 
       {/* RIGHT PANEL */}
       <div className="flex-1 flex flex-col justify-center p-8 lg:p-12 bg-white dark:bg-gray-800 relative overflow-y-auto">
-        <div className="absolute top-4 right-4">
-          <ThemeToggle />
-        </div>
+        
 
         <Link
           to="/"

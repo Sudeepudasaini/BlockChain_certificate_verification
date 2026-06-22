@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import { useAuth } from '../../context/AuthContext'
-import ThemeToggle from '../../components/ThemeToggle'
 
 export default function StudentLogin() {
   const [email, setEmail] = useState('')
@@ -62,9 +61,7 @@ export default function StudentLogin() {
 
       {/* RIGHT PANEL */}
       <div className="flex-1 flex flex-col justify-center p-8 lg:p-12 bg-white dark:bg-gray-800 relative">
-        <div className="absolute top-4 right-4">
-          <ThemeToggle />
-        </div>
+        
 
         <Link
           to="/"
