@@ -14,7 +14,7 @@ const VerifierHistory = () => {
   return (
     <div className="flex">
       <Sidebar role="verifier" />
-      <div className="ml-60 flex-1 p-8">
+      <div className="flex-1 main-content p-8">
         <div className="card-base p-8">
           <h1 className="text-4xl font-bold text-blue-dark mb-4">Verification History</h1>
           {history.length === 0 ? (

@@ -49,7 +49,7 @@ const AdminUsers = () => {
   return (
     <div className="flex">
       <Sidebar role="admin" />
-      <div className="ml-60 flex-1 p-8">
+      <div className="flex-1 main-content p-8">
         <div className="flex flex-col gap-6">
           <div className="flex items-center justify-between">
             <h1 className="text-4xl font-bold text-blue-dark">Manage Users</h1>

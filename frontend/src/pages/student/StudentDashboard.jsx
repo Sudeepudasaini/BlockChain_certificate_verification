@@ -32,7 +32,7 @@ const StudentDashboard = () => {
     <div className="flex">
       <Sidebar role="student" />
 
-      <div className="ml-60 flex-1">
+      <div className="flex-1 main-content">
         <div className="p-8">
           <h1 className="text-4xl font-bold text-blue-dark mb-8">My Certificates</h1>
 

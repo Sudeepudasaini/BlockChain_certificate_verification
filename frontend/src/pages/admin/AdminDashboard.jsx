@@ -64,7 +64,7 @@ const AdminDashboard = () => {
     <div className="flex">
       <Sidebar role="admin" />
 
-      <div className="ml-60 flex-1">
+      <div className="flex-1 main-content">
         <div className="p-8">
           <div className="flex justify-between items-center mb-8">
             <div>

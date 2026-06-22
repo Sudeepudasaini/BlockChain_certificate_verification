@@ -97,7 +97,7 @@ const VerifierDashboard = () => {
     return (
       <div className="flex">
         <Sidebar role="verifier" />
-        <div className="ml-60 flex-1 flex items-center justify-center min-h-screen">
+          <div className="flex-1 main-content flex items-center justify-center min-h-screen">
           <LoadingSpinner text="Verifying certificate..." />
         </div>
       </div>
@@ -108,9 +108,9 @@ const VerifierDashboard = () => {
     <div className="flex">
       <Sidebar role="verifier" />
 
-      <div className="ml-60 flex-1">
+      <div className="flex-1 main-content">
         <div className="p-8">
-          <h1 className="text-4xl font-bold text-blue-dark mb-8">Certificate Verification</h1>
+            <h1 className="text-4xl font-bold text-blue-dark mb-8">Certificate Verification</h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Verification Form */}

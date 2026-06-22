@@ -272,6 +272,17 @@ section {
   margin-bottom: 2rem;
 }
 
+/* Main content area spacing when a fixed sidebar is present.
+   Provides a small consistent gap (20px) between the left sidebar and content.
+   Uses a class so it can be applied across admin/student/university/verifier pages. */
+.main-content {
+  margin-left: 20px; /* small gap beside fixed sidebar */
+}
+
+@media (max-width: 900px) {
+  .main-content { margin-left: 0 !important; }
+}
+
 /* Provide a card-like wrapper option for denser sections */
 .section-card {
   background: var(--card-bg);
