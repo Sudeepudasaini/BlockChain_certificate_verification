@@ -163,19 +163,7 @@ export default function StudentLogin() {
             Create Student Account
           </Link>
 
-          <div className="relative my-2">
-            <div className="absolute inset-x-0 top-1/2 border-t border-gray-300 dark:border-gray-600"></div>
-            <span className="relative left-1/2 -translate-x-1/2 bg-white dark:bg-gray-800 px-2 text-xs text-gray-500 dark:text-gray-400">
-              or
-            </span>
-          </div>
-
-          <Link
-            to="/login"
-            className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 block"
-          >
-            University or Verifier? Login here
-          </Link>
+          {/* Removed the 'or' divider and university/verifier login link per request */}
         </div>
       </div>
     </div>
