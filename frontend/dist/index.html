@@ -5,8 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CertChain — Secure Academic Certificates</title>
-    <script type="module" crossorigin src="/assets/index-CAm4OIMb.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BREKICRR.css">
+    <link rel="stylesheet" href="https://unpkg.com/tabler-icons@latest/iconfont/tabler-icons.min.css">
+    <script>
+      (function(){
+        try {
+          var t = localStorage.getItem('theme');
+          if(!t) {
+            t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'
+          }
+          if(t === 'dark') document.documentElement.classList.add('dark'); else document.documentElement.classList.add('light');
+        }catch(e){}
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-BSrXx_cu.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BP8UjNZJ.css">
   </head>
   <body>
     <div id="root"></div>
