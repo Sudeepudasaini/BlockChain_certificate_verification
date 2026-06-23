@@ -212,7 +212,7 @@ const IssueCertificate = () => {
                         type="email"
                         name="studentEmail"
                         value={formData.studentEmail}
-                        onChange={handleChange}
+                        onChange={(e) => setFormData(prev => ({ ...prev, studentEmail: e.target.value.toLowerCase().trim() }))}
                         className="input-base"
                         placeholder="student@example.com"
                         required
@@ -239,15 +239,15 @@ const IssueCertificate = () => {
                       <label className="block text-sm font-semibold text-gray-700 mb-2">Major / Specialization</label>
                       <AutocompleteInput
                         name="major"
-                                <input
-                                  type="email"
-                                  name="studentEmail"
-                                  value={formData.studentEmail}
-                                  onChange={(e) => setFormData((s) => ({ ...s, studentEmail: e.target.value.toLowerCase().trim() }))}
-                                  className="input-base"
-                                  placeholder="student@example.com"
-                                  required
-                                />
+                        value={formData.major}
+                        onChange={(name, value) => setFormData(prev => ({ ...prev, [name]: value }))}
+                        suggestions={[
+                          'Information technology', 'Software Engineering', 'Data Science', 'Networking',
+                          'Distributed Systems', 'Cryptography', 'Smart Contracts', 'Web Development',
+                          'Database Systems', 'Machine Learning', 'Deep Learning', 'Computer Networks',
+                          'Network Security', 'Information Security', 'Operating Systems', 'Cloud Computing',
+                          'Mobile Platforms', 'Human-Computer Interaction', 'Automation', 'Systems Design',
+                          'Query Optimization', 'Data Modeling', 'Statistics', 'Linear Algebra', 'Probability'
                         ]}
                         className="input-base"
                       />
