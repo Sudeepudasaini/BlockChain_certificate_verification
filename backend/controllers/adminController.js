@@ -201,13 +201,22 @@ const updateUniversity = async (req, res) => {
     const user = await User.findOne({ _id: id, role: 'university' });
     if (!user) return res.status(404).json({ error: 'University not found' });
 
-    ['name','universityCode','phone','address','isActive'].forEach(k => {
-      if (Object.prototype.hasOwnProperty.call(updates, k)) {
-        if (k === 'phone' && updates.phone && !/^\d{10}$/.test(updates.phone)) {
-          return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
-        }
-        user[k] = updates[k];
+    // Map status -> isActive if provided
+    if (Object.prototype.hasOwnProperty.call(updates, 'status')) {
+      user.isActive = updates.status === 'active';
+    }
+
+    // Validate phone if present
+    if (Object.prototype.hasOwnProperty.call(updates, 'phone')) {
+      if (updates.phone && !/^\d{10}$/.test(updates.phone)) {
+        return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
       }
+      user.phone = updates.phone;
+    }
+
+    // Apply other allowed fields
+    ['name','universityCode','address'].forEach(k => {
+      if (Object.prototype.hasOwnProperty.call(updates, k)) user[k] = updates[k];
     });
 
     await user.save();
@@ -294,13 +303,22 @@ const updateVerifier = async (req, res) => {
     const updates = req.body;
     const user = await User.findOne({ _id: id, role: 'verifier' });
     if (!user) return res.status(404).json({ error: 'Verifier not found' });
-    ['name','organization','phone','isActive'].forEach(k => {
-      if (Object.prototype.hasOwnProperty.call(updates, k)) {
-        if (k === 'phone' && updates.phone && !/^\d{10}$/.test(updates.phone)) {
-          return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
-        }
-        user[k] = updates[k];
+    // Map status -> isActive if provided
+    if (Object.prototype.hasOwnProperty.call(updates, 'status')) {
+      user.isActive = updates.status === 'active';
+    }
+
+    // Validate phone if present
+    if (Object.prototype.hasOwnProperty.call(updates, 'phone')) {
+      if (updates.phone && !/^\d{10}$/.test(updates.phone)) {
+        return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
       }
+      user.phone = updates.phone;
+    }
+
+    // Apply other allowed fields
+    ['name','organization'].forEach(k => {
+      if (Object.prototype.hasOwnProperty.call(updates, k)) user[k] = updates[k];
     });
     await user.save();
     const userObj = user.toObject(); delete userObj.password;
