@@ -304,6 +304,78 @@ const downloadCertificate = async (req, res) => {
   }
 };
 
+const updateCertificate = async (req, res) => {
+  try {
+    const { id } = req.params
+    const allowedFields = [
+      'studentName',
+      'studentId',
+      'studentEmail',
+      'degree',
+      'major',
+      'graduationYear',
+      'metadata',
+      'isRevoked',
+    ]
+
+    const certificate = await Certificate.findById(id)
+    if (!certificate) return res.status(404).json({ error: 'Certificate not found' })
+
+    // If requester is a university, ensure they issued this certificate
+    if (req.user.role === 'university' && certificate.issuedBy.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'Not authorized to update this certificate' })
+    }
+
+    // Only update allowed fields
+    allowedFields.forEach((field) => {
+      if (Object.prototype.hasOwnProperty.call(req.body, field)) {
+        certificate[field] = req.body[field]
+      }
+    })
+
+    // If email changed, normalize
+    if (req.body.studentEmail) {
+      certificate.studentEmail = String(req.body.studentEmail).toLowerCase().trim()
+    }
+
+    await certificate.save()
+    const populated = await certificate.populate('issuedBy', 'name email universityName')
+    res.status(200).json({ certificate: populated })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
+const deleteCertificate = async (req, res) => {
+  try {
+    const { id } = req.params
+    const certificate = await Certificate.findById(id)
+    if (!certificate) return res.status(404).json({ error: 'Certificate not found' })
+
+    // university can only delete their own
+    if (req.user.role === 'university' && certificate.issuedBy.toString() !== req.user.id) {
+      return res.status(403).json({ error: 'Not authorized to delete this certificate' })
+    }
+
+    // attempt to remove files if present
+    try {
+      if (certificate.certificateFilePath && fs.existsSync(certificate.certificateFilePath)) {
+        fs.unlinkSync(certificate.certificateFilePath)
+      }
+      if (certificate.originalFilePath && fs.existsSync(certificate.originalFilePath)) {
+        fs.unlinkSync(certificate.originalFilePath)
+      }
+    } catch (fsErr) {
+      console.warn('Failed to remove certificate files:', fsErr.message)
+    }
+
+    await Certificate.deleteOne({ _id: id })
+    res.status(200).json({ message: 'Certificate deleted' })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   issueCertificate,
   getCertificates,
@@ -313,3 +385,5 @@ module.exports = {
   verifyById,
   downloadCertificate,
 };
+module.exports.updateCertificate = updateCertificate
+module.exports.deleteCertificate = deleteCertificate

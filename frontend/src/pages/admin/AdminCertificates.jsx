@@ -39,6 +39,23 @@ const AdminCertificates = () => {
     }
   }
 
+  const [deletingId, setDeletingId] = useState(null)
+
+  const deleteCertificate = async (id) => {
+    const confirm = window.confirm('Are you sure you want to delete this certificate? This action cannot be undone.')
+    if (!confirm) return
+    try {
+      setDeletingId(id)
+      await api.delete(`/certificates/${id}`)
+      setCertificates((prev) => prev.filter((c) => c._id !== id))
+      toast.success('Certificate deleted')
+    } catch (error) {
+      toast.error(error.response?.data?.error || 'Delete failed')
+    } finally {
+      setDeletingId(null)
+    }
+  }
+
   if (loading) return <LoadingSpinner />
 
   return (
@@ -75,9 +92,18 @@ const AdminCertificates = () => {
                       </span>
                     </td>
                     <td className="p-3">
-                      <button onClick={() => downloadCertificate(cert.certId)} className="px-3 py-2 bg-primary-600 text-white rounded-md text-xs">
-                        Download
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <button onClick={() => downloadCertificate(cert.certId)} className="px-3 py-2 bg-primary-600 text-white rounded-md text-xs">
+                          Download
+                        </button>
+                        <button
+                          onClick={() => deleteCertificate(cert._id)}
+                          className="px-3 py-2 bg-red-600 text-white rounded-md text-xs"
+                          disabled={deletingId === cert._id}
+                        >
+                          {deletingId === cert._id ? 'Deleting...' : 'Delete'}
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
