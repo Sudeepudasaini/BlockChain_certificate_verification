@@ -1,34 +1,60 @@
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import React from 'react'
 
 export default function Unauthorized() {
-  const navigate = useNavigate()
-  const { user } = useAuth()
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
-      <div className="w-24 h-24 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center mx-auto">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2">
-          <rect x="3" y="11" width="18" height="11" rx="2"/>
-          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-        </svg>
-      </div>
-      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mt-6 text-center">401 — Unauthorized</h1>
-      <p className="text-gray-500 dark:text-gray-400 mt-2 text-lg text-center">You don't have permission to access this page.</p>
+    <div style={{minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+      <style>{`
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        .container { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 4rem 2rem; }
+        .icon-wrap { width: 72px; height: 72px; border-radius: 50%; background-color: #f5f5f5; border: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .icon-wrap i { font-size: 32px; color: #888; }
+        /* Target exact measured size: width ~127.61px, height 80px */
+       .error-code {
+  font-size: 220px !important;      /* increased for clarity, override global p rule */
+  line-height: 1 !important;
+  font-weight: 900 !important;
+  color: #111827 !important;
+  letter-spacing: -6px !important;
+  margin: 0 0 12px 0 !important;
+  text-align: center !important;
+  display: block !important;
+}
+        .title {
+ font-size: 32px;
+ font-weight: 800;
+ margin-bottom: 12px;
+}
+        .container {
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ text-align:center;
+ padding:3rem 2rem;
+}
+        .subtitle { font-size: 14px; color: #666; line-height: 1.6; max-width: 320px; margin-bottom: 2rem; }
+        .btn { display: inline-flex; align-items: center; gap: 7px; background-color: #1a1a1a; color: #ffffff; border: none; border-radius: 8px; padding: 11px 24px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; transition: opacity 0.15s ease; }
+        .btn:hover { opacity: 0.82; }
+        .btn i { font-size: 16px; }
+        .brand { margin-top: 3rem; font-size: 12px; color: #aaa; display: flex; align-items: center; gap: 6px; }
+        .brand i { font-size: 14px; }
+      `}</style>
 
-      <div className="card p-6 max-w-md mt-8 text-sm text-gray-500 dark:text-gray-400 text-center">
-        This area requires different credentials. Make sure you're logged in with the correct account type.
-        {user && (
-          <p className="text-xs text-gray-400 dark:text-gray-500 mt-3">
-            Currently logged in as: <span className="font-medium capitalize">{user.role}</span>
-          </p>
-        )}
-      </div>
-
-      <div className="flex gap-3 mt-6 flex-wrap justify-center">
-        <button className="btn-ghost" onClick={()=>navigate(-1)}>← Go Back</button>
-        <button className="btn-primary" onClick={()=>navigate('/')}>Go to Home</button>
-        <button className="btn-outline" onClick={()=>navigate('/login')}>Login as Different Role</button>
+      <div className="container">
+        <div className="icon-wrap">
+          <i className="ti ti-certificate-off"></i>
+        </div>
+        <p className="error-code">404</p>
+        <h1 className="title">Page not found</h1>
+        <p className="subtitle">The page you're looking for doesn't exist or has been moved.</p>
+        <a href="/" className="btn" style={{textDecoration: 'none'}}>
+          <i className="ti ti-home"></i> Go home
+        </a>
+        <div className="brand">
+          <i className="ti ti-shield-check"></i>
+          ChainVerify AI
+        </div>
       </div>
     </div>
   )
