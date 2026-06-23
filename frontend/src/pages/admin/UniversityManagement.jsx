@@ -56,6 +56,11 @@ export default function UniversityManagement() {
 
   async function handleCreate() {
     try {
+      // Validate phone if provided
+      if (createForm.phone && !/^\d{10}$/.test(createForm.phone)) {
+        toast.error('Phone number must be exactly 10 digits')
+        return
+      }
       setModalLoading(true)
       const res = await api.post('/admin/universities', createForm)
       const newUniversity = res.data?.university
@@ -81,6 +86,11 @@ export default function UniversityManagement() {
   async function handleEdit() {
     if (!selectedUniversity) return
     try {
+      // Validate phone if provided
+      if (editForm.phone && !/^\d{10}$/.test(editForm.phone)) {
+        toast.error('Phone number must be exactly 10 digits')
+        return
+      }
       setModalLoading(true)
       const res = await api.patch(`/admin/universities/${selectedUniversity._id}`, editForm)
       const updated = res.data?.university
@@ -254,7 +264,16 @@ export default function UniversityManagement() {
                 ].map(f => (
                   <div key={f.key} className={f.col === 2 ? 'col-span-2' : ''}>
                     <label className="form-label">{f.label}</label>
-                    <input type={f.type} className="form-input" placeholder={f.placeholder || ''} value={createForm[f.key]} onChange={e => setCreateForm(p => ({ ...p, [f.key]: e.target.value }))} />
+                    <input
+                      type={f.type}
+                      className="form-input"
+                      inputMode={f.key === 'phone' ? 'numeric' : undefined}
+                      maxLength={f.key === 'phone' ? 10 : undefined}
+                      pattern={f.key === 'phone' ? "\\d{10}" : undefined}
+                      placeholder={f.placeholder || ''}
+                      value={createForm[f.key]}
+                      onChange={e => setCreateForm(p => ({ ...p, [f.key]: f.key === 'phone' ? e.target.value.replace(/\D/g, '').slice(0, 10) : e.target.value }))}
+                    />
                   </div>
                 ))}
                 <div className="col-span-2">

@@ -56,6 +56,11 @@ export default function VerifierManagement() {
 
   async function handleCreate() {
     try {
+      // Validate phone if provided
+      if (createForm.phone && !/^\d{10}$/.test(createForm.phone)) {
+        toast.error('Phone number must be exactly 10 digits')
+        return
+      }
       setModalLoading(true)
       const res = await api.post('/admin/verifiers', createForm)
       const newVerifier = res.data?.verifier
@@ -82,6 +87,11 @@ export default function VerifierManagement() {
   async function handleEdit() {
     if (!selectedVerifier) return
     try {
+      // Validate phone if provided
+      if (editForm.phone && !/^\d{10}$/.test(editForm.phone)) {
+        toast.error('Phone number must be exactly 10 digits')
+        return
+      }
       setModalLoading(true)
       const res = await api.patch(`/admin/verifiers/${selectedVerifier._id}`, editForm)
       const updated = res.data?.verifier
@@ -245,15 +255,24 @@ export default function VerifierManagement() {
               <div className="p-6 grid grid-cols-2 gap-4">
                 {
                   [
-                    { label: 'Name*', col: 2, key: 'name', type: 'text' },
-                    { label: 'Email*', col: 2, key: 'email', type: 'email' },
-                    { label: 'Organization', col: 1, key: 'organization', type: 'text', placeholder: 'e.g. Acme Verification' },
-                    { label: 'Phone', col: 1, key: 'phone', type: 'tel' },
-                    { label: 'Password*', col: 1, key: 'password', type: 'password' },
+                      { label: 'Name*', col: 2, key: 'name', type: 'text' },
+                      { label: 'Email*', col: 2, key: 'email', type: 'email' },
+                      { label: 'Organization', col: 1, key: 'organization', type: 'text', placeholder: 'e.g. Acme Verification' },
+                      { label: 'Phone', col: 1, key: 'phone', type: 'tel' },
+                      { label: 'Password*', col: 1, key: 'password', type: 'password' },
                   ].map(f => (
                     <div key={f.key} className={f.col === 2 ? 'col-span-2' : ''}>
                       <label className="form-label">{f.label}</label>
-                      <input type={f.type} className="form-input" placeholder={f.placeholder || ''} value={createForm[f.key]} onChange={e => setCreateForm(p => ({ ...p, [f.key]: e.target.value }))} />
+                      <input
+                        type={f.type}
+                        className="form-input"
+                        inputMode={f.key === 'phone' ? 'numeric' : undefined}
+                        maxLength={f.key === 'phone' ? 10 : undefined}
+                        pattern={f.key === 'phone' ? "\\d{10}" : undefined}
+                        placeholder={f.placeholder || ''}
+                        value={createForm[f.key]}
+                        onChange={e => setCreateForm(p => ({ ...p, [f.key]: f.key === 'phone' ? e.target.value.replace(/\D/g, '').slice(0, 10) : e.target.value }))}
+                      />
                     </div>
                   ))}
                 <div className="col-span-2">
@@ -286,7 +305,14 @@ export default function VerifierManagement() {
                   {[{ label: 'Name', key: 'name', col: 2 }, { label: 'Organization', key: 'organization', col: 1 }, { label: 'Phone', key: 'phone', col: 1 }].map(f => (
                     <div key={f.key} className={f.col === 2 ? 'col-span-2' : ''}>
                       <label className="form-label">{f.label}</label>
-                      <input type="text" className="form-input" value={editForm[f.key]} onChange={e => setEditForm(p => ({ ...p, [f.key]: e.target.value }))} />
+                      <input
+                        type="text"
+                        className="form-input"
+                        inputMode={f.key === 'phone' ? 'numeric' : undefined}
+                        maxLength={f.key === 'phone' ? 10 : undefined}
+                        value={editForm[f.key]}
+                        onChange={e => setEditForm(p => ({ ...p, [f.key]: f.key === 'phone' ? e.target.value.replace(/\D/g, '').slice(0, 10) : e.target.value }))}
+                      />
                     </div>
                   ))}
                   <div className="col-span-2">

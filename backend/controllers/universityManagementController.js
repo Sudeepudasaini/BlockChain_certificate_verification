@@ -17,6 +17,11 @@ const createUniversity = async (req, res) => {
       });
     }
 
+    // Validate phone if provided: must be exactly 10 digits
+    if (phone && !/^\d{10}$/.test(phone)) {
+      return res.status(400).json({ success: false, message: 'Phone number must be exactly 10 digits' });
+    }
+
     // Check if email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -124,7 +129,12 @@ const updateUniversity = async (req, res) => {
     const allowedFields = {};
     if (name) allowedFields.name = name;
     if (universityCode) allowedFields.universityCode = universityCode;
-    if (phone) allowedFields.phone = phone;
+    if (phone) {
+      if (!/^\d{10}$/.test(phone)) {
+        return res.status(400).json({ success: false, message: 'Phone number must be exactly 10 digits' });
+      }
+      allowedFields.phone = phone;
+    }
     if (address) allowedFields.address = address;
     if (status) {
       allowedFields.isActive = status === "active";

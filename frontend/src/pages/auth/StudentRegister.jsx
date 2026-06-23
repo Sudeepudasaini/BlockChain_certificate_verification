@@ -61,6 +61,12 @@ export default function StudentRegister() {
       return
     }
 
+    // Phone validation: if provided, must be exactly 10 digits
+    if (phone && !/^\d{10}$/.test(phone)) {
+      toast.error('Phone number must be exactly 10 digits')
+      return
+    }
+
     setLoading(true)
     try {
       await axios.post('/api/auth/register', {
@@ -177,8 +183,11 @@ export default function StudentRegister() {
             <input
               type="tel"
               className="form-input"
+              inputMode="numeric"
+              maxLength={10}
+              pattern="\d{10}"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
             />
           </div>
 

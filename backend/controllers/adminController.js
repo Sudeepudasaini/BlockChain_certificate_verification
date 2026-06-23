@@ -87,6 +87,13 @@ const updateUser = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
+    // Validate phone if present
+    if (Object.prototype.hasOwnProperty.call(updates, 'phone')) {
+      if (updates.phone && !/^\d{10}$/.test(updates.phone)) {
+        return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
+      }
+    }
+
     Object.keys(updates).forEach((key) => {
       if (key !== 'email' || updates.email) {
         user[key] = updates[key]
@@ -159,6 +166,11 @@ const createUniversity = async (req, res) => {
     const exists = await User.findOne({ email: email.toLowerCase().trim() });
     if (exists) return res.status(400).json({ error: 'User already exists' });
 
+    // Validate phone if provided
+    if (phone && !/^\d{10}$/.test(phone)) {
+      return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
+    }
+
     const user = await User.create({
       name,
       email: email.toLowerCase().trim(),
@@ -190,7 +202,12 @@ const updateUniversity = async (req, res) => {
     if (!user) return res.status(404).json({ error: 'University not found' });
 
     ['name','universityCode','phone','address','isActive'].forEach(k => {
-      if (Object.prototype.hasOwnProperty.call(updates, k)) user[k] = updates[k];
+      if (Object.prototype.hasOwnProperty.call(updates, k)) {
+        if (k === 'phone' && updates.phone && !/^\d{10}$/.test(updates.phone)) {
+          return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
+        }
+        user[k] = updates[k];
+      }
     });
 
     await user.save();
@@ -248,6 +265,10 @@ const createVerifier = async (req, res) => {
     if (!name || !email || !password) return res.status(400).json({ error: 'Name, email and password are required' });
     const exists = await User.findOne({ email: email.toLowerCase().trim() });
     if (exists) return res.status(400).json({ error: 'User already exists' });
+      // Validate phone if provided
+      if (phone && !/^\d{10}$/.test(phone)) {
+        return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
+      }
     const user = await User.create({
       name,
       email: email.toLowerCase().trim(),
@@ -274,7 +295,12 @@ const updateVerifier = async (req, res) => {
     const user = await User.findOne({ _id: id, role: 'verifier' });
     if (!user) return res.status(404).json({ error: 'Verifier not found' });
     ['name','organization','phone','isActive'].forEach(k => {
-      if (Object.prototype.hasOwnProperty.call(updates, k)) user[k] = updates[k];
+      if (Object.prototype.hasOwnProperty.call(updates, k)) {
+        if (k === 'phone' && updates.phone && !/^\d{10}$/.test(updates.phone)) {
+          return res.status(400).json({ error: 'Phone number must be exactly 10 digits' });
+        }
+        user[k] = updates[k];
+      }
     });
     await user.save();
     const userObj = user.toObject(); delete userObj.password;

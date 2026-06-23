@@ -25,6 +25,11 @@ const createVerifier = async (req, res) => {
       });
     }
 
+    // Validate phone if provided: must be exactly 10 digits
+    if (phone && !/^\d{10}$/.test(phone)) {
+      return res.status(400).json({ success: false, message: 'Phone number must be exactly 10 digits' });
+    }
+
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -121,7 +126,13 @@ const updateVerifier = async (req, res) => {
     const allowedFields = {};
     if (name) allowedFields.name = name;
     if (organization) allowedFields.organization = organization;
-    if (phone) allowedFields.phone = phone;
+    if (phone) {
+      // Validate phone before updating
+      if (!/^\d{10}$/.test(phone)) {
+        return res.status(400).json({ success: false, message: 'Phone number must be exactly 10 digits' });
+      }
+      allowedFields.phone = phone;
+    }
     if (status) {
       allowedFields.isActive = status === "active";
     }
