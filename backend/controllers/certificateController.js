@@ -32,6 +32,11 @@ const issueCertificate = async (req, res) => {
       return res.status(400).json({ error: "Student name, email, degree, and graduation year are required" });
     }
 
+    // enforce lowercase email format
+    if (/[A-Z]/.test(studentEmail)) return res.status(400).json({ error: 'Student email must be lowercase' })
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+    if (!emailRegex.test(studentEmail)) return res.status(400).json({ error: 'Student email must be a valid lowercase email address' })
+
     const certId = `CERT-${uuidv4()}`;
     const formattedIssueDate = issueDate ? new Date(issueDate) : new Date();
     // ensure we have the issuer info (req.user may be a minimal object)

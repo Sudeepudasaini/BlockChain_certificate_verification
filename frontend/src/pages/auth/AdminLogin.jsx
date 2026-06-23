@@ -59,7 +59,7 @@ export default function AdminLogin() {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.toLowerCase().trim())}
             className="w-full mb-4 px-4 py-3 rounded-md bg-[#0b1622] text-white border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500"
             placeholder="enter admin email"
             required

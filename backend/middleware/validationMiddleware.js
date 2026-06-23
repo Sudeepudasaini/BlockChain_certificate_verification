@@ -13,10 +13,13 @@ const validateRegister = (req, res, next) => {
   if (!email || typeof email !== "string" || email.trim() === "") {
     errors.push("Email is required");
   } else {
-    // Email validation regex
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Email validation regex (lowercase only)
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     if (!emailRegex.test(email)) {
-      errors.push("Email must be a valid email address");
+      errors.push("Email must be a valid lowercase email address (e.g. user@example.com)");
+    }
+    if (/[A-Z]/.test(email)) {
+      errors.push('Email must be lowercase');
     }
   }
 
@@ -44,6 +47,14 @@ const validateLogin = (req, res, next) => {
   // Check required fields
   if (!email || typeof email !== "string" || email.trim() === "") {
     errors.push("Email is required");
+  } else {
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      errors.push("Email must be a valid lowercase email address (e.g. user@example.com)");
+    }
+    if (/[A-Z]/.test(email)) {
+      errors.push('Email must be lowercase');
+    }
   }
 
   if (!password || typeof password !== "string" || password.trim() === "") {
@@ -81,10 +92,12 @@ const validateCreateUniversity = (req, res, next) => {
   if (!email || typeof email !== "string" || email.trim() === "") {
     errors.push("Email is required");
   } else {
-    // Email validation regex
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     if (!emailRegex.test(email)) {
-      errors.push("Email must be a valid email address");
+      errors.push("Email must be a valid lowercase email address (e.g. user@example.com)");
+    }
+    if (/[A-Z]/.test(email)) {
+      errors.push('Email must be lowercase');
     }
   }
 

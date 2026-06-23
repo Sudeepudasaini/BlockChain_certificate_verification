@@ -162,7 +162,7 @@ const UniversityCertificates = () => {
                 <input className="form-input" value={editForm.studentId} onChange={(e) => setEditForm((s) => ({ ...s, studentId: e.target.value }))} />
 
                 <label className="text-sm">Student Email</label>
-                <input className="form-input" value={editForm.studentEmail} onChange={(e) => setEditForm((s) => ({ ...s, studentEmail: e.target.value }))} />
+                <input className="form-input" value={editForm.studentEmail} onChange={(e) => setEditForm((s) => ({ ...s, studentEmail: e.target.value.toLowerCase().trim() }))} />
 
                 <label className="text-sm">Degree</label>
                 <input className="form-input" value={editForm.degree} onChange={(e) => setEditForm((s) => ({ ...s, degree: e.target.value }))} />

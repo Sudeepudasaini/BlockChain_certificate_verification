@@ -271,7 +271,7 @@ export default function VerifierManagement() {
                         pattern={f.key === 'phone' ? "\\d{10}" : undefined}
                         placeholder={f.placeholder || ''}
                         value={createForm[f.key]}
-                        onChange={e => setCreateForm(p => ({ ...p, [f.key]: f.key === 'phone' ? e.target.value.replace(/\D/g, '').slice(0, 10) : e.target.value }))}
+                        onChange={e => setCreateForm(p => ({ ...p, [f.key]: f.key === 'phone' ? e.target.value.replace(/\D/g, '').slice(0, 10) : (f.key === 'email' ? e.target.value.toLowerCase().trim() : e.target.value) }))}
                       />
                     </div>
                   ))}

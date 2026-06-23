@@ -95,7 +95,7 @@ export default function VerifierLogin() {
               type="email"
               className="form-input"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.toLowerCase().trim())}
               required
             />
           </div>

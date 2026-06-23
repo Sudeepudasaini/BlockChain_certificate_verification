@@ -16,8 +16,18 @@ const createVerifier = async (req, res) => {
       });
     }
 
-    // Check if email already exists
-    const existingUser = await User.findOne({ email });
+    // Email format and lowercase enforcement
+    const emailLower = String(email).toLowerCase().trim();
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ success: false, message: 'Email must be a valid lowercase email address' });
+    }
+    if (/[A-Z]/.test(email)) {
+      return res.status(400).json({ success: false, message: 'Email must be lowercase' });
+    }
+
+    // Check if email already exists (use normalized lowercase)
+    const existingUser = await User.findOne({ email: emailLower });
     if (existingUser) {
       return res.status(409).json({
         success: false,
@@ -37,7 +47,7 @@ const createVerifier = async (req, res) => {
     // Create verifier user
     const verifier = new User({
       name,
-      email,
+      email: emailLower,
       password: hashedPassword,
       role: "verifier",
       organization: organization || "",

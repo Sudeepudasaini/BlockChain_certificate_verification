@@ -27,9 +27,12 @@ const LoginPage = () => {
   }, [isAuthenticated, user, navigate])
 
   const handleChange = (e) => {
+    const name = e.target.name
+    let value = e.target.value
+    if (name === 'email') value = value.toLowerCase().trim()
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     })
   }
 

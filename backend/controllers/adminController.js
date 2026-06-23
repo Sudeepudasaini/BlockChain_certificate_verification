@@ -163,7 +163,12 @@ const createUniversity = async (req, res) => {
     const { name, universityCode, email, password, phone, address, status } = req.body;
     if (!name || !email || !password) return res.status(400).json({ error: 'Name, email and password are required' });
     console.log('createUniversity called with body:', { name, universityCode, email, phone, address, status });
-    const exists = await User.findOne({ email: email.toLowerCase().trim() });
+    // Enforce lowercase and validate format
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailRegex.test(email)) return res.status(400).json({ error: 'Email must be a valid lowercase email address' });
+    if (/[A-Z]/.test(email)) return res.status(400).json({ error: 'Email must be lowercase' });
+    const emailNorm = email.toLowerCase().trim()
+    const exists = await User.findOne({ email: emailNorm });
     if (exists) return res.status(400).json({ error: 'User already exists' });
 
     // Validate phone if provided
@@ -173,7 +178,7 @@ const createUniversity = async (req, res) => {
 
     const user = await User.create({
       name,
-      email: email.toLowerCase().trim(),
+      email: emailNorm,
       password,
       role: 'university',
       universityCode,
@@ -272,7 +277,12 @@ const createVerifier = async (req, res) => {
   try {
     const { name, email, organization, phone, password, status } = req.body;
     if (!name || !email || !password) return res.status(400).json({ error: 'Name, email and password are required' });
-    const exists = await User.findOne({ email: email.toLowerCase().trim() });
+    // enforce lowercase and validate
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailRegex.test(email)) return res.status(400).json({ error: 'Email must be a valid lowercase email address' });
+    if (/[A-Z]/.test(email)) return res.status(400).json({ error: 'Email must be lowercase' });
+    const emailNorm = email.toLowerCase().trim()
+    const exists = await User.findOne({ email: emailNorm });
     if (exists) return res.status(400).json({ error: 'User already exists' });
       // Validate phone if provided
       if (phone && !/^\d{10}$/.test(phone)) {
@@ -280,7 +290,7 @@ const createVerifier = async (req, res) => {
       }
     const user = await User.create({
       name,
-      email: email.toLowerCase().trim(),
+      email: emailNorm,
       password,
       role: 'verifier',
       organization,

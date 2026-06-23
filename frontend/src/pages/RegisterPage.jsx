@@ -23,9 +23,12 @@ const RegisterPage = () => {
   })
 
   const handleChange = (e) => {
+    const name = e.target.name
+    let value = e.target.value
+    if (name === 'email') value = value.toLowerCase().trim()
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }))
   }
 

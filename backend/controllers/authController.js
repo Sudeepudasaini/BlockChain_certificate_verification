@@ -22,7 +22,13 @@ const register = async (req, res) => {
       description,
     } = req.body;
 
-    const normalizedEmail = email?.toLowerCase().trim();
+    // Validate email format and lowercase
+    if (!email || typeof email !== 'string') return res.status(400).json({ error: 'Email is required' })
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+    if (!emailRegex.test(email)) return res.status(400).json({ error: 'Email must be a valid lowercase email address' })
+    if (/[A-Z]/.test(email)) return res.status(400).json({ error: 'Email must be lowercase' })
+
+    const normalizedEmail = email.toLowerCase().trim();
 
     if (!name || !normalizedEmail || !password || !role) {
       return res.status(400).json({ error: "Name, email, password and role are required" });
@@ -77,6 +83,10 @@ const login = async (req, res) => {
       return res.status(400).json({ error: "Email and password required" });
     }
 
+    // Validate email lowercase and format for login
+    if (/[A-Z]/.test(email)) return res.status(400).json({ error: 'Email must be lowercase' })
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/
+    if (!emailRegex.test(email)) return res.status(400).json({ error: 'Email must be a valid lowercase email address' })
     const normalizedEmail = email.toLowerCase().trim();
     const user = await User.findOne({ email: normalizedEmail });
     if (!user) {

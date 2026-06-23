@@ -22,8 +22,18 @@ const createUniversity = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Phone number must be exactly 10 digits' });
     }
 
+    // Enforce lowercase email and validate format
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ success: false, message: 'Email must be a valid lowercase email address' });
+    }
+    if (/[A-Z]/.test(email)) {
+      return res.status(400).json({ success: false, message: 'Email must be lowercase' });
+    }
+    const emailLower = String(email).toLowerCase().trim();
+
     // Check if email already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: emailLower });
     if (existingUser) {
       return res.status(409).json({
         success: false,
@@ -38,7 +48,7 @@ const createUniversity = async (req, res) => {
     // Create university user
     const university = new User({
       name,
-      email,
+      email: emailLower,
       password: hashedPassword,
       role: "university",
       universityName: name,

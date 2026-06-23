@@ -74,13 +74,13 @@ export default function StudentForgotPassword() {
             <div className="space-y-4">
               <div>
                 <label className="form-label text-left block">Email Address</label>
-                <input
-                  type="email"
-                  className="form-input"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+                  <input
+                    type="email"
+                    className="form-input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value.toLowerCase().trim())}
+                    required
+                  />
               </div>
 
               <button

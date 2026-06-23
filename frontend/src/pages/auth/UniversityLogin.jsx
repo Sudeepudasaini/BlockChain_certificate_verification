@@ -111,13 +111,13 @@ export default function UniversityLogin() {
           {/* Email */}
           <div>
             <label className="form-label">Email Address</label>
-            <input
-              type="email"
-              className="form-input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+              <input
+                type="email"
+                className="form-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value.toLowerCase().trim())}
+                required
+              />
           </div>
 
           {/* Password */}
