@@ -1,22 +1,51 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import api from '../api/axios'
 
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true) // true until we verify session
 
+  // Restore and verify session on app startup
   useEffect(() => {
-    const storedUser = localStorage.getItem('certchain_user')
-    const storedToken = localStorage.getItem('certchain_token')
+    const init = async () => {
+      const storedToken = localStorage.getItem('certchain_token')
+      if (!storedToken) {
+        setLoading(false)
+        return
+      }
 
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser))
+      // Optimistically set token for request interceptor to pick up
       setToken(storedToken)
+
+      try {
+        // skipAuthRedirect prevents axios interceptor from redirecting while we restore
+        const res = await api.get('/auth/me', { skipAuthRedirect: true })
+        const userFromServer = res.data?.user
+        if (userFromServer) {
+          setUser(userFromServer)
+          localStorage.setItem('certchain_user', JSON.stringify(userFromServer))
+        } else {
+          // invalid session
+          setUser(null)
+          setToken(null)
+          localStorage.removeItem('certchain_user')
+          localStorage.removeItem('certchain_token')
+        }
+      } catch (err) {
+        // token invalid or network error - clear session
+        setUser(null)
+        setToken(null)
+        localStorage.removeItem('certchain_user')
+        localStorage.removeItem('certchain_token')
+      } finally {
+        setLoading(false)
+      }
     }
 
-    setLoading(false)
+    init()
   }, [])
 
   const login = (userData, tokenData) => {
@@ -31,10 +60,11 @@ export const AuthProvider = ({ children }) => {
     setToken(null)
     localStorage.removeItem('certchain_user')
     localStorage.removeItem('certchain_token')
+    // notify backend if needed in future
     window.location.href = '/'
   }
 
-  const isAuthenticated = !!token
+  const isAuthenticated = !!token && !!user
 
   return (
     <AuthContext.Provider value={{ user, token, loading, login, logout, isAuthenticated }}>

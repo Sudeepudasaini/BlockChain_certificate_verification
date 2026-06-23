@@ -4,6 +4,16 @@ import { useAuth } from '../context/AuthContext'
 function ProtectedRoute({ children, allowedRoles = [] }) {
   const { user, isAuthenticated } = useAuth()
   const location = useLocation()
+  // Wait for auth to initialize before making any routing decisions
+  const { loading } = useAuth()
+
+  if (loading) {
+    return (
+      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
+        <div>Checking authentication...</div>
+      </div>
+    )
+  }
 
   if (!isAuthenticated) {
     const path = location.pathname

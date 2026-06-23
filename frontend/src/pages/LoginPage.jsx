@@ -14,8 +14,11 @@ const LoginPage = () => {
     password: '',
   })
 
+  const { loading: authLoading } = useAuth()
+
   useEffect(() => {
-    if (isAuthenticated && user?.role) {
+    // only redirect after auth initialization completes
+    if (!authLoading && isAuthenticated && user?.role) {
       const routeMap = {
         admin: '/admin/dashboard',
         university: '/university/dashboard',
@@ -24,7 +27,7 @@ const LoginPage = () => {
       }
       navigate(routeMap[user.role] || '/')
     }
-  }, [isAuthenticated, user, navigate])
+  }, [loading, isAuthenticated, user, navigate])
 
   const handleChange = (e) => {
     setFormData({
