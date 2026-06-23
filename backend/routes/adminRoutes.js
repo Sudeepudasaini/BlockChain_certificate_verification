@@ -9,6 +9,7 @@ router.get("/users/:id", protect, authorize("admin"), adminController.getUserByI
 router.put("/users/:id", protect, authorize("admin"), adminController.updateUser);
 router.patch("/users/:id/status", protect, authorize("admin"), adminController.updateUserStatus);
 router.delete("/users/:id", protect, authorize("admin"), adminController.deleteUser);
+router.patch('/users/:id/reset-password', protect, authorize('admin'), adminController.resetUserPassword);
 router.get("/certificates", protect, authorize("admin"), adminController.getAllCertificates);
 router.patch("/certificates/:id/revoke", protect, authorize("admin"), adminController.revokeCertificate);
 

@@ -359,6 +359,22 @@ const resetVerifierPassword = async (req, res) => {
   }
 }
 
+const resetUserPassword = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { newPassword } = req.body;
+    if (!newPassword) return res.status(400).json({ error: 'New password required' });
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    user.password = newPassword;
+    await user.save();
+    res.status(200).json({ message: 'Password reset successfully' });
+  } catch (error) {
+    console.error('resetUserPassword error', error);
+    res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   getDashboardStats,
   getAllUsers,
@@ -381,4 +397,5 @@ module.exports = Object.assign({}, module.exports, {
   updateVerifier,
   toggleVerifierStatus,
   resetVerifierPassword,
+  resetUserPassword,
 });

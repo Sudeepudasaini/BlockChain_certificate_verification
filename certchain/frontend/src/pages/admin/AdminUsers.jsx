@@ -85,6 +85,24 @@ const AdminUsers = () => {
                       <button onClick={() => deleteUser(user._id)} className="px-3 py-2 bg-red-100 text-red-700 rounded-md text-xs">
                         Delete
                       </button>
+                      <button onClick={async () => {
+                        if (!window.confirm('Reset password for this user?')) return;
+                        try {
+                          const res = await api.patch(`/admin/users/${user._id}/reset-password`);
+                          const newPass = res.data.newPassword;
+                          try {
+                            await navigator.clipboard.writeText(newPass);
+                            alert('Password reset. New password copied to clipboard: ' + newPass);
+                          } catch (e) {
+                            alert('Password reset. New password: ' + newPass);
+                          }
+                          toast.success('Password reset')
+                        } catch (err) {
+                          toast.error('Failed to reset password')
+                        }
+                      }} className="px-3 py-2 bg-yellow-100 text-yellow-700 rounded-md text-xs">
+                        Reset Password
+                      </button>
                     </td>
                   </tr>
                 ))}
