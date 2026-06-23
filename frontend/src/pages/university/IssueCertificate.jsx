@@ -106,6 +106,20 @@ const IssueCertificate = () => {
     institution: '',
     description: '',
   })
+
+  // generate a unique student id for new certificates
+  useEffect(() => {
+    const generateStudentId = () => {
+      const ts = Date.now().toString().slice(-6)
+      const rand = Math.floor(Math.random() * 9000) + 1000
+      return `STU-${ts}-${rand}`
+    }
+
+    if (!formData.studentId) {
+      setFormData(prev => ({ ...prev, studentId: generateStudentId() }))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   const [file, setFile] = useState(null)
   const [uploadProgress, setUploadProgress] = useState(0)
 
@@ -186,9 +200,9 @@ const IssueCertificate = () => {
                         type="text"
                         name="studentId"
                         value={formData.studentId}
-                        onChange={handleChange}
-                        className="input-base"
-                        placeholder="Optional but recommended"
+                        readOnly
+                        className="input-base bg-gray-100 cursor-not-allowed"
+                        placeholder="Auto-generated — not editable"
                       />
                     </div>
 

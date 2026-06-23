@@ -6,7 +6,7 @@ import axios from 'axios'
 export default function StudentRegister() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [studentId, setStudentId] = useState('')
+  
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -36,7 +36,7 @@ export default function StudentRegister() {
     e.preventDefault()
 
     // Validation
-    if (!name || !email || !studentId || !password || !confirmPassword) {
+    if (!name || !email || !password || !confirmPassword) {
       toast.error('Fill all required fields')
       return
     }
@@ -73,7 +73,6 @@ export default function StudentRegister() {
         name,
         email,
         password,
-        studentId,
         phone,
         role: 'student'
       })
@@ -165,17 +164,7 @@ export default function StudentRegister() {
             />
           </div>
 
-          {/* Student ID */}
-          <div className="col-span-1">
-            <label className="form-label">Student ID *</label>
-            <input
-              type="text"
-              className="form-input"
-              value={studentId}
-              onChange={(e) => setStudentId(e.target.value)}
-              required
-            />
-          </div>
+          {/* Student ID removed from student registration */}
 
           {/* Phone */}
           <div className="col-span-1">

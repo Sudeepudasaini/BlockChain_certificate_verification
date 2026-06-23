@@ -16,7 +16,6 @@ const RegisterPage = () => {
     confirmPassword: '',
     role: 'student',
     universityName: '',
-    studentId: '',
     website: '',
     address: '',
     description: '',
@@ -44,7 +43,6 @@ const RegisterPage = () => {
         password: formData.password,
         role: formData.role,
         universityName: formData.universityName,
-        studentId: formData.studentId,
         website: formData.website,
         address: formData.address,
         description: formData.description,
@@ -164,18 +162,7 @@ const RegisterPage = () => {
                 </div>
               )}
 
-              {formData.role === 'student' && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Student ID</label>
-                  <input
-                    name="studentId"
-                    value={formData.studentId}
-                    onChange={handleChange}
-                    className="input-base"
-                    placeholder="STU-2024-001"
-                  />
-                </div>
-              )}
+              {/* studentId removed from student registration per requirement */}
 
               {formData.role === 'university' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
