@@ -153,25 +153,25 @@ export function OverviewTabPanel({ recommendations = [], studentSkills = [], loa
         </div>
       </div>
 
-      <div className="card p-6">
+      <div className="card p-6 w-full">
         <div className="flex items-center justify-between mb-5">
           <h4 className="font-semibold text-gray-900 dark:text-white">Career Growth Path</h4>
           <span className="hidden text-xs text-gray-500 dark:text-gray-400">Based on your top recommendations</span>
         </div>
-        <div className="flex items-center overflow-x-auto gap-0 pb-2">
+        <div className="flex items-center justify-evenly gap-2 overflow-x-auto pb-2">
           {topCareers.length === 0 && (
             <p className="text-sm text-gray-500 dark:text-gray-400">No recommendations available yet.</p>
           )}
           {topCareers.map((career, index) => (
-            <div key={`${career.title}-${index}`} className="flex items-center flex-shrink-0">
-              <div className="flex flex-col items-center w-28">
+            <div key={`${career.title}-${index}`} className="flex items-center flex-1 min-w-[110px] justify-center">
+              <div className="flex flex-col items-center w-full max-w-[140px]">
                 <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
                   {index + 1}
                 </div>
                 <p className="text-sm font-medium text-gray-900 dark:text-white mt-2 text-center leading-tight">{career.title}</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-center">{career.level || 'Next step'}</p>
               </div>
-              {index < topCareers.length - 1 && <div className="w-8 h-0.5 bg-gray-200 dark:bg-gray-700 flex-shrink-0 mx-1" />}
+              {index < topCareers.length - 1 && <div className="hidden sm:block w-6 h-0.5 bg-gray-200 dark:bg-gray-700 flex-shrink-0 mx-2" />}
             </div>
           ))}
         </div>
