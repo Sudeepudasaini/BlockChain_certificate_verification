@@ -156,7 +156,7 @@ export function OverviewTabPanel({ recommendations = [], studentSkills = [], loa
       <div className="card p-6">
         <div className="flex items-center justify-between mb-5">
           <h4 className="font-semibold text-gray-900 dark:text-white">Career Growth Path</h4>
-          <span className="text-xs text-gray-500 dark:text-gray-400">Based on your top recommendations</span>
+          <span className="hidden text-xs text-gray-500 dark:text-gray-400">Based on your top recommendations</span>
         </div>
         <div className="flex items-center overflow-x-auto gap-0 pb-2">
           {topCareers.length === 0 && (
