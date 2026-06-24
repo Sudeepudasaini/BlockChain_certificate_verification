@@ -85,7 +85,7 @@ export function OverviewTabPanel({ recommendations = [], studentSkills = [], loa
         <div className="card p-5">
           <div className="flex items-center justify-between mb-4">
             <h4 className="font-semibold text-gray-900 dark:text-white">Top Career Opportunities</h4>
-            <span className="text-xs text-gray-500 dark:text-gray-400">Sorted by match</span>
+            <span className="hidden text-xs text-gray-500 dark:text-gray-400">Sorted by match</span>
           </div>
           <div className="space-y-2">
             {topCareers.map((career, index) => {
