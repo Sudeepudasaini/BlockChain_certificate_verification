@@ -4,6 +4,10 @@ import api from '../../api/axios'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../context/AuthContext'
 import Sidebar from '../../components/Sidebar'
+import { OverviewTabPanel } from './OverviewTabPanel'
+import { CareerPathsTabPanel } from './CareerPathsTabPanel'
+import { LearningRoadmapTabPanel } from './LearningRoadmapTabPanel'
+import { SkillsTabPanel } from './SkillsTabPanel'
 
 function CareerCounseling() {
   const { user } = useAuth()
@@ -148,144 +152,37 @@ function CareerCounseling() {
 
             {/* TAB: OVERVIEW */}
             {activeTab === 'overview' && (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Top careers */}
-                <div className="lg:col-span-2 card p-5">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Top Career Opportunities</h3>
-                  <div className="space-y-2">
-                    {(recommendations.careers || []).slice(0,5).map((career,i) => (
-                      <div key={i} onClick={()=>setSelectedCareer(career)}
-                        className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer border-l-4 border-indigo-500 bg-gray-50 dark:bg-gray-800/50">
-                        <div>
-                          <p className="font-medium text-sm text-gray-900 dark:text-white">{career.title}</p>
-                          <p className="text-xs text-gray-500 mt-0.5">{career.description}</p>
-                        </div>
-                        <div className="flex flex-col items-end gap-1 ml-4 flex-shrink-0">
-                          <span className={`px-2 py-0.5 rounded text-xs font-medium ${career.demand==='Very High'?'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400':career.demand==='High'?'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400':'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'}`}>{career.demand}</span>
-                          <span className="text-xs text-gray-500">{career.avgSalary?.entry}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Quick stats */}
-                <div className="card p-5 space-y-4">
-                  <h3 className="font-semibold text-gray-900 dark:text-white">Industry Overview</h3>
-                  <div>
-                    <div className="flex justify-between text-xs text-gray-500 mb-1">
-                      <span>Industry Demand</span><span>{recommendations.demandScore}/100</span>
-                    </div>
-                    <div className="h-2.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-indigo-500 rounded-full" style={{width:recommendations.demandScore+'%'}}/>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    {[
-                      ['Entry',  recommendations.salaryRange?.entry,  'border-l-green-500'],
-                      ['Mid',    recommendations.salaryRange?.mid,    'border-l-blue-500'],
-                      ['Senior', recommendations.salaryRange?.senior, 'border-l-purple-500'],
-                    ].map(([label,range,color])=>(
-                      <div key={label} className={`p-2 bg-gray-50 dark:bg-gray-800 rounded border-l-4 ${color}`}>
-                        <p className="text-xs text-gray-500">{label} Level · {range?.experience}</p>
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white">NPR {range?.min?.toLocaleString()}+</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div>
-                    <p className="text-xs font-medium text-gray-500 mb-2">Top Employers</p>
-                    <div className="flex flex-wrap gap-1">
-                      {recommendations.topEmployers?.map(e=>(
-                        <span key={e} className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs text-gray-600 dark:text-gray-400">{e}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Growth path */}
-                <div className="lg:col-span-3 card p-6">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-6">Career Growth Path</h3>
-                  <div className="flex items-center overflow-x-auto gap-0 pb-2">
-                    {recommendations.growthPath?.map((step,i)=>(
-                      <div key={i} className="flex items-center flex-shrink-0">
-                        <div className="flex flex-col items-center w-28">
-                          <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">{step.level}</div>
-                          <p className="text-sm font-medium text-gray-900 dark:text-white mt-2 text-center leading-tight">{step.title}</p>
-                          <p className="text-xs text-gray-500 mt-1 text-center">{step.duration}</p>
-                        </div>
-                        {i < ((recommendations.growthPath?.length || 0) - 1) && <div className="w-8 h-0.5 bg-gray-200 dark:bg-gray-700 flex-shrink-0 mx-1"/>}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <OverviewTabPanel
+                recommendations={recommendations?.careers || recommendations || []}
+                studentSkills={studentSkills}
+                loading={loading}
+              />
             )}
 
             {/* TAB: CAREERS */}
             {activeTab === 'careers' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {(recommendations.careers || []).map((career,i)=>(
-                  <div key={i} onClick={()=>setSelectedCareer(career)}
-                    className="card p-5 hover:shadow-lg cursor-pointer transition-all">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-3 text-lg ${career.demand==='Very High'?'bg-green-100 dark:bg-green-900/30':career.demand==='High'?'bg-blue-100 dark:bg-blue-900/30':'bg-gray-100 dark:bg-gray-700'}`}>💼</div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white text-sm">{career.title}</h4>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{career.description}</p>
-                    <div className="flex items-center justify-between mt-3">
-                      <span className={`px-2 py-0.5 text-xs rounded font-medium ${career.demand==='Very High'?'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400':'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'}`}>{career.demand}</span>
-                      <span className="text-xs text-gray-500">{career.avgSalary?.entry}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <CareerPathsTabPanel
+                recommendations={recommendations?.careers || recommendations || []}
+                studentSkills={studentSkills}
+                loading={loading}
+              />
             )}
 
             {/* TAB: ROADMAP */}
             {activeTab === 'roadmap' && (
-              <div className="space-y-6">
-                {[
-                  { stage:'Beginner',     color:'border-l-green-500',  badge:'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',   data:recommendations.roadmap?.beginner },
-                  { stage:'Intermediate', color:'border-l-indigo-500', badge:'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400', data:recommendations.roadmap?.intermediate },
-                  { stage:'Advanced',     color:'border-l-purple-500', badge:'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400', data:recommendations.roadmap?.advanced },
-                ].map(({stage,color,badge,data},i)=>(
-                  <div key={stage} className={`card p-6 border-l-4 ${color}`}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${badge}`}>{i+1}</span>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">{stage}</h3>
-                        <span className={`text-xs px-2 py-0.5 rounded ${badge}`}>{data?.duration}</span>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {data?.topics?.map((topic,j)=>(
-                        <div key={j} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                          <div className="w-4 h-4 rounded border-2 border-gray-300 dark:border-gray-600 flex-shrink-0"/>
-                          {topic}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <LearningRoadmapTabPanel
+                recommendations={recommendations?.careers || recommendations || []}
+                loading={loading}
+              />
             )}
 
             {/* TAB: SKILLS */}
             {activeTab === 'skills' && (
-              <div className="space-y-6">
-                {[
-                  { label:'Technical Skills', items:recommendations.skills?.technical, colors:['bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300','bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300','bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300'] },
-                  { label:'Soft Skills',       items:recommendations.skills?.soft,      colors:['bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300','bg-teal-100 text-teal-700 dark:bg-teal-900/30 dark:text-teal-300'] },
-                  { label:'Tools & Tech',      items:recommendations.skills?.tools,     colors:['bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300','bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'] },
-                ].map(({label,items,colors})=>(
-                  <div key={label} className="card p-5">
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-4">{label}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {items?.map((skill,i)=>(
-                        <span key={skill} className={`px-3 py-1.5 rounded-full text-sm font-medium ${colors[i%colors.length]}`}>{skill}</span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <SkillsTabPanel
+                recommendations={recommendations?.careers || recommendations || []}
+                studentSkills={studentSkills}
+                loading={loading}
+              />
             )}
 
             {/* TAB: CERTIFICATIONS */}
