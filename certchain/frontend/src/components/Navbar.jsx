@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 const Navbar = () => {
   const { isAuthenticated, logout, user } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+  const showOnlyHome = ['/verify', '/verify/result'].includes(location.pathname)
   const [theme, setTheme] = useState(() => {
     if (typeof window === 'undefined') return 'light'
     return window.localStorage.getItem('theme') || 'light'
@@ -33,9 +35,15 @@ const Navbar = () => {
 
           {!isAuthenticated && (
             <div className="hidden md:flex items-center gap-3">
-              <Link to="/" className="navbar-link">Home</Link>
-              <Link to="/verify" className="navbar-link">Verify</Link>
-              <a href="#features" className="navbar-link">About</a>
+              {showOnlyHome ? (
+                <Link to="/" className="navbar-link">Home</Link>
+              ) : (
+                <>
+                  <Link to="/" className="navbar-link">Home</Link>
+                  <Link to="/verify" className="navbar-link">Verify</Link>
+                  <a href="#features" className="navbar-link">About</a>
+                </>
+              )}
             </div>
           )}
 

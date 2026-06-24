@@ -7,7 +7,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [showLoginDropdown, setShowLoginDropdown] = useState(false)
   const location = useLocation()
-  const showOnlyHome = location.pathname === '/verify'
+  const showOnlyHome = ['/verify', '/verify/result'].includes(location.pathname)
 
   useEffect(() => {
     if (!showLoginDropdown) return
