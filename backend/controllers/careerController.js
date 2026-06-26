@@ -44,7 +44,7 @@ async function askAssistant(req, res) {
   try {
     const { question, conversationHistory = [] } = req.body
     if (!question) return res.status(400).json({ error: 'Question required' })
-
+console.log('GROQ KEY:', process.env.GROQ_API_KEY ? 'present' : 'MISSING')
     let certificateNames = ''
     let programKey = 'bca'
     if (req.user) {
@@ -72,42 +72,41 @@ STRICT RULES:
 4. Keep answers under 250 words. Use bullet points for clarity.
 5. For Nepal salary questions give NPR ranges (e.g., NPR 40,000-120,000/month).`
 
-    if (!process.env.GEMINI_API_KEY) {
-      return res.json({ answer: `Based on your ${careerData.programName || programKey.toUpperCase()} background, your top career options are: ${topCareers}. Add a GEMINI_API_KEY to your .env file to get full AI-powered answers.` })
+    if (!process.env.GROQ_API_KEY) {
+      return res.json({ answer: `Based on your ${careerData.programName || programKey.toUpperCase()} background, your top career options are: ${topCareers}. Add a GROQ_API_KEY to your .env file to get full AI-powered answers.` })
     }
 
-    const conversationParts = conversationHistory.slice(-4).map(m => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }]
-    }))
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      ...conversationHistory.slice(-4).map(m => ({
+        role: m.role === 'assistant' ? 'assistant' : 'user',
+        content: m.content || ''
+      })),
+      { role: 'user', content: question }
+    ]
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: systemPrompt }] },
-          contents: [
-            ...conversationParts,
-            { role: 'user', parts: [{ text: question }] }
-          ],
-          generationConfig: {
-            maxOutputTokens: 600,
-            temperature: 0.7
-          }
-        })
-      }
-    )
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: process.env.GROQ_MODEL || 'llama-3.1-8b-instant',
+        messages,
+        max_tokens: 600,
+        temperature: 0.7
+      })
+    })
 
     const data = await response.json()
 
     if (!response.ok) {
-      console.error('Gemini API error:', data)
+      console.error('Groq API error:', data)
       return res.status(500).json({ error: 'AI service error', details: data })
     }
 
-    const answer = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not generate a response. Please try again.'
+    const answer = data?.choices?.[0]?.message?.content || 'Sorry, I could not generate a response. Please try again.'
     return res.json({ answer })
 
   } catch (err) {

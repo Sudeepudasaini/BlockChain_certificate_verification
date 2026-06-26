@@ -21,19 +21,14 @@ router.post("/ask", protect, async (req, res) => {
     const student = await Student.findById(req.user.id).select("-password");
     if (!student) return res.status(404).json({ success: false, error: "Student not found" });
 
-    const certs = await Certificate.find({ studentUser: student._id }).lean();
-    const certificateNames = certs.map((c) => c.degree || c.major || c.certId || c.universityName).filter(Boolean);
-
+    const certs = await Certificate.find({ studentEmail: student.email }).lean();
+    const certificateNames = certs.map((c) => c.degree || c.major || c.universityName).filter(Boolean);
     const studentSkills = await getStudentSkillsFromCertificates(student);
-
     const careers = await Career.find({}).lean();
     const recommendations = generateRecommendations(studentSkills, careers);
     const top = recommendations[0] || null;
-    if (!top) return res.status(404).json({ success: false, error: "No career recommendations available" });
-
-    // Find the full career document for skill gap calculation (to preserve original casing)
-    const careerDoc = careers.find((c) => (c.title || "").toLowerCase() === (top.title || "").toLowerCase()) || careers[0];
-    const skillGap = getSkillGap(studentSkills, careerDoc.skills || []);
+    const careerDoc = top ? careers.find((c) => c.title?.toLowerCase() === top.title?.toLowerCase()) : careers[0];
+    const skillGap = careerDoc ? getSkillGap(studentSkills, careerDoc.skills || []) : [];
 
     const systemPrompt = `You are CertBot, an AI career advisor ONLY for IT/tech students in Nepal.
 Answer ONLY questions about: tech career paths, skills to learn, certifications, salary ranges, learning roadmaps, and IT job opportunities in Nepal.
@@ -42,76 +37,50 @@ Student Profile:
 - Certificates/Degrees: ${certificateNames.join(", ") || "Not provided"}
 - Current Skills: ${studentSkills.join(", ") || "None detected"}
 - Top Recommended Career: ${top?.title || "Not determined"}
-- Match Score: ${top ? Math.round(top.score * 100) : 0}%
 - Skills Gap to Fill: ${skillGap.join(", ") || "None"}
 
 STRICT RULES:
-1. If the question is NOT about tech careers, skills, certifications, or IT jobs — reply ONLY with: "I'm CertBot, your tech career advisor. I can only answer questions about IT careers, skills, certifications, and job opportunities. Please ask something related to your career path!"
-2. Never answer questions about sports, celebrities, entertainment, personal life, politics, or anything outside tech careers.
-3. Always give specific actionable advice using the student profile above.
-4. Keep answers under 250 words. Use bullet points for clarity.
-5. For Nepal salary questions give NPR ranges like NPR 40,000–120,000/month.`;
+1. If the question is NOT about tech careers, IT skills, certifications, programming, or job market — reply ONLY with: "I'm CertBot, your tech career advisor. I can only answer questions about IT careers, skills, certifications, and job opportunities. Please ask something related to your career path!"
+2. Never answer questions about sports, celebrities, entertainment, personal relationships, politics, or anything outside tech careers.
+3. Give specific actionable advice using the student profile above.
+4. Keep answers under 250 words. Use bullet points.
+5. For Nepal salary questions give NPR ranges (e.g., NPR 40,000-120,000/month).`;
 
-    // Forward to AI provider if available
-    let aiResponse = null;
-
-    // Prefer OpenAI if key present
-    if (process.env.OPENAI_API_KEY) {
-      try {
-        const resp = await fetch("https://api.openai.com/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-          },
-          body: JSON.stringify({
-            model: process.env.OPENAI_MODEL || "gpt-3.5-turbo",
-            messages: [
-              { role: "system", content: systemPrompt },
-              ...conversationHistory.slice(-4).map(m => ({ role: m.role, content: m.content })),
-              { role: "user", content: question }
-            ],
-            max_tokens: 500,
-          }),
-        });
-        const data = await resp.json();
-        aiResponse = data?.choices?.[0]?.message?.content || data?.choices?.[0]?.text || JSON.stringify(data);
-      } catch (err) {
-        console.error("OpenAI request failed:", err);
-      }
-    } else if (process.env.ANTHROPIC_API_KEY) {
-      try {
-        const resp = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": process.env.ANTHROPIC_API_KEY,
-            "anthropic-version": "2023-06-01"
-          },
-          body: JSON.stringify({
-            model: "claude-sonnet-4-6",
-            max_tokens: 500,
-            system: systemPrompt,
-            messages: [
-              ...conversationHistory.slice(-4).map(m => ({ role: m.role, content: m.content })),
-              { role: "user", content: question }
-            ]
-          }),
-        });
-        const data = await resp.json();
-        aiResponse = data?.content?.[0]?.text;
-      } catch (err) {
-        console.error("Anthropic request failed:", err);
-      }
-    }
-
-    if (!aiResponse) {
-      // fallback: simple heuristic answer
-      const fallback = `Based on your profile, focus on: ${skillGap.slice(0,3).join(", ")}. These are the key skills needed for ${top?.title || "a tech career"} in Nepal.`;
+    if (!process.env.GROQ_API_KEY) {
+      const fallback = `Based on your profile, focus on: ${skillGap.slice(0,3).join(", ") || "core programming skills"}. These are key for ${top?.title || "a tech career"} in Nepal. Add GROQ_API_KEY to .env for full AI answers.`;
       return res.json({ success: true, answer: fallback });
     }
 
-    return res.json({ success: true, answer: aiResponse });
+    const messages = [
+      { role: "system", content: systemPrompt },
+      ...conversationHistory.slice(-4).map(m => ({ role: m.role === "assistant" ? "assistant" : "user", content: m.content || "" })),
+      { role: "user", content: question }
+    ];
+
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages,
+        max_tokens: 600,
+        temperature: 0.7
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("Groq API error:", data);
+      return res.status(500).json({ error: "AI service error", details: data });
+    }
+
+    const answer = data?.choices?.[0]?.message?.content || "Sorry, I could not generate a response. Please try again.";
+    return res.json({ success: true, answer });
+
   } catch (error) {
     console.error("Error in /ask:", error);
     return res.status(500).json({ success: false, error: "Server error" });
