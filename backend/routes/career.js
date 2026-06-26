@@ -15,7 +15,7 @@ const careerSeeder = require("../seeders/careerSeed");
 // POST /api/career/ask
 router.post("/ask", protect, async (req, res) => {
   try {
-    const { question } = req.body;
+    const { question, conversationHistory = [] } = req.body;
     if (!question) return res.status(400).json({ success: false, error: "Question required" });
 
     const student = await Student.findById(req.user.id).select("-password");
@@ -35,7 +35,22 @@ router.post("/ask", protect, async (req, res) => {
     const careerDoc = careers.find((c) => (c.title || "").toLowerCase() === (top.title || "").toLowerCase()) || careers[0];
     const skillGap = getSkillGap(studentSkills, careerDoc.skills || []);
 
-    const prompt = `You are a professional career advisor. Answer only based on the student profile below.\n\nStudent Profile:\n- Certificates: ${certificateNames.join(", ")}\n- Current Skills: ${studentSkills.join(", ")}\n- Top Recommended Career: ${top.title}\n- Match Score: ${Math.round(top.score * 100)}%\n- Skills to Learn Next: ${skillGap.join(", ")}\n\nStudent Question: ${question}\n\nGive specific, actionable advice based on their exact skill gap and recommended career path.`;
+    const systemPrompt = `You are CertBot, an AI career advisor ONLY for IT/tech students in Nepal.
+Answer ONLY questions about: tech career paths, skills to learn, certifications, salary ranges, learning roadmaps, and IT job opportunities in Nepal.
+
+Student Profile:
+- Certificates/Degrees: ${certificateNames.join(", ") || "Not provided"}
+- Current Skills: ${studentSkills.join(", ") || "None detected"}
+- Top Recommended Career: ${top?.title || "Not determined"}
+- Match Score: ${top ? Math.round(top.score * 100) : 0}%
+- Skills Gap to Fill: ${skillGap.join(", ") || "None"}
+
+STRICT RULES:
+1. If the question is NOT about tech careers, skills, certifications, or IT jobs — reply ONLY with: "I'm CertBot, your tech career advisor. I can only answer questions about IT careers, skills, certifications, and job opportunities. Please ask something related to your career path!"
+2. Never answer questions about sports, celebrities, entertainment, personal life, politics, or anything outside tech careers.
+3. Always give specific actionable advice using the student profile above.
+4. Keep answers under 250 words. Use bullet points for clarity.
+5. For Nepal salary questions give NPR ranges like NPR 40,000–120,000/month.`;
 
     // Forward to AI provider if available
     let aiResponse = null;
@@ -51,8 +66,12 @@ router.post("/ask", protect, async (req, res) => {
           },
           body: JSON.stringify({
             model: process.env.OPENAI_MODEL || "gpt-3.5-turbo",
-            messages: [{ role: "user", content: prompt }],
-            max_tokens: 800,
+            messages: [
+              { role: "system", content: systemPrompt },
+              ...conversationHistory.slice(-4).map(m => ({ role: m.role, content: m.content })),
+              { role: "user", content: question }
+            ],
+            max_tokens: 500,
           }),
         });
         const data = await resp.json();
@@ -62,20 +81,25 @@ router.post("/ask", protect, async (req, res) => {
       }
     } else if (process.env.ANTHROPIC_API_KEY) {
       try {
-        const resp = await fetch("https://api.anthropic.com/v1/complete", {
+        const resp = await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "x-api-key": process.env.ANTHROPIC_API_KEY,
+            "anthropic-version": "2023-06-01"
           },
           body: JSON.stringify({
-            model: process.env.ANTHROPIC_MODEL || "claude-2",
-            prompt,
-            max_tokens_to_sample: 800,
+            model: "claude-sonnet-4-6",
+            max_tokens: 500,
+            system: systemPrompt,
+            messages: [
+              ...conversationHistory.slice(-4).map(m => ({ role: m.role, content: m.content })),
+              { role: "user", content: question }
+            ]
           }),
         });
         const data = await resp.json();
-        aiResponse = data?.completion || JSON.stringify(data);
+        aiResponse = data?.content?.[0]?.text;
       } catch (err) {
         console.error("Anthropic request failed:", err);
       }
@@ -83,7 +107,7 @@ router.post("/ask", protect, async (req, res) => {
 
     if (!aiResponse) {
       // fallback: simple heuristic answer
-      const fallback = `Assistant (fallback): Based on your profile, focus on learning: ${skillGap.join(", ")}. Practice projects using relevant technologies for ${top.title}. Ask for a step-by-step learning plan if you want one.`;
+      const fallback = `Based on your profile, focus on: ${skillGap.slice(0,3).join(", ")}. These are the key skills needed for ${top?.title || "a tech career"} in Nepal.`;
       return res.json({ success: true, answer: fallback });
     }
 

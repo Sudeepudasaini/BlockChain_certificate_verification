@@ -60,13 +60,31 @@ function CareerCounseling() {
 
   async function handleSendMessage(question) {
     const q = question || chatInput
+    const CAREER_KEYWORDS = [
+      'job', 'career', 'skill', 'learn', 'salary', 'certification', 'cert',
+      'developer', 'engineer', 'degree', 'programming', 'coding', 'tech',
+      'software', 'data', 'network', 'cloud', 'security', 'blockchain',
+      'nepal', 'roadmap', 'course', 'hire', 'work', 'interview', 'resume',
+      'csit', 'bca', 'bit', 'bim', 'mca', 'python', 'react', 'node', 'aws',
+      'how', 'what', 'which', 'should', 'best', 'recommend', 'next',
+      'become', 'path', 'study', 'language', 'framework', 'tools', 'future',
+      'internship', 'fresher', 'entry', 'senior', 'mid', 'level', 'role'
+    ]
+    const isRelevant = CAREER_KEYWORDS.some(kw => q.toLowerCase().includes(kw))
+    if (!isRelevant) {
+      setChatMessages(prev => [...prev,
+        { role: 'user', content: q },
+        { role: 'assistant', content: "I'm CertBot, your tech career advisor. I can only answer questions about IT careers, skills, certifications, and job opportunities in Nepal. Try asking: 'What jobs suit my degree?' or 'Which certification should I take first?'" }
+      ])
+      setChatInput('')
+      return
+    }
     if (!q?.trim()) return
     setChatMessages(prev => [...prev, { role: 'user', content: q }])
     setChatInput('')
     setChatLoading(true)
     try {
-      const history = chatMessages.slice(-6)
-      const res = await api.post('/career/ask', { question: q, conversationHistory: history })
+      const res = await api.post('/career/ask', { question: q, conversationHistory: chatMessages.slice(-6).map(m => ({ role: m.role, content: m.content })) })
       setChatMessages(prev => [...prev, { role: 'assistant', content: res.data.answer }])
     } catch {
       setChatMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I couldn't process that. Please try again." }])
