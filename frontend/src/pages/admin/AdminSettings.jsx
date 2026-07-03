@@ -58,6 +58,17 @@ const AdminSettings = () => {
       return
     }
 
+    if (!editForm.email.trim()) {
+      toast.error('Email is required')
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(editForm.email.trim())) {
+      toast.error('Email must be a valid email address')
+      return
+    }
+
     try {
       setSavingProfile(true)
       const response = await api.put('/admin/profile', {
