@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import api from '../../api/axios'
 import Sidebar from '../../components/Sidebar'
 import { useAuth } from '../../context/AuthContext'
 
 const StudentProfile = () => {
   const { user } = useAuth()
+  const [studentId, setStudentId] = useState(user?.studentId || '')
+
+  useEffect(() => {
+    const loadStudentId = async () => {
+      if (user?.studentId) {
+        setStudentId(user.studentId)
+        return
+      }
+
+      try {
+        const response = await api.get('/certificates/my')
+        const certificates = response?.data?.certificates || []
+        const certificateStudentId = certificates.find((certificate) => certificate?.studentId)?.studentId
+        setStudentId(certificateStudentId || '')
+      } catch (error) {
+        console.error('Failed to load student ID', error)
+      }
+    }
+
+    if (user?.role === 'student') {
+      loadStudentId()
+    }
+  }, [user])
+
   return (
     <div className="flex">
       <Sidebar role="student" />
@@ -25,7 +50,7 @@ const StudentProfile = () => {
             </div>
             <div>
               <p className="text-sm text-gray-500">Student ID</p>
-              <p className="text-lg font-semibold text-blue-dark">{user?.studentId || 'Not set'}</p>
+              <p className="text-lg font-semibold text-blue-dark">{studentId || 'Not set'}</p>
             </div>
           </div>
         </div>
