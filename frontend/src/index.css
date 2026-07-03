@@ -129,6 +129,12 @@ html {
   @apply text-slate-300;
 }
 
+/* Auth left panel white text override, even with global !important body styles */
+.auth-left-panel,
+.auth-left-panel * {
+  color: white !important;
+}
+
 .btn-base {
   @apply px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 inline-flex items-center justify-center gap-2;
 }

@@ -36,23 +36,23 @@ export default function StudentLogin() {
   return (
     <div className="min-h-screen flex">
       {/* LEFT PANEL */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-700 to-blue-900 flex-col justify-center p-12">
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-700 to-blue-900 flex-col justify-center p-12 auth-left-panel">
         <div className="text-white text-2xl font-bold">CertChain</div>
         <h1 className="text-3xl font-bold text-white mt-8">Student Portal</h1>
-        <p className="text-white/70 mt-3 text-sm">
+        <p className="text-white mt-3 text-sm">
           Access your academic certificates and career guidance
         </p>
 
         <div className="mt-8 space-y-4">
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>🎓</span>
             <span>View & Download Certificates</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>🔗</span>
             <span>Blockchain Verified Credentials</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>🧭</span>
             <span>AI Career Counseling</span>
           </div>

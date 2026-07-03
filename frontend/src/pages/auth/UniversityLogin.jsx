@@ -36,7 +36,7 @@ export default function UniversityLogin() {
     <div className="min-h-screen flex">
       {/* LEFT PANEL */}
       <div
-        className="hidden lg:flex lg:w-1/2 flex-col justify-center p-12"
+        className="hidden lg:flex lg:w-1/2 flex-col justify-center p-12 auth-left-panel"
         style={{ background: 'linear-gradient(135deg, #1E3A5F, #4338CA)' }}
       >
         {/* Building Icon */}
@@ -55,24 +55,24 @@ export default function UniversityLogin() {
         </svg>
 
         <h1 className="text-white text-3xl font-bold mt-6">University Portal</h1>
-        <p className="text-white/70 text-sm mt-2">
+        <p className="text-white text-sm mt-2">
           Issue and manage student certificates on the blockchain
         </p>
 
         <div className="mt-8 space-y-3">
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>🏛️</span>
             <span>Issue Blockchain Certificates</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>📊</span>
             <span>Manage Student Records</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>🔗</span>
             <span>Immutable Certificate Hashes</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>📈</span>
             <span>Dashboard Analytics</span>
           </div>

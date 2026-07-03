@@ -35,7 +35,7 @@ export default function VerifierLogin() {
   return (
     <div className="min-h-screen flex">
       {/* LEFT PANEL */}
-      <div className="hidden lg:flex lg:w-1/2 flex-col justify-center p-12 bg-gradient-to-br from-emerald-800 to-teal-900">
+      <div className="hidden lg:flex lg:w-1/2 flex-col justify-center p-12 bg-gradient-to-br from-emerald-800 to-teal-900 text-white auth-left-panel">
         {/* Magnifier Icon */}
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
           <circle cx="20" cy="20" r="12" stroke="white" strokeWidth="2" />
@@ -43,30 +43,30 @@ export default function VerifierLogin() {
         </svg>
 
         <h1 className="text-white text-3xl font-bold mt-6">Verifier Portal</h1>
-        <p className="text-white/70 text-sm mt-2">
+        <p className="text-white text-sm mt-2">
           Authenticate and verify academic credentials instantly
         </p>
 
         <div className="mt-8 space-y-3">
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>🔍</span>
             <span>Upload & Verify Certificates</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>⛓️</span>
             <span>Blockchain Hash Verification</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>📋</span>
             <span>Verification History</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-white text-sm">
             <span>✅</span>
             <span>Instant Authentic Results</span>
           </div>
         </div>
 
-        <p className="text-white/50 text-xs mt-8">
+        <p className="text-white text-xs mt-8">
           Verifier accounts are assigned by administrators.
         </p>
       </div>
