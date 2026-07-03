@@ -9,6 +9,7 @@ const LandingPage = () => {
   const { theme } = useTheme()
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [issuedCount, setIssuedCount] = useState(null)
+  const [fraudulentCount, setFraudulentCount] = useState(0)
 
   useEffect(() => {
     const fetchIssuedCount = async () => {
@@ -23,6 +24,19 @@ const LandingPage = () => {
     }
 
     fetchIssuedCount()
+
+    const storedHistory = localStorage.getItem('verifyHistory')
+    if (storedHistory) {
+      try {
+        const history = JSON.parse(storedHistory)
+        const invalidCount = Array.isArray(history)
+          ? history.filter((entry) => entry?.valid === false).length
+          : 0
+        setFraudulentCount(invalidCount)
+      } catch (error) {
+        console.error('Failed to parse verification history', error)
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -130,7 +144,7 @@ const LandingPage = () => {
             <div className="st-label">Avg. verify time</div>
           </div>
           <div className="stat-item">
-            <div className="st-num">0</div>
+            <div className="st-num">{fraudulentCount}</div>
             <div className="st-label">Fraudulent records</div>
           </div>
         </div>
