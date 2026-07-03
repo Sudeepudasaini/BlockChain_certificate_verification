@@ -129,6 +129,15 @@ const getCertificates = async (req, res) => {
   }
 };
 
+const getCertificateCount = async (req, res) => {
+  try {
+    const count = await Certificate.countDocuments();
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const getCertificateById = async (req, res) => {
   try {
     const { certId } = req.params;
@@ -384,11 +393,12 @@ const deleteCertificate = async (req, res) => {
 module.exports = {
   issueCertificate,
   getCertificates,
+  getCertificateCount,
   getCertificateById,
   getMyCertificates,
   verifyByUpload,
   verifyById,
   downloadCertificate,
+  updateCertificate,
+  deleteCertificate,
 };
-module.exports.updateCertificate = updateCertificate
-module.exports.deleteCertificate = deleteCertificate

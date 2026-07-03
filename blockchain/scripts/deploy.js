@@ -29,8 +29,10 @@ async function main() {
 }
 
 main()
-  .then(() => process.exit(0))
+  .then(() => {
+    setTimeout(() => process.exit(0), 100);
+  })
   .catch((error) => {
     console.error(error);
-    process.exit(1);
+    setTimeout(() => process.exit(1), 100);
   });

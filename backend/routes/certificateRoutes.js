@@ -13,6 +13,7 @@ router.post(
 );
 router.get("/", protect, authorize("university", "admin"), certificateController.getCertificates);
 router.get("/my", protect, authorize("student"), certificateController.getMyCertificates);
+router.get("/count", certificateController.getCertificateCount);
 router.get("/:certId", certificateController.getCertificateById);
 router.get("/:certId/download", protect, certificateController.downloadCertificate);
 router.post("/verify-upload", upload.single("certificate"), certificateController.verifyByUpload);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import api from '../api/axios'
 import { useTheme } from '../context/ThemeContext'
 import Navbar from '../components/Navbar'
 import './landing.css'
@@ -7,6 +8,22 @@ import './landing.css'
 const LandingPage = () => {
   const { theme } = useTheme()
   const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [issuedCount, setIssuedCount] = useState(null)
+
+  useEffect(() => {
+    const fetchIssuedCount = async () => {
+      try {
+        const response = await api.get('/certificates/count')
+        if (response?.data?.count != null) {
+          setIssuedCount(response.data.count)
+        }
+      } catch (error) {
+        console.error('Failed to load certificate count', error)
+      }
+    }
+
+    fetchIssuedCount()
+  }, [])
 
   useEffect(() => {
     function onDocClick(e) {
@@ -101,7 +118,7 @@ const LandingPage = () => {
       <section className="stats-band" aria-label="Platform statistics">
         <div className="stats-inner">
           <div className="stat-item">
-            <div className="st-num">12,840</div>
+            <div className="st-num">{issuedCount !== null ? issuedCount.toLocaleString() : '12,840'}</div>
             <div className="st-label">Certificates issued</div>
           </div>
           <div className="stat-item">
@@ -204,8 +221,8 @@ const LandingPage = () => {
       </section>
 
       <section className="cta-section" aria-label="Call to action">
-        <h2>Ready to eliminate certificate fraud?</h2>
-        <p id="cta-subtext">Start issuing and verifying tamper-proof certificates today</p>
+        <h2 className="text-white">Ready to eliminate certificate fraud?</h2>
+        <p id="cta-subtext" className="text-white">Start issuing and verifying tamper-proof certificates today</p>
         <div className="cta-btns">
           <Link to="/verify" className="btn-cta-white">
             <i className="ti ti-search" aria-hidden="true"></i>

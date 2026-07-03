@@ -748,14 +748,14 @@ html.dark .cert-blockchain-badge {
 .cta-section h2 {
   font-size: 30px;
   font-weight: 700;
-  color: #fff;
+  color: #fff !important;
   margin-bottom: 10px;
   letter-spacing: -0.3px;
 }
 
 .cta-section p {
   font-size: 15px;
-  color: var(--indigo);
+  color: #fff !important;
   margin-bottom: 32px;
 }
 
