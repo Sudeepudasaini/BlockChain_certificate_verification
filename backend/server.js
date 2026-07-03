@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const certificateRoutes = require("./routes/certificateRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const universityRoutes = require("./routes/universityRoutes");
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/auth", authRoutes);
 app.use("/api/certificates", certificateRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/university", universityRoutes);
 // Note: specific university/verifier routes are provided by adminRoutes.
 // Removed references to non-existent route files to avoid startup errors.
 app.use('/api/career', require('./routes/career'))
