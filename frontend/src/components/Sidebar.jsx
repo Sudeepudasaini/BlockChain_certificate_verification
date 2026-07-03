@@ -73,9 +73,9 @@ const Sidebar = ({ role }) => {
   return (
     <aside className="w-64 bg-gradient-to-b from-blue-800 via-blue-800 to-blue-900 text-white h-screen min-h-screen p-6 sticky top-0 overflow-y-auto shadow-xl flex-shrink-0" role="complementary" aria-label="Sidebar">
       <div className="mb-8">
-        <h2 className="text-base font-semibold leading-tight text-white/95 flex items-center gap-2">
+        <h2 className="text-base font-semibold leading-tight !text-white flex items-center gap-2">
           <span className="text-2xl">{role === 'admin' ? '👨‍💼' : role === 'university' ? '🏢' : role === 'student' ? '🎓' : '✓'}</span>
-          <span className="truncate">{role === 'admin' ? 'Admin Portal' : role === 'university' ? 'University Portal' : role === 'student' ? 'Student Portal' : 'Verifier Portal'}</span>
+          <span className="truncate !text-white">{role === 'admin' ? 'Admin Portal' : role === 'university' ? 'University Portal' : role === 'student' ? 'Student Portal' : 'Verifier Portal'}</span>
         </h2>
       </div>
 
@@ -88,14 +88,14 @@ const Sidebar = ({ role }) => {
               `group flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-150 ease-in-out text-sm focus:outline-none focus:ring-2 focus:ring-primary-300 ${
                 isActive
                   ? 'bg-white/10 text-white shadow-md ring-1 ring-white/10 border-l-4 border-primary-400'
-                  : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                  : 'text-white hover:bg-white/5 hover:text-white'
               }`
             }
           >
             <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-current text-lg">
               {renderIcon(item.icon)}
             </span>
-            <span className="font-medium truncate">{item.label}</span>
+            <span className="font-medium truncate !text-white">{item.label}</span>
           </NavLink>
         ))}
       </nav>
