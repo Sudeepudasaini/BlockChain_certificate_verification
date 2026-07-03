@@ -19,7 +19,8 @@ const AdminUsers = () => {
   const fetchUsers = async () => {
     try {
       const response = await api.get('/admin/users')
-      setUsers(response.data.users || [])
+      const users = response.data.users || []
+      setUsers(users.filter((user) => user.role !== 'admin'))
     } catch (error) {
       toast.error('Unable to load users')
     } finally {
