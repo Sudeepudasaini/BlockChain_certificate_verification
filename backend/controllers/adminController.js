@@ -1,6 +1,108 @@
 const User = require("../models/User");
 const Certificate = require("../models/Certificate");
 
+const getAdminProfile = async (req, res) => {
+  try {
+    const admin = await User.findById(req.user.id).select("-password");
+
+    if (!admin) {
+      return res.status(404).json({ error: "Admin not found" });
+    }
+
+    res.status(200).json({ admin });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const updateAdminProfile = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+
+    if (!name || !name.trim()) {
+      return res.status(400).json({ error: "Name is required" });
+    }
+
+    const admin = await User.findById(req.user.id);
+    if (!admin) {
+      return res.status(404).json({ error: "Admin not found" });
+    }
+
+    admin.name = name.trim();
+
+    if (Object.prototype.hasOwnProperty.call(req.body, "email") && email !== undefined) {
+      const normalizedEmail = email.toLowerCase().trim();
+      if (!normalizedEmail) {
+        return res.status(400).json({ error: "Email is required" });
+      }
+
+      const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+      if (!emailRegex.test(normalizedEmail)) {
+        return res.status(400).json({ error: "Email must be a valid lowercase email address" });
+      }
+
+      if (normalizedEmail !== admin.email) {
+        const existingAdmin = await User.findOne({
+          email: normalizedEmail,
+          _id: { $ne: admin._id },
+        });
+
+        if (existingAdmin) {
+          return res.status(400).json({ error: "Email already in use" });
+        }
+      }
+
+      admin.email = normalizedEmail;
+    }
+
+    await admin.save();
+
+    const adminResponse = admin.toObject();
+    delete adminResponse.password;
+
+    res.status(200).json({ admin: adminResponse });
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(400).json({ error: "Email already in use" });
+    }
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const changeAdminPassword = async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: "Current password and new password are required" });
+    }
+
+    if (newPassword.length < 8) {
+      return res.status(400).json({ error: "New password must be at least 8 characters long" });
+    }
+
+    const admin = await User.findById(req.user.id);
+    if (!admin) {
+      return res.status(404).json({ error: "Admin not found" });
+    }
+
+    const isMatch = await admin.matchPassword(currentPassword);
+    if (!isMatch) {
+      return res.status(400).json({ error: "Current password is incorrect" });
+    }
+
+    admin.password = newPassword;
+    await admin.save();
+
+    const adminResponse = admin.toObject();
+    delete adminResponse.password;
+
+    res.status(200).json({ admin: adminResponse, message: "Password updated successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const getDashboardStats = async (req, res) => {
   try {
     const totalCertificates = await Certificate.countDocuments();
@@ -394,6 +496,9 @@ module.exports = {
   updateUserStatus,
   getAllCertificates,
   revokeCertificate,
+  getAdminProfile,
+  updateAdminProfile,
+  changeAdminPassword,
 };
 
 module.exports = Object.assign({}, module.exports, {

@@ -3,6 +3,9 @@ const router = express.Router();
 const adminController = require("../controllers/adminController");
 const { protect, authorize } = require("../middleware/authMiddleware");
 
+router.get("/profile", protect, authorize("admin"), adminController.getAdminProfile);
+router.put("/profile", protect, authorize("admin"), adminController.updateAdminProfile);
+router.put("/change-password", protect, authorize("admin"), adminController.changeAdminPassword);
 router.get("/stats", protect, authorize("admin"), adminController.getDashboardStats);
 router.get("/users", protect, authorize("admin"), adminController.getAllUsers);
 router.get("/users/:id", protect, authorize("admin"), adminController.getUserById);
