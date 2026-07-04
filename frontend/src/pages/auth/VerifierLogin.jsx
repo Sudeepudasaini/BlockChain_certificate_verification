@@ -77,7 +77,7 @@ export default function VerifierLogin() {
 
         <Link
           to="/"
-          className="text-sm text-gray-500 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 mb-8 inline-block"
+          className="inline-flex items-center gap-1 text-sm text-white !text-white bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-700 dark:hover:bg-emerald-600 rounded-lg px-4 py-2 w-fit mb-8 transition"
         >
           ← Back to Home
         </Link>

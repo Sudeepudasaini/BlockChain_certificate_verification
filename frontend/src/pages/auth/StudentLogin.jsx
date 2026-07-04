@@ -65,7 +65,7 @@ export default function StudentLogin() {
 
         <Link
           to="/"
-          className="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 mb-8 inline-flex items-center gap-1"
+          className="inline-flex items-center gap-1 text-sm text-white !text-white bg-primary-600 hover:bg-primary-700 rounded-lg px-4 py-2 w-fit mb-8 transition"
         >
           ← Back to Home
         </Link>
