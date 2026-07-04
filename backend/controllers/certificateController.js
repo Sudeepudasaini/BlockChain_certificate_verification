@@ -12,10 +12,6 @@ const { sendCertificateEmail } = require("../utils/emailUtils");
 
 const issueCertificate = async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ error: "Certificate template or file is required" });
-    }
-
     const {
       studentName,
       studentId,
@@ -60,7 +56,7 @@ const issueCertificate = async (req, res) => {
         institution,
         description,
       },
-      originalFilePath: req.file.path,
+      originalFilePath: req.file?.path,
       qrCode,
     };
 

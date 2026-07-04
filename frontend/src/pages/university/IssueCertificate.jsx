@@ -120,9 +120,6 @@ const IssueCertificate = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  const [file, setFile] = useState(null)
-  const [uploadProgress, setUploadProgress] = useState(0)
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -130,34 +127,24 @@ const IssueCertificate = () => {
     })
   }
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files?.[0])
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!formData.studentName || !formData.studentEmail || !formData.degree || !formData.graduationYear || !file) {
+    if (!formData.studentName || !formData.studentEmail || !formData.degree || !formData.graduationYear) {
       toast.error('Please fill all required fields')
       return
     }
 
     setLoading(true)
-    setUploadProgress(0)
 
     try {
       const formDataObj = new FormData()
       Object.keys(formData).forEach((key) => {
         formDataObj.append(key, formData[key])
       })
-      formDataObj.append('certificate', file)
 
       await api.post('/certificates/issue', formDataObj, {
         headers: { 'Content-Type': 'multipart/form-data' },
-        onUploadProgress: (progressEvent) => {
-          const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-          setUploadProgress(percent)
-        },
       })
 
       toast.success('Certificate issued successfully!')
@@ -301,17 +288,6 @@ const IssueCertificate = () => {
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Certificate File (PDF/Image) *</label>
-                      <input
-                        type="file"
-                        onChange={handleFileChange}
-                        accept=".pdf,.png,.jpg,.jpeg"
-                        className="input-base"
-                        required
-                      />
-                      {file && <p className="text-sm text-green-600 mt-2">✓ {file.name}</p>}
-                    </div>
                   </div>
                 </div>
               </div>
@@ -337,16 +313,6 @@ const IssueCertificate = () => {
                       <span>QR code generation</span>
                     </div>
                   </div>
-
-                  {loading && uploadProgress > 0 && (
-                    <div className="mt-6">
-                      <p className="text-sm font-semibold text-gray-700 mb-2">Upload Progress</p>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-primary-600 h-2 rounded-full transition-all" style={{ width: `${uploadProgress}%` }} />
-                      </div>
-                      <p className="text-xs text-gray-600 mt-2">{uploadProgress}%</p>
-                    </div>
-                  )}
 
                   <button
                     type="submit"
