@@ -87,7 +87,7 @@ body {
 
 .btn-nav-primary {
   padding: 6px 14px; border-radius: var(--border-radius-md);
-  background: var(--indigo); color: #fff;
+  background: var(--indigo); color: white !important;
   border: none; font-size: 13px; font-weight: 500;
   cursor: pointer; text-decoration: none; transition: background .15s;
 }
@@ -301,7 +301,7 @@ body {
   padding: 8px 18px;
   border-radius: 10px;
   background: var(--indigo-grad);
-  color: #fff;
+  color: white !important;
   border: none;
   font-size: 14px;
   font-weight: 700;
