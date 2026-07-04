@@ -89,36 +89,36 @@ export default function StudentRegister() {
     <div className="min-h-screen flex">
       {/* LEFT PANEL */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-700 to-blue-900 flex-col justify-center p-12">
-        <div className="text-white text-2xl font-bold">CertChain</div>
-        <h1 className="text-3xl font-bold text-white mt-8">Join CertChain</h1>
-        <p className="text-white/70 mt-3 text-sm">
+        <div className="text-2xl font-bold !text-white">CertChain</div>
+        <h1 className="text-3xl font-bold !text-white mt-8">Join CertChain</h1>
+        <p className="!text-white mt-3 text-sm">
           Register to manage your academic credentials securely on the blockchain
         </p>
 
         <div className="mt-8 space-y-4">
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-sm !text-white">
             <svg className="w-5 h-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
             </svg>
-            <span>Secure blockchain certificate storage</span>
+            <span className="!text-white">Secure blockchain certificate storage</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-sm !text-white">
             <svg className="w-5 h-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
             </svg>
-            <span>One-click certificate sharing</span>
+            <span className="!text-white">One-click certificate sharing</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-sm !text-white">
             <svg className="w-5 h-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
             </svg>
-            <span>AI-powered career counseling</span>
+            <span className="!text-white">AI-powered career counseling</span>
           </div>
-          <div className="flex items-center gap-3 text-white/80 text-sm">
+          <div className="flex items-center gap-3 text-sm !text-white">
             <svg className="w-5 h-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
             </svg>
-            <span>Verified by your institution</span>
+            <span className="!text-white">Verified by your institution</span>
           </div>
         </div>
       </div>
