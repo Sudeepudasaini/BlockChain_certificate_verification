@@ -12,9 +12,9 @@ const VerifierHistory = () => {
   }, [])
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="verifier" />
-      <div className="flex-1 main-content p-8">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden main-content p-8">
         <div className="card-base p-8">
           <h1 className="text-4xl font-bold text-blue-dark mb-4">Verification History</h1>
           {history.length === 0 ? (

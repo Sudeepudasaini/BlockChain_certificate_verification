@@ -166,7 +166,7 @@ html {
   @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4;
 }
 .modal-panel {
-  @apply bg-white rounded-xl shadow-xl p-6 max-w-full w-[28rem];
+  @apply bg-white rounded-xl shadow-xl p-4 sm:p-5 w-fit min-w-[280px] max-w-[340px];
 }
 
 .text-gradient {
@@ -296,4 +296,57 @@ section {
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
+}
+
+/* Global responsiveness fixes */
+* { box-sizing: border-box; }
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+body {
+  min-width: 320px;
+}
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+input, select, textarea, button {
+  max-width: 100%;
+}
+form, .form-card, .auth-card, .card-base, .section-card {
+  width: 100%;
+  max-width: 100%;
+}
+.table-responsive, .overflow-x-auto {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+@media (max-width: 767px) {
+  .modal-panel {
+    max-height: calc(100vh - 1.5rem);
+    overflow-y: auto;
+    margin: 0.75rem;
+    width: auto;
+  }
+  .section-card {
+    padding: 1rem;
+  }
+}
+@media (max-width: 640px) {
+  .modal-panel button,
+  .auth-card button,
+  .form-card button {
+    width: 100%;
+    justify-content: center;
+  }
+  .card-base {
+    padding: 1rem;
+  }
 }

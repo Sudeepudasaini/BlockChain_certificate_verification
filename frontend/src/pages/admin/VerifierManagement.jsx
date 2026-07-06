@@ -142,28 +142,29 @@ export default function VerifierManagement() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-900">
       <Sidebar role="admin" />
-      <div className="flex-1 p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 lg:p-8">
+        <div className="mx-auto w-full max-w-6xl space-y-4 sm:space-y-6">
 
         {/* TOPBAR */}
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Verifier Management</h1>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage all registered verifiers</p>
           </div>
-          <button className="btn-primary" onClick={() => setShowCreateModal(true)}>+ Add Verifier</button>
+          <button className="w-full sm:w-auto btn-primary" onClick={() => setShowCreateModal(true)}>+ Add Verifier</button>
         </div>
 
         {/* STATS */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {
             [
               { label: 'Total Verifiers', value: stats.total, bg: 'bg-emerald-100 dark:bg-emerald-900/30', icon: '🔍' },
               { label: 'Active', value: stats.active, bg: 'bg-green-100 dark:bg-green-900/30', icon: '✅' },
               { label: 'Disabled', value: stats.disabled, bg: 'bg-red-100 dark:bg-red-900/30', icon: '⛔' }
             ].map(s => (
-              <div key={s.label} className="card p-5 flex items-center gap-4">
+              <div key={s.label} className="card p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl ${s.bg}`}>{s.icon}</div>
                 <div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-white">{s.value}</p>
@@ -175,9 +176,9 @@ export default function VerifierManagement() {
         </div>
 
         {/* FILTER BAR */}
-        <div className="card p-4 flex gap-4 items-center">
-          <input className="form-input flex-1" placeholder="Search by name, email, or organization..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
-          <select className="form-input w-40" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
+        <div className="card p-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <input className="form-input w-full sm:flex-1" placeholder="Search by name, email, or organization..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+          <select className="form-input w-full sm:w-40" value={statusFilter} onChange={e => setStatusFilter(e.target.value)}>
             <option value="all">All Status</option>
             <option value="active">Active</option>
             <option value="disabled">Disabled</option>
@@ -186,10 +187,11 @@ export default function VerifierManagement() {
         </div>
 
         {/* TABLE */}
-        <div className="card overflow-hidden">
+        <div className="card overflow-x-auto">
           {loading ? (
             <div className="flex items-center justify-center p-12 text-gray-500">Loading...</div>
           ) : (
+            <div className="min-w-[900px]">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 dark:bg-gray-800/50">
                 <tr>
@@ -241,51 +243,87 @@ export default function VerifierManagement() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
         </div>
 
         {/* CREATE MODAL */}
         {showCreateModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="card max-w-xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 sm:p-6">
+            <div className="card w-full mx-auto max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl bg-white dark:bg-gray-900" style={{ width: '600px', maxWidth: 'calc(100vw - 2rem)' }}>
+              <div className="flex items-center justify-between px-5 py-5 sm:px-6 sm:py-6 border-b border-gray-100 dark:border-gray-700">
                 <h3 className="font-semibold text-gray-900 dark:text-white">Add New Verifier</h3>
                 <button className="text-gray-400 hover:text-gray-600" onClick={() => { setShowCreateModal(false); setCreateForm(defaultCreate) }}>✕</button>
               </div>
-              <div className="p-6 grid grid-cols-2 gap-4">
-                {
-                  [
-                      { label: 'Name*', col: 2, key: 'name', type: 'text' },
-                      { label: 'Email*', col: 2, key: 'email', type: 'email' },
-                      { label: 'Organization', col: 1, key: 'organization', type: 'text', placeholder: 'e.g. Acme Verification' },
-                      { label: 'Phone', col: 1, key: 'phone', type: 'tel' },
-                      { label: 'Password*', col: 1, key: 'password', type: 'password' },
-                  ].map(f => (
-                    <div key={f.key} className={f.col === 2 ? 'col-span-2' : ''}>
-                      <label className="form-label">{f.label}</label>
+              <div className="p-5 sm:p-6">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label className="form-label">Name*</label>
+                    <input
+                      type="text"
+                      className="form-input h-11 w-full"
+                      value={createForm.name}
+                      onChange={e => setCreateForm(p => ({ ...p, name: e.target.value }))}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="form-label">Email*</label>
+                    <input
+                      type="email"
+                      className="form-input h-11 w-full"
+                      value={createForm.email}
+                      onChange={e => setCreateForm(p => ({ ...p, email: e.target.value.toLowerCase().trim() }))}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="form-label">Organization</label>
                       <input
-                        type={f.type}
-                        className="form-input"
-                        inputMode={f.key === 'phone' ? 'numeric' : undefined}
-                        maxLength={f.key === 'phone' ? 10 : undefined}
-                        pattern={f.key === 'phone' ? "\\d{10}" : undefined}
-                        placeholder={f.placeholder || ''}
-                        value={createForm[f.key]}
-                        onChange={e => setCreateForm(p => ({ ...p, [f.key]: f.key === 'phone' ? e.target.value.replace(/\D/g, '').slice(0, 10) : (f.key === 'email' ? e.target.value.toLowerCase().trim() : e.target.value) }))}
+                        type="text"
+                        className="form-input h-11 w-full"
+                        placeholder="e.g. Acme Verification"
+                        value={createForm.organization}
+                        onChange={e => setCreateForm(p => ({ ...p, organization: e.target.value }))}
                       />
                     </div>
-                  ))}
-                <div className="col-span-2">
-                  <label className="form-label">Status</label>
-                  <select className="form-input" value={createForm.status} onChange={e => setCreateForm(p => ({ ...p, status: e.target.value }))}>
-                    <option value="active">Active</option>
-                    <option value="disabled">Disabled</option>
-                  </select>
+                    <div className="space-y-2">
+                      <label className="form-label">Phone</label>
+                      <input
+                        type="tel"
+                        className="form-input h-11 w-full"
+                        inputMode="numeric"
+                        maxLength={10}
+                        pattern="\\d{10}"
+                        value={createForm.phone}
+                        onChange={e => setCreateForm(p => ({ ...p, phone: e.target.value.replace(/\D/g, '').slice(0, 10) }))}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="form-label">Password*</label>
+                    <input
+                      type="password"
+                      className="form-input h-11 w-full"
+                      value={createForm.password}
+                      onChange={e => setCreateForm(p => ({ ...p, password: e.target.value }))}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="form-label">Status</label>
+                    <select className="form-input h-11 w-full" value={createForm.status} onChange={e => setCreateForm(p => ({ ...p, status: e.target.value }))}>
+                      <option value="active">Active</option>
+                      <option value="disabled">Disabled</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-              <div className="flex justify-end gap-3 p-6 border-t border-gray-100 dark:border-gray-700">
-                <button className="btn-ghost" onClick={() => { setShowCreateModal(false); setCreateForm(defaultCreate) }}>Cancel</button>
-                <button className="btn-primary" disabled={modalLoading} onClick={handleCreate}>{modalLoading ? 'Creating...' : 'Create Verifier'}</button>
+              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 px-5 py-5 sm:px-6 sm:py-6 border-t border-gray-100 dark:border-gray-700">
+                <button className="w-full sm:w-auto btn-ghost" onClick={() => { setShowCreateModal(false); setCreateForm(defaultCreate) }}>Cancel</button>
+                <button className="w-full sm:w-auto btn-primary" disabled={modalLoading} onClick={handleCreate}>{modalLoading ? 'Creating...' : 'Create Verifier'}</button>
               </div>
             </div>
           </div>
@@ -294,14 +332,14 @@ export default function VerifierManagement() {
         {/* EDIT MODAL */}
         {showEditModal && selectedVerifier && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="card max-w-xl w-full">
+            <div className="card w-full mx-auto max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl bg-white dark:bg-gray-900" style={{ width: '600px', maxWidth: 'calc(100vw - 2rem)' }}>
               <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
                 <h3 className="font-semibold text-gray-900 dark:text-white">Edit Verifier</h3>
                 <button className="text-gray-400 hover:text-gray-600" onClick={() => setShowEditModal(false)}>✕</button>
               </div>
               <div className="p-6 space-y-4">
                 <div className="text-sm text-gray-500 bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-lg">{selectedVerifier.email} (email cannot be changed)</div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {[{ label: 'Name', key: 'name', col: 2 }, { label: 'Organization', key: 'organization', col: 1 }, { label: 'Phone', key: 'phone', col: 1 }].map(f => (
                     <div key={f.key} className={f.col === 2 ? 'col-span-2' : ''}>
                       <label className="form-label">{f.label}</label>
@@ -315,7 +353,7 @@ export default function VerifierManagement() {
                       />
                     </div>
                   ))}
-                  <div className="col-span-2">
+                  <div className="sm:col-span-2">
                     <label className="form-label">Status</label>
                     <select className="form-input" value={editForm.status} onChange={e => setEditForm(p => ({ ...p, status: e.target.value }))}>
                       <option value="active">Active</option>
@@ -324,9 +362,9 @@ export default function VerifierManagement() {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end gap-3 p-6 border-t border-gray-100 dark:border-gray-700">
-                <button className="btn-ghost" onClick={() => setShowEditModal(false)}>Cancel</button>
-                <button className="btn-primary" disabled={modalLoading} onClick={handleEdit}>{modalLoading ? 'Saving...' : 'Save Changes'}</button>
+              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 p-6 border-t border-gray-100 dark:border-gray-700">
+                <button className="w-full sm:w-auto btn-ghost" onClick={() => setShowEditModal(false)}>Cancel</button>
+                <button className="w-full sm:w-auto btn-primary" disabled={modalLoading} onClick={handleEdit}>{modalLoading ? 'Saving...' : 'Save Changes'}</button>
               </div>
             </div>
           </div>
@@ -335,7 +373,7 @@ export default function VerifierManagement() {
         {/* PASSWORD MODAL */}
         {showPasswordModal && selectedVerifier && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="card max-w-sm w-full">
+            <div className="card w-full max-w-md lg:max-w-lg">
               <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
                 <h3 className="font-semibold text-gray-900 dark:text-white">Reset Password</h3>
                 <button className="text-gray-400 hover:text-gray-600" onClick={() => setShowPasswordModal(false)}>✕</button>
@@ -351,14 +389,15 @@ export default function VerifierManagement() {
                   <input type="password" className="form-input" value={passwordForm.confirmPassword} onChange={e => setPasswordForm(p => ({ ...p, confirmPassword: e.target.value }))} />
                 </div>
               </div>
-              <div className="flex justify-end gap-3 p-6 border-t border-gray-100 dark:border-gray-700">
-                <button className="btn-ghost" onClick={() => setShowPasswordModal(false)}>Cancel</button>
-                <button className="btn-primary" disabled={modalLoading} onClick={handleResetPassword}>{modalLoading ? 'Resetting...' : 'Reset Password'}</button>
+              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 p-6 border-t border-gray-100 dark:border-gray-700">
+                <button className="w-full sm:w-auto btn-ghost" onClick={() => setShowPasswordModal(false)}>Cancel</button>
+                <button className="w-full sm:w-auto btn-primary" disabled={modalLoading} onClick={handleResetPassword}>{modalLoading ? 'Resetting...' : 'Reset Password'}</button>
               </div>
             </div>
           </div>
         )}
 
+        </div>
       </div>
     </div>
   )

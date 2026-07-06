@@ -9,6 +9,11 @@ import { CareerPathsTabPanel } from './CareerPathsTabPanel'
 import { LearningRoadmapTabPanel } from './LearningRoadmapTabPanel'
 import { SkillsTabPanel } from './SkillsTabPanel'
 
+function formatSalaryText(value) {
+  if (typeof value !== 'string') return value
+  return value.replace(/\bNPR\b/g, 'NRS').replace(/\$([0-9])/g, 'NRS $1')
+}
+
 function CareerCounseling() {
   const { user } = useAuth()
   const [recommendations, setRecommendations] = useState(null)
@@ -85,7 +90,7 @@ function CareerCounseling() {
     setChatLoading(true)
     try {
       const res = await api.post('/career/ask', { question: q, conversationHistory: chatMessages.slice(-6).map(m => ({ role: m.role, content: m.content })) })
-      setChatMessages(prev => [...prev, { role: 'assistant', content: res.data.answer }])
+      setChatMessages(prev => [...prev, { role: 'assistant', content: formatSalaryText(res.data.answer) }])
     } catch {
       setChatMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I couldn't process that. Please try again." }])
     } finally {
@@ -104,9 +109,9 @@ function CareerCounseling() {
   ]
 
   return (
-    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-900">
       <Sidebar role="student" />
-      <div className="flex-1 p-6">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden p-6">
 
         {/* TOPBAR */}
         <div className="flex items-start justify-between mb-6">
@@ -294,7 +299,7 @@ function CareerCounseling() {
                                   : rec.level === 'mid' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300'
                                   : 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300'
                                 }`}>{rec.level}</span>
-                                <span className="text-xs text-gray-500 dark:text-gray-400">{rec.salaryRange}</span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400">{formatSalaryText(rec.salaryRange)}</span>
                               </div>
                             </div>
                             <div className="text-right flex-shrink-0">
@@ -486,7 +491,7 @@ function CareerCounseling() {
                 {[['Entry',selectedCareer.avgSalary?.entry,'border-l-green-500'],['Mid',selectedCareer.avgSalary?.mid,'border-l-blue-500'],['Senior',selectedCareer.avgSalary?.senior,'border-l-purple-500']].map(([label,salary,color])=>(
                   <div key={label} className={`p-3 bg-gray-50 dark:bg-gray-800 rounded border-l-4 ${color}`}>
                     <p className="text-xs text-gray-500">{label}</p>
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white mt-1">{salary}</p>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white mt-1">{formatSalaryText(salary)}</p>
                   </div>
                 ))}
               </div>

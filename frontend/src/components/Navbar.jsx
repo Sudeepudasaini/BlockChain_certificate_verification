@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext'
 
 const Navbar = () => {
   const { isAuthenticated, logout, user } = useAuth()
-  const [menuOpen, setMenuOpen] = React.useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [showLoginDropdown, setShowLoginDropdown] = useState(false)
   const location = useLocation()
   const showOnlyHome = ['/verify', '/verify/result'].includes(location.pathname)
@@ -25,15 +25,27 @@ const Navbar = () => {
         <span>CertChain</span>
       </a>
 
-      <div className="lp-nav-links">
+      <button
+        type="button"
+        className="lp-nav-toggle"
+        aria-label="Toggle navigation"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((prev) => !prev)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <div className={`lp-nav-links ${menuOpen ? 'open' : ''}`}>
         {showOnlyHome ? (
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
         ) : (
           <>
-            <Link to="/">Home</Link>
-            <a href="#how">How it works</a>
-            <a href="#features">Features</a>
-            <Link to="/verify">Verify</Link>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <a href="#how" onClick={() => setMenuOpen(false)}>How it works</a>
+            <a href="#features" onClick={() => setMenuOpen(false)}>Features</a>
+            <Link to="/verify" onClick={() => setMenuOpen(false)}>Verify</Link>
           </>
         )}
       </div>
@@ -86,7 +98,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <Link to="/student/register" className="btn-nav-primary">Get started</Link>
+        <Link to="/student/register" className="btn-nav-primary" onClick={() => setMenuOpen(false)}>Get started</Link>
       </div>
     </nav>
   )

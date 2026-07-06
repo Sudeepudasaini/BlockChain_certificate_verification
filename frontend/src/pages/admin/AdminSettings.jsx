@@ -138,89 +138,91 @@ const AdminSettings = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="admin" />
-      <div className="flex-1 main-content p-8">
-        <h1 className="text-4xl font-bold text-blue-dark mb-8">Admin Settings</h1>
+      <div className="flex-1 overflow-y-auto overflow-x-hidden main-content p-4 sm:p-6 lg:p-8">
+        <div className="mx-auto w-full max-w-6xl">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-dark mb-6 sm:mb-8">Admin Settings</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="card-base p-8">
-            <h2 className="text-2xl font-bold text-blue-dark mb-6">Admin Profile</h2>
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+            <div className="card-base p-4 sm:p-6 lg:p-8">
+              <h2 className="text-2xl font-bold text-blue-dark mb-6">Admin Profile</h2>
 
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
-              <input
-                type="text"
-                value={editForm.name}
-                onChange={(e) => handleProfileChange('name', e.target.value)}
-                className="input-base"
-                placeholder="Your full name"
-              />
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
+                <input
+                  type="text"
+                  value={editForm.name}
+                  onChange={(e) => handleProfileChange('name', e.target.value)}
+                  className="input-base"
+                  placeholder="Your full name"
+                />
+              </div>
+
+              <div className="mb-8">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  value={editForm.email}
+                  onChange={(e) => handleProfileChange('email', e.target.value)}
+                  className="input-base"
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              <button
+                onClick={handleSaveProfile}
+                disabled={savingProfile}
+                className="w-full sm:w-auto px-6 py-3 bg-primary-600 text-white rounded-lg font-bold hover:bg-primary-700 transition-all disabled:opacity-50"
+              >
+                {savingProfile ? 'Saving...' : 'Save Profile'}
+              </button>
             </div>
 
-            <div className="mb-8">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-              <input
-                type="email"
-                value={editForm.email}
-                onChange={(e) => handleProfileChange('email', e.target.value)}
-                className="input-base"
-                placeholder="your@email.com"
-              />
+            <div className="card-base p-4 sm:p-6 lg:p-8">
+              <h2 className="text-2xl font-bold text-blue-dark mb-6">Change Password</h2>
+
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Current Password</label>
+                <input
+                  type="password"
+                  value={passwordForm.currentPassword}
+                  onChange={(e) => handlePasswordChange('currentPassword', e.target.value)}
+                  className="input-base"
+                  placeholder="Enter current password"
+                />
+              </div>
+
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">New Password</label>
+                <input
+                  type="password"
+                  value={passwordForm.newPassword}
+                  onChange={(e) => handlePasswordChange('newPassword', e.target.value)}
+                  className="input-base"
+                  placeholder="Enter new password (min 8 characters)"
+                />
+              </div>
+
+              <div className="mb-8">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Confirm Password</label>
+                <input
+                  type="password"
+                  value={passwordForm.confirmPassword}
+                  onChange={(e) => handlePasswordChange('confirmPassword', e.target.value)}
+                  className="input-base"
+                  placeholder="Confirm new password"
+                />
+              </div>
+
+              <button
+                onClick={handleChangePassword}
+                disabled={changingPassword}
+                className="w-full sm:w-auto px-6 py-3 bg-primary-600 text-white rounded-lg font-bold hover:bg-primary-700 transition-all disabled:opacity-50"
+              >
+                {changingPassword ? 'Updating...' : 'Change Password'}
+              </button>
             </div>
-
-            <button
-              onClick={handleSaveProfile}
-              disabled={savingProfile}
-              className="w-full px-6 py-3 bg-primary-600 text-white rounded-lg font-bold hover:bg-primary-700 transition-all disabled:opacity-50"
-            >
-              {savingProfile ? 'Saving...' : 'Save Profile'}
-            </button>
-          </div>
-
-          <div className="card-base p-8">
-            <h2 className="text-2xl font-bold text-blue-dark mb-6">Change Password</h2>
-
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Current Password</label>
-              <input
-                type="password"
-                value={passwordForm.currentPassword}
-                onChange={(e) => handlePasswordChange('currentPassword', e.target.value)}
-                className="input-base"
-                placeholder="Enter current password"
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">New Password</label>
-              <input
-                type="password"
-                value={passwordForm.newPassword}
-                onChange={(e) => handlePasswordChange('newPassword', e.target.value)}
-                className="input-base"
-                placeholder="Enter new password (min 8 characters)"
-              />
-            </div>
-
-            <div className="mb-8">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Confirm Password</label>
-              <input
-                type="password"
-                value={passwordForm.confirmPassword}
-                onChange={(e) => handlePasswordChange('confirmPassword', e.target.value)}
-                className="input-base"
-                placeholder="Confirm new password"
-              />
-            </div>
-
-            <button
-              onClick={handleChangePassword}
-              disabled={changingPassword}
-              className="w-full px-6 py-3 bg-primary-600 text-white rounded-lg font-bold hover:bg-primary-700 transition-all disabled:opacity-50"
-            >
-              {changingPassword ? 'Updating...' : 'Change Password'}
-            </button>
           </div>
         </div>
       </div>

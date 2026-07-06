@@ -59,15 +59,16 @@ const AdminCertificates = () => {
   if (loading) return <LoadingSpinner />
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="admin" />
-          <div className="flex-1 main-content p-8">
-        <div className="flex flex-col gap-6">
-          <div className="flex items-center justify-between">
-            <h1 className="text-4xl font-bold text-blue-dark">Certificates</h1>
+          <div className="flex-1 overflow-y-auto overflow-x-hidden main-content p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-col gap-4 sm:gap-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-dark">Certificates</h1>
           </div>
 
-          <div className="card-base p-6 overflow-x-auto">
+          <div className="card-base p-4 sm:p-6 overflow-x-auto">
+            <div className="min-w-[720px]">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-gray-200">
@@ -92,13 +93,13 @@ const AdminCertificates = () => {
                       </span>
                     </td>
                     <td className="p-3">
-                      <div className="flex items-center gap-2">
-                        <button onClick={() => downloadCertificate(cert.certId)} className="px-3 py-2 bg-primary-600 text-white rounded-md text-xs">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <button onClick={() => downloadCertificate(cert.certId)} className="w-full sm:w-auto px-3 py-2 bg-primary-600 text-white rounded-md text-xs">
                           Download
                         </button>
                         <button
                           onClick={() => deleteCertificate(cert._id)}
-                          className="px-3 py-2 bg-red-600 text-white rounded-md text-xs"
+                          className="w-full sm:w-auto px-3 py-2 bg-red-600 text-white rounded-md text-xs"
                           disabled={deletingId === cert._id}
                         >
                           {deletingId === cert._id ? 'Deleting...' : 'Delete'}
@@ -109,6 +110,7 @@ const AdminCertificates = () => {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div>

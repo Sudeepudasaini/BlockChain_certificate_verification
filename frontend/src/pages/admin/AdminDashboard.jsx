@@ -61,40 +61,40 @@ const AdminDashboard = () => {
   })
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="admin" />
 
-      <div className="flex-1 main-content">
-        <div className="p-8">
-          <div className="flex justify-between items-center mb-8">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden main-content">
+        <div className="p-4 sm:p-6 lg:p-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start mb-6 sm:mb-8">
             <div>
-              <h1 className="text-4xl font-bold text-blue-dark">System Dashboard</h1>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-dark">System Dashboard</h1>
               <p className="text-gray-500 mt-1">Live analytics for users, certificates, and blockchain issuance.</p>
             </div>
-            <span className="px-4 py-2 bg-green-100 text-green-700 rounded-lg font-semibold">🟢 Blockchain Connected</span>
+            <span className="px-4 py-2 bg-green-100 text-green-700 rounded-lg font-semibold self-start">🟢 Blockchain Connected</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="card-base p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <div className="card-base p-4 sm:p-6">
               <p className="text-gray-600 text-sm font-semibold mb-2">TOTAL CERTIFICATES</p>
               <p className="text-3xl font-bold text-blue-dark">{stats?.totalCertificates || 0}</p>
             </div>
-            <div className="card-base p-6">
+            <div className="card-base p-4 sm:p-6">
               <p className="text-gray-600 text-sm font-semibold mb-2">TOTAL USERS</p>
               <p className="text-3xl font-bold text-blue-dark">{stats?.totalUsers || 0}</p>
             </div>
-            <div className="card-base p-6">
+            <div className="card-base p-4 sm:p-6">
               <p className="text-gray-600 text-sm font-semibold mb-2">ISSUED TODAY</p>
               <p className="text-3xl font-bold text-blue-dark">{stats?.certificatesToday || 0}</p>
             </div>
-            <div className="card-base p-6">
+            <div className="card-base p-4 sm:p-6">
               <p className="text-gray-600 text-sm font-semibold mb-2">BLOCKCHAIN STORED</p>
               <p className="text-3xl font-bold text-blue-dark">{stats?.blockchainStored || 0}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
-            <div className="card-base p-6">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <div className="card-base p-4 sm:p-6">
               <h2 className="text-xl font-bold text-blue-dark mb-4">Users by Role</h2>
               <ResponsiveContainer width="100%" height={280}>
                 <PieChart>
@@ -108,7 +108,7 @@ const AdminDashboard = () => {
               </ResponsiveContainer>
             </div>
 
-            <div className="card-base p-6">
+            <div className="card-base p-4 sm:p-6">
               <h2 className="text-xl font-bold text-blue-dark mb-4">Certificates Issued (Last 6 Months)</h2>
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={certificatesPerMonth} margin={{ left: 0, right: 0, top: 10, bottom: 0 }}>
@@ -123,7 +123,7 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="card-base p-6 mb-8">
+          <div className="card-base p-4 sm:p-6 mb-6 sm:mb-8">
             <h2 className="text-xl font-bold text-blue-dark mb-6">Recent Certificates</h2>
             <div className="overflow-x-auto">
               <table className="w-full">

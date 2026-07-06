@@ -1,10 +1,10 @@
-import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 const Sidebar = ({ role }) => {
   const { logout } = useAuth()
-  const navigate = useNavigate()
+  const [isOpen, setIsOpen] = useState(false)
 
   const getNavItems = () => {
     const routes = {
@@ -71,45 +71,73 @@ const Sidebar = ({ role }) => {
   }
 
   return (
-    <aside className="w-64 bg-gradient-to-b from-blue-800 via-blue-800 to-blue-900 text-white h-screen min-h-screen p-6 sticky top-0 overflow-y-auto shadow-xl flex-shrink-0" role="complementary" aria-label="Sidebar">
-      <div className="mb-8">
-        <h2 className="text-base font-semibold leading-tight !text-white flex items-center gap-2">
-          <span className="text-2xl">{role === 'admin' ? '👨‍💼' : role === 'university' ? '🏢' : role === 'student' ? '🎓' : '✓'}</span>
-          <span className="truncate !text-white">{role === 'admin' ? 'Admin Portal' : role === 'university' ? 'University Portal' : role === 'student' ? 'Student Portal' : 'Verifier Portal'}</span>
-        </h2>
-      </div>
+    <>
+      <button
+        type="button"
+        className="fixed left-4 top-4 z-50 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 bg-blue-800 text-xl text-white shadow-lg lg:hidden"
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-label="Toggle navigation"
+      >
+        ☰
+      </button>
 
-      <nav className="space-y-2" aria-label="Main navigation">
-        {navItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) =>
-              `group flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-150 ease-in-out text-sm focus:outline-none focus:ring-2 focus:ring-primary-300 ${
-                isActive
-                  ? 'bg-white/10 text-white shadow-md ring-1 ring-white/10 border-l-4 border-primary-400'
-                  : 'text-white hover:bg-white/5 hover:text-white'
-              }`
-            }
-          >
-            <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-current text-lg">
-              {renderIcon(item.icon)}
-            </span>
-            <span className="font-medium truncate !text-white">{item.label}</span>
-          </NavLink>
-        ))}
-      </nav>
-
-      <div className="mt-8">
+      {isOpen && (
         <button
-          onClick={logout}
-          className="w-full mt-2 px-4 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-150 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-red-300"
-          aria-label="Logout"
-        >
-          Logout
-        </button>
-      </div>
-    </aside>
+          type="button"
+          className="fixed inset-0 z-30 bg-slate-900/40 lg:hidden"
+          onClick={() => setIsOpen(false)}
+          aria-label="Close navigation"
+        />
+      )}
+
+      <aside
+        className={`fixed inset-y-0 left-0 z-40 w-72 max-w-[85vw] bg-gradient-to-b from-blue-800 via-blue-800 to-blue-900 text-white p-6 shadow-xl transition-transform duration-300 ease-in-out lg:sticky lg:top-0 lg:h-screen lg:min-h-screen lg:w-64 lg:translate-x-0 lg:flex-shrink-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        role="complementary"
+        aria-label="Sidebar"
+      >
+        <div className="mb-8">
+          <h2 className="text-base font-semibold leading-tight !text-white flex items-center gap-2">
+            <span className="text-2xl">{role === 'admin' ? '👨‍💼' : role === 'university' ? '🏢' : role === 'student' ? '🎓' : '✓'}</span>
+            <span className="truncate !text-white">{role === 'admin' ? 'Admin Portal' : role === 'university' ? 'University Portal' : role === 'student' ? 'Student Portal' : 'Verifier Portal'}</span>
+          </h2>
+        </div>
+
+        <nav className="space-y-2" aria-label="Main navigation">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `group flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-150 ease-in-out text-sm focus:outline-none focus:ring-2 focus:ring-primary-300 ${
+                  isActive
+                    ? 'bg-white/10 text-white shadow-md ring-1 ring-white/10 border-l-4 border-primary-400'
+                    : 'text-white hover:bg-white/5 hover:text-white'
+                }`
+              }
+              onClick={() => setIsOpen(false)}
+            >
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center text-current text-lg">
+                {renderIcon(item.icon)}
+              </span>
+              <span className="font-medium truncate !text-white">{item.label}</span>
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="mt-8">
+          <button
+            onClick={() => {
+              setIsOpen(false)
+              logout()
+            }}
+            className="w-full mt-2 px-4 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors duration-150 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-red-300"
+            aria-label="Logout"
+          >
+            Logout
+          </button>
+        </div>
+      </aside>
+    </>
   )
 }
 

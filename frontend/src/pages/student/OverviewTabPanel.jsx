@@ -1,5 +1,10 @@
 import React, { useMemo } from 'react'
 
+function formatSalaryText(value) {
+  if (typeof value !== 'string') return value
+  return value.replace(/\bNPR\b/g, 'NRS').replace(/\$([0-9])/g, 'NRS $1')
+}
+
 function getMatchPercent(score) {
   return Math.round((Number(score) || 0) * 100)
 }
@@ -103,7 +108,7 @@ export function OverviewTabPanel({ recommendations = [], studentSkills = [], loa
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${getDemandClasses(career.score)}`}>
                       {getDemandLabel(career.score)}
                     </span>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{career.salaryRange || 'Salary pending'}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{formatSalaryText(career.salaryRange) || 'Salary pending'}</p>
                   </div>
                 </div>
               )
@@ -127,11 +132,11 @@ export function OverviewTabPanel({ recommendations = [], studentSkills = [], loa
           <div className="space-y-2">
             <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/60 border-l-4 border-green-500">
               <p className="text-xs text-gray-500 dark:text-gray-400">Entry level</p>
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">{items[0]?.salaryRange || 'Salary pending'}</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatSalaryText(items[0]?.salaryRange) || 'Salary pending'}</p>
             </div>
             <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/60 border-l-4 border-blue-500">
               <p className="text-xs text-gray-500 dark:text-gray-400">Best salary signal</p>
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">{highestSalary || 'Available once data is loaded'}</p>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatSalaryText(highestSalary) || 'Available once data is loaded'}</p>
             </div>
             <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800/60 border-l-4 border-purple-500">
               <p className="text-xs text-gray-500 dark:text-gray-400">Skills to learn</p>

@@ -9,55 +9,55 @@ careerDatabase.bca = {
     {
       title: "Software Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-90,000", senior: "NPR 120,000-200,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-90,000", senior: "NRS 120,000-200,000" },
       description: "Develop web and desktop applications using languages like Java, Python, and JavaScript for companies like F1Soft and Leapfrog."
     },
     {
       title: "Full Stack Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 35,000-50,000", mid: "NPR 70,000-100,000", senior: "NPR 130,000-220,000" },
+      avgSalary: { entry: "NRS 35,000-50,000", mid: "NRS 70,000-100,000", senior: "NRS 130,000-220,000" },
       description: "Build complete web applications from frontend to backend, handling both client and server-side technologies."
     },
     {
       title: "Frontend Developer",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 100,000-180,000" },
       description: "Create responsive user interfaces using React, Vue, and Angular for modern web applications."
     },
     {
       title: "Backend Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-95,000", senior: "NPR 125,000-210,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-95,000", senior: "NRS 125,000-210,000" },
       description: "Develop server-side logic and APIs using Node.js, Python Django, or Java Spring frameworks."
     },
     {
       title: "Database Administrator",
       demand: "High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-90,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-90,000", senior: "NRS 110,000-190,000" },
       description: "Manage and optimize databases like MySQL, PostgreSQL, and MongoDB for organizations."
     },
     {
       title: "QA Engineer/Tester",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-38,000", mid: "NPR 50,000-75,000", senior: "NPR 85,000-150,000" },
+      avgSalary: { entry: "NRS 25,000-38,000", mid: "NRS 50,000-75,000", senior: "NRS 85,000-150,000" },
       description: "Test software applications for bugs and quality assurance, using automation tools."
     },
     {
       title: "DevOps Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 35,000-52,000", mid: "NPR 75,000-110,000", senior: "NPR 140,000-240,000" },
+      avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-110,000", senior: "NRS 140,000-240,000" },
       description: "Manage deployment, infrastructure, and CI/CD pipelines using Docker, Kubernetes, and AWS."
     },
     {
       title: "Mobile App Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-100,000", senior: "NPR 130,000-220,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 130,000-220,000" },
       description: "Develop iOS and Android applications using React Native, Flutter, or native technologies."
     },
     {
       title: "Data Analyst",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 100,000-170,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 100,000-170,000" },
       description: "Analyze data patterns and generate insights using SQL, Python, and visualization tools."
     }
   ],
@@ -132,9 +132,9 @@ careerDatabase.bca = {
     { name: "Google Cloud Associate Cloud Engineer", provider: "Google", level: "Intermediate", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 25000, max: 45000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 55000, max: 95000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 110000, max: 220000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 25000, max: 45000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 55000, max: 95000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 110000, max: 220000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 94,
@@ -166,49 +166,49 @@ careerDatabase.bit = {
     {
       title: "Systems Administrator",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 100,000-170,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 100,000-170,000" },
       description: "Manage and maintain computer systems and networks for organizations of all sizes."
     },
     {
       title: "Network Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 30,000-44,000", mid: "NPR 60,000-90,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 30,000-44,000", mid: "NRS 60,000-90,000", senior: "NRS 110,000-190,000" },
       description: "Design, implement, and maintain network infrastructure and security systems."
     },
     {
       title: "IT Support Specialist",
       demand: "High",
-      avgSalary: { entry: "NPR 22,000-35,000", mid: "NPR 45,000-70,000", senior: "NPR 80,000-140,000" },
+      avgSalary: { entry: "NRS 22,000-35,000", mid: "NRS 45,000-70,000", senior: "NRS 80,000-140,000" },
       description: "Provide technical support and troubleshooting for end users and systems."
     },
     {
       title: "Software Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-90,000", senior: "NPR 120,000-200,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-90,000", senior: "NRS 120,000-200,000" },
       description: "Develop applications with a strong understanding of underlying system architecture."
     },
     {
       title: "Database Administrator",
       demand: "High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-90,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-90,000", senior: "NRS 110,000-190,000" },
       description: "Manage databases and ensure optimal system performance and security."
     },
     {
       title: "IT Security Specialist",
       demand: "Very High",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-100,000", senior: "NPR 130,000-220,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 130,000-220,000" },
       description: "Protect organizational IT assets from security threats and vulnerabilities."
     },
     {
       title: "Web Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 100,000-180,000" },
       description: "Develop web applications combining frontend and backend technologies."
     },
     {
       title: "IT Project Manager",
       demand: "Medium",
-      avgSalary: { entry: "NPR 35,000-50,000", mid: "NPR 70,000-105,000", senior: "NPR 125,000-210,000" },
+      avgSalary: { entry: "NRS 35,000-50,000", mid: "NRS 70,000-105,000", senior: "NRS 125,000-210,000" },
       description: "Manage IT projects and oversee team delivery of technology solutions."
     }
   ],
@@ -283,9 +283,9 @@ careerDatabase.bit = {
     { name: "CompTIA Security+", provider: "CompTIA", level: "Intermediate", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 25000, max: 42000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 50000, max: 90000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 100000, max: 210000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 25000, max: 42000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 50000, max: 90000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 100000, max: 210000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 92,
@@ -317,49 +317,49 @@ careerDatabase.bsccsit = {
     {
       title: "Software Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-100,000", senior: "NPR 130,000-230,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 130,000-230,000" },
       description: "Design and develop complex software systems using formal methodologies and best practices."
     },
     {
       title: "Full Stack Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 35,000-50,000", mid: "NPR 70,000-110,000", senior: "NPR 140,000-240,000" },
+      avgSalary: { entry: "NRS 35,000-50,000", mid: "NRS 70,000-110,000", senior: "NRS 140,000-240,000" },
       description: "Build complete web applications from frontend UI to backend services and databases."
     },
     {
       title: "Machine Learning Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 38,000-55,000", mid: "NPR 80,000-120,000", senior: "NPR 150,000-280,000" },
+      avgSalary: { entry: "NRS 38,000-55,000", mid: "NRS 80,000-120,000", senior: "NRS 150,000-280,000" },
       description: "Develop AI and machine learning models for data analysis and predictive applications."
     },
     {
       title: "Data Scientist",
       demand: "Very High",
-      avgSalary: { entry: "NPR 35,000-52,000", mid: "NPR 75,000-115,000", senior: "NPR 140,000-260,000" },
+      avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-115,000", senior: "NRS 140,000-260,000" },
       description: "Analyze large datasets and build statistical models to drive business decisions."
     },
     {
       title: "Cloud Solutions Architect",
       demand: "Very High",
-      avgSalary: { entry: "NPR 40,000-58,000", mid: "NPR 85,000-130,000", senior: "NPR 160,000-280,000" },
+      avgSalary: { entry: "NRS 40,000-58,000", mid: "NRS 85,000-130,000", senior: "NRS 160,000-280,000" },
       description: "Design scalable cloud infrastructure and solutions on AWS, Azure, or GCP."
     },
     {
       title: "DevOps Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 37,000-55,000", mid: "NPR 80,000-125,000", senior: "NPR 150,000-270,000" },
+      avgSalary: { entry: "NRS 37,000-55,000", mid: "NRS 80,000-125,000", senior: "NRS 150,000-270,000" },
       description: "Manage deployment pipelines, infrastructure automation, and system reliability."
     },
     {
       title: "Security Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 35,000-52,000", mid: "NPR 75,000-115,000", senior: "NPR 140,000-250,000" },
+      avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-115,000", senior: "NRS 140,000-250,000" },
       description: "Identify and mitigate security vulnerabilities in applications and systems."
     },
     {
       title: "Game Developer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 120,000-210,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 120,000-210,000" },
       description: "Develop games for mobile, console, or PC platforms using engines like Unity or Unreal."
     }
   ],
@@ -434,9 +434,9 @@ careerDatabase.bsccsit = {
     { name: "Azure Solutions Architect", provider: "Microsoft", level: "Advanced", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 28000, max: 50000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 60000, max: 110000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 130000, max: 280000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 28000, max: 50000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 60000, max: 110000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 130000, max: 280000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 95,
@@ -468,49 +468,49 @@ careerDatabase.becomputer = {
     {
       title: "Software Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-100,000", senior: "NPR 130,000-230,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 130,000-230,000" },
       description: "Develop sophisticated software systems using engineering principles and best practices."
     },
     {
       title: "Embedded Systems Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 120,000-210,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 120,000-210,000" },
       description: "Design and develop embedded systems for IoT devices, robotics, and automotive applications."
     },
     {
       title: "Systems Architect",
       demand: "High",
-      avgSalary: { entry: "NPR 40,000-55,000", mid: "NPR 80,000-125,000", senior: "NPR 150,000-260,000" },
+      avgSalary: { entry: "NRS 40,000-55,000", mid: "NRS 80,000-125,000", senior: "NRS 150,000-260,000" },
       description: "Design complex computer systems and architectures for enterprise solutions."
     },
     {
       title: "Hardware Engineer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Design and develop computer hardware components and circuit boards."
     },
     {
       title: "DevOps Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 37,000-55,000", mid: "NPR 80,000-125,000", senior: "NPR 150,000-270,000" },
+      avgSalary: { entry: "NRS 37,000-55,000", mid: "NRS 80,000-125,000", senior: "NRS 150,000-270,000" },
       description: "Manage infrastructure, deployment automation, and system reliability at scale."
     },
     {
       title: "Security Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 35,000-52,000", mid: "NPR 75,000-115,000", senior: "NPR 140,000-250,000" },
+      avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-115,000", senior: "NRS 140,000-250,000" },
       description: "Implement security measures and defend against cyber threats in systems."
     },
     {
       title: "Cloud Infrastructure Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 38,000-55,000", mid: "NPR 80,000-125,000", senior: "NPR 150,000-270,000" },
+      avgSalary: { entry: "NRS 38,000-55,000", mid: "NRS 80,000-125,000", senior: "NRS 150,000-270,000" },
       description: "Build and maintain cloud infrastructure and services on major platforms."
     },
     {
       title: "IoT Solutions Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 35,000-50,000", mid: "NPR 70,000-110,000", senior: "NPR 135,000-240,000" },
+      avgSalary: { entry: "NRS 35,000-50,000", mid: "NRS 70,000-110,000", senior: "NRS 135,000-240,000" },
       description: "Develop IoT solutions connecting physical devices with cloud platforms."
     }
   ],
@@ -585,9 +585,9 @@ careerDatabase.becomputer = {
     { name: "Google Cloud Associate Engineer", provider: "Google", level: "Intermediate", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 28000, max: 48000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 60000, max: 110000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 120000, max: 270000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 28000, max: 48000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 60000, max: 110000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 120000, max: 270000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 92,
@@ -619,49 +619,49 @@ careerDatabase.besoftware = {
     {
       title: "Software Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 33,000-50,000", mid: "NPR 70,000-105,000", senior: "NPR 140,000-240,000" },
+      avgSalary: { entry: "NRS 33,000-50,000", mid: "NRS 70,000-105,000", senior: "NRS 140,000-240,000" },
       description: "Design and develop high-quality software solutions using engineering methodologies."
     },
     {
       title: "Full Stack Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 35,000-52,000", mid: "NPR 75,000-115,000", senior: "NPR 145,000-250,000" },
+      avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-115,000", senior: "NRS 145,000-250,000" },
       description: "Build complete web applications with modern frontend frameworks and backend architectures."
     },
     {
       title: "Solutions Architect",
       demand: "High",
-      avgSalary: { entry: "NPR 40,000-58,000", mid: "NPR 85,000-130,000", senior: "NPR 160,000-280,000" },
+      avgSalary: { entry: "NRS 40,000-58,000", mid: "NRS 85,000-130,000", senior: "NRS 160,000-280,000" },
       description: "Design technical solutions aligned with business requirements for enterprises."
     },
     {
       title: "DevOps Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 38,000-56,000", mid: "NPR 85,000-130,000", senior: "NPR 155,000-280,000" },
+      avgSalary: { entry: "NRS 38,000-56,000", mid: "NRS 85,000-130,000", senior: "NRS 155,000-280,000" },
       description: "Manage CI/CD pipelines and infrastructure automation for continuous delivery."
     },
     {
       title: "Technical Lead",
       demand: "High",
-      avgSalary: { entry: "NPR 42,000-60,000", mid: "NPR 90,000-140,000", senior: "NPR 170,000-300,000" },
+      avgSalary: { entry: "NRS 42,000-60,000", mid: "NRS 90,000-140,000", senior: "NRS 170,000-300,000" },
       description: "Lead software development teams and guide technical direction of projects."
     },
     {
       title: "Quality Assurance Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-190,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-190,000" },
       description: "Ensure software quality through testing, automation, and process improvement."
     },
     {
       title: "Data Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 36,000-52,000", mid: "NPR 80,000-125,000", senior: "NPR 150,000-270,000" },
+      avgSalary: { entry: "NRS 36,000-52,000", mid: "NRS 80,000-125,000", senior: "NRS 150,000-270,000" },
       description: "Build and manage data pipelines and infrastructure for big data applications."
     },
     {
       title: "AI/ML Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 38,000-55,000", mid: "NPR 85,000-130,000", senior: "NPR 160,000-290,000" },
+      avgSalary: { entry: "NRS 38,000-55,000", mid: "NRS 85,000-130,000", senior: "NRS 160,000-290,000" },
       description: "Develop machine learning models and AI solutions for intelligent applications."
     }
   ],
@@ -736,9 +736,9 @@ careerDatabase.besoftware = {
     { name: "Scrum Master Certification", provider: "Scrum Alliance", level: "Intermediate", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 30000, max: 52000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 70000, max: 115000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 140000, max: 290000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 30000, max: 52000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 70000, max: 115000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 140000, max: 290000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 93,
@@ -750,7 +750,7 @@ careerDatabase.besoftware = {
     { level: 5, title: "Principal Engineer", duration: "5-8 years" },
     { level: 6, title: "VP Engineering/CTO", duration: "8+ years" }
   ],
-  futureScope: "Software engineers are in unprecedented demand as all industries undergo digital transformation. BE Software graduates are positioned for leadership roles in emerging technologies and global opportunities.",
+  futureScope: "Software engineers are in uNRSecedented demand as all industries undergo digital transformation. BE Software graduates are positioned for leadership roles in emerging technologies and global opportunities.",
   topEmployers: [
     "F1Soft International",
     "Leapfrog Technology",
@@ -770,49 +770,49 @@ careerDatabase.beelectronics = {
     {
       title: "Electronics Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 100,000-175,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 100,000-175,000" },
       description: "Design and develop electronic circuits and systems for various applications."
     },
     {
       title: "IoT Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-100,000", senior: "NPR 125,000-210,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 125,000-210,000" },
       description: "Develop Internet of Things solutions connecting devices with cloud platforms."
     },
     {
       title: "Embedded Systems Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 120,000-210,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 120,000-210,000" },
       description: "Design microcontroller and FPGA-based systems for embedded applications."
     },
     {
       title: "Telecom Engineer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 50,000-80,000", senior: "NPR 95,000-165,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 50,000-80,000", senior: "NRS 95,000-165,000" },
       description: "Work on telecommunications infrastructure and network systems."
     },
     {
       title: "PCB Designer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 26,000-38,000", mid: "NPR 48,000-75,000", senior: "NPR 85,000-150,000" },
+      avgSalary: { entry: "NRS 26,000-38,000", mid: "NRS 48,000-75,000", senior: "NRS 85,000-150,000" },
       description: "Design printed circuit boards using CAD tools like Altium and KiCAD."
     },
     {
       title: "Signal Processing Engineer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 30,000-44,000", mid: "NPR 60,000-90,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 30,000-44,000", mid: "NRS 60,000-90,000", senior: "NRS 110,000-190,000" },
       description: "Process and analyze signals in audio, video, and communication systems."
     },
     {
       title: "Hardware Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Develop hardware components and systems for electronic devices."
     },
     {
       title: "Firmware Developer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 31,000-46,000", mid: "NPR 62,000-95,000", senior: "NPR 120,000-205,000" },
+      avgSalary: { entry: "NRS 31,000-46,000", mid: "NRS 62,000-95,000", senior: "NRS 120,000-205,000" },
       description: "Write low-level firmware for microcontrollers and embedded systems."
     }
   ],
@@ -887,9 +887,9 @@ careerDatabase.beelectronics = {
     { name: "Embedded Systems Design", provider: "Linux Academy", level: "Intermediate", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 26000, max: 42000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 50000, max: 90000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 95000, max: 210000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 26000, max: 42000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 50000, max: 90000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 95000, max: 210000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "High",
   demandScore: 75,
@@ -921,49 +921,49 @@ careerDatabase.becivil = {
     {
       title: "Civil Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 50,000-80,000", senior: "NPR 95,000-170,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 50,000-80,000", senior: "NRS 95,000-170,000" },
       description: "Design and supervise construction of infrastructure projects."
     },
     {
       title: "Structural Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Design structural systems for buildings and bridges ensuring safety and stability."
     },
     {
       title: "Site Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-38,000", mid: "NPR 45,000-70,000", senior: "NPR 80,000-145,000" },
+      avgSalary: { entry: "NRS 25,000-38,000", mid: "NRS 45,000-70,000", senior: "NRS 80,000-145,000" },
       description: "Manage construction sites and ensure projects meet specifications and timelines."
     },
     {
       title: "Construction Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 110,000-195,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 110,000-195,000" },
       description: "Oversee construction projects, manage resources, and coordinate teams."
     },
     {
       title: "Urban Planner",
       demand: "Medium",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 100,000-175,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 100,000-175,000" },
       description: "Plan and design urban development and city infrastructure."
     },
     {
       title: "Quantity Surveyor",
       demand: "Medium",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 50,000-78,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 50,000-78,000", senior: "NRS 90,000-160,000" },
       description: "Estimate project costs and manage budgets for construction projects."
     },
     {
       title: "Project Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 115,000-205,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 115,000-205,000" },
       description: "Plan, execute, and monitor large-scale engineering projects."
     },
     {
       title: "Transportation Engineer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 52,000-82,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 52,000-82,000", senior: "NRS 100,000-180,000" },
       description: "Design roads, highways, and transportation systems."
     }
   ],
@@ -1038,9 +1038,9 @@ careerDatabase.becivil = {
     { name: "Project Management Professional", provider: "PMI", level: "Advanced", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 25000, max: 40000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 48000, max: 85000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 90000, max: 205000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 25000, max: 40000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 48000, max: 85000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 90000, max: 205000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "High",
   demandScore: 72,
@@ -1072,43 +1072,43 @@ careerDatabase.bemechanical = {
     {
       title: "Mechanical Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 50,000-80,000", senior: "NPR 95,000-170,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 50,000-80,000", senior: "NRS 95,000-170,000" },
       description: "Design and develop mechanical systems and machinery for various applications."
     },
     {
       title: "Manufacturing Engineer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 26,000-38,000", mid: "NPR 48,000-75,000", senior: "NPR 85,000-155,000" },
+      avgSalary: { entry: "NRS 26,000-38,000", mid: "NRS 48,000-75,000", senior: "NRS 85,000-155,000" },
       description: "Optimize manufacturing processes and improve production efficiency."
     },
     {
       title: "Automotive Engineer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Design and develop automotive components and systems."
     },
     {
       title: "HVAC Engineer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 50,000-78,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 50,000-78,000", senior: "NRS 90,000-160,000" },
       description: "Design heating, ventilation, and air conditioning systems."
     },
     {
       title: "Industrial Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 52,000-82,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 52,000-82,000", senior: "NRS 100,000-180,000" },
       description: "Optimize industrial processes and improve operational efficiency."
     },
     {
       title: "Maintenance Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-37,000", mid: "NPR 45,000-70,000", senior: "NPR 80,000-145,000" },
+      avgSalary: { entry: "NRS 25,000-37,000", mid: "NRS 45,000-70,000", senior: "NRS 80,000-145,000" },
       description: "Maintain and repair machinery and equipment in industrial facilities."
     },
     {
       title: "Quality Control Engineer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 26,000-38,000", mid: "NPR 48,000-75,000", senior: "NPR 85,000-155,000" },
+      avgSalary: { entry: "NRS 26,000-38,000", mid: "NRS 48,000-75,000", senior: "NRS 85,000-155,000" },
       description: "Ensure products meet quality standards through inspection and testing."
     }
   ],
@@ -1183,9 +1183,9 @@ careerDatabase.bemechanical = {
     { name: "Lean Six Sigma", provider: "ASQ", level: "Intermediate", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 25000, max: 40000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 48000, max: 82000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 85000, max: 185000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 25000, max: 40000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 48000, max: 82000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 85000, max: 185000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "High",
   demandScore: 68,
@@ -1217,49 +1217,49 @@ careerDatabase.bim = {
     {
       title: "Business Analyst",
       demand: "Very High",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-100,000", senior: "NPR 125,000-215,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 125,000-215,000" },
       description: "Analyze business processes and recommend technology solutions to improve operations."
     },
     {
       title: "ERP Consultant",
       demand: "High",
-      avgSalary: { entry: "NPR 35,000-52,000", mid: "NPR 75,000-115,000", senior: "NPR 140,000-240,000" },
+      avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-115,000", senior: "NRS 140,000-240,000" },
       description: "Implement and customize ERP systems like SAP, Oracle, and Microsoft Dynamics."
     },
     {
       title: "IT Project Manager",
       demand: "Very High",
-      avgSalary: { entry: "NPR 35,000-52,000", mid: "NPR 75,000-115,000", senior: "NPR 140,000-245,000" },
+      avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-115,000", senior: "NRS 140,000-245,000" },
       description: "Manage IT projects and oversee delivery of technology solutions aligned with business goals."
     },
     {
       title: "Systems Analyst",
       demand: "High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 115,000-205,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 115,000-205,000" },
       description: "Analyze IT systems and design solutions for business problems."
     },
     {
       title: "Management Information Officer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-100,000", senior: "NPR 130,000-220,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 130,000-220,000" },
       description: "Manage organizational data and information systems strategically."
     },
     {
       title: "Data Analyst",
       demand: "Very High",
-      avgSalary: { entry: "NPR 31,000-46,000", mid: "NPR 65,000-100,000", senior: "NPR 125,000-215,000" },
+      avgSalary: { entry: "NRS 31,000-46,000", mid: "NRS 65,000-100,000", senior: "NRS 125,000-215,000" },
       description: "Analyze business data and generate insights using BI tools."
     },
     {
       title: "Operations Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 33,000-49,000", mid: "NPR 70,000-110,000", senior: "NPR 135,000-235,000" },
+      avgSalary: { entry: "NRS 33,000-49,000", mid: "NRS 70,000-110,000", senior: "NRS 135,000-235,000" },
       description: "Oversee IT operations and ensure efficient delivery of services."
     },
     {
       title: "Digital Transformation Consultant",
       demand: "Very High",
-      avgSalary: { entry: "NPR 38,000-56,000", mid: "NPR 85,000-130,000", senior: "NPR 155,000-270,000" },
+      avgSalary: { entry: "NRS 38,000-56,000", mid: "NRS 85,000-130,000", senior: "NRS 155,000-270,000" },
       description: "Guide organizations through digital transformation initiatives."
     }
   ],
@@ -1334,9 +1334,9 @@ careerDatabase.bim = {
     { name: "Project Management Professional (PMP)", provider: "PMI", level: "Advanced", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 30000, max: 48000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 65000, max: 110000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 125000, max: 270000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 30000, max: 48000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 65000, max: 110000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 125000, max: 270000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 80,
@@ -1368,49 +1368,49 @@ careerDatabase.mca = {
     {
       title: "Senior Software Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 50,000-70,000", mid: "NPR 95,000-140,000", senior: "NPR 160,000-280,000" },
+      avgSalary: { entry: "NRS 50,000-70,000", mid: "NRS 95,000-140,000", senior: "NRS 160,000-280,000" },
       description: "Lead software development teams and architect complex application systems."
     },
     {
       title: "Solutions Architect",
       demand: "Very High",
-      avgSalary: { entry: "NPR 55,000-75,000", mid: "NPR 105,000-155,000", senior: "NPR 180,000-310,000" },
+      avgSalary: { entry: "NRS 55,000-75,000", mid: "NRS 105,000-155,000", senior: "NRS 180,000-310,000" },
       description: "Design comprehensive technology solutions for enterprise clients."
     },
     {
       title: "Technical Lead",
       demand: "Very High",
-      avgSalary: { entry: "NPR 52,000-72,000", mid: "NPR 100,000-150,000", senior: "NPR 170,000-300,000" },
+      avgSalary: { entry: "NRS 52,000-72,000", mid: "NRS 100,000-150,000", senior: "NRS 170,000-300,000" },
       description: "Lead development teams and manage technical projects."
     },
     {
       title: "Cloud Architect",
       demand: "Very High",
-      avgSalary: { entry: "NPR 58,000-78,000", mid: "NPR 110,000-165,000", senior: "NPR 190,000-320,000" },
+      avgSalary: { entry: "NRS 58,000-78,000", mid: "NRS 110,000-165,000", senior: "NRS 190,000-320,000" },
       description: "Design and manage cloud infrastructure and services."
     },
     {
       title: "AI/ML Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 55,000-75,000", mid: "NPR 110,000-160,000", senior: "NPR 190,000-330,000" },
+      avgSalary: { entry: "NRS 55,000-75,000", mid: "NRS 110,000-160,000", senior: "NRS 190,000-330,000" },
       description: "Develop advanced machine learning and AI solutions."
     },
     {
       title: "Data Scientist",
       demand: "Very High",
-      avgSalary: { entry: "NPR 53,000-73,000", mid: "NPR 105,000-155,000", senior: "NPR 185,000-320,000" },
+      avgSalary: { entry: "NRS 53,000-73,000", mid: "NRS 105,000-155,000", senior: "NRS 185,000-320,000" },
       description: "Analyze complex datasets and build predictive models."
     },
     {
       title: "Security Architect",
       demand: "Very High",
-      avgSalary: { entry: "NPR 55,000-75,000", mid: "NPR 105,000-155,000", senior: "NPR 180,000-310,000" },
+      avgSalary: { entry: "NRS 55,000-75,000", mid: "NRS 105,000-155,000", senior: "NRS 180,000-310,000" },
       description: "Design and implement comprehensive security solutions."
     },
     {
       title: "CTO/Engineering Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 60,000-85,000", mid: "NPR 120,000-180,000", senior: "NPR 220,000-400,000" },
+      avgSalary: { entry: "NRS 60,000-85,000", mid: "NRS 120,000-180,000", senior: "NRS 220,000-400,000" },
       description: "Lead engineering departments and set technical strategy."
     }
   ],
@@ -1485,9 +1485,9 @@ careerDatabase.mca = {
     { name: "Azure Solutions Architect Expert", provider: "Microsoft", level: "Advanced", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 48000, max: 75000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 95000, max: 160000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 170000, max: 400000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 48000, max: 75000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 95000, max: 160000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 170000, max: 400000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 90,
@@ -1519,49 +1519,49 @@ careerDatabase.mit = {
     {
       title: "Senior Systems Administrator",
       demand: "High",
-      avgSalary: { entry: "NPR 48,000-68,000", mid: "NPR 90,000-135,000", senior: "NPR 155,000-270,000" },
+      avgSalary: { entry: "NRS 48,000-68,000", mid: "NRS 90,000-135,000", senior: "NRS 155,000-270,000" },
       description: "Lead systems administration teams and manage enterprise IT infrastructure."
     },
     {
       title: "Network Architect",
       demand: "Very High",
-      avgSalary: { entry: "NPR 52,000-72,000", mid: "NPR 100,000-150,000", senior: "NPR 175,000-300,000" },
+      avgSalary: { entry: "NRS 52,000-72,000", mid: "NRS 100,000-150,000", senior: "NRS 175,000-300,000" },
       description: "Design complex network architectures for large organizations."
     },
     {
       title: "Security Architect",
       demand: "Very High",
-      avgSalary: { entry: "NPR 55,000-75,000", mid: "NPR 105,000-155,000", senior: "NPR 185,000-320,000" },
+      avgSalary: { entry: "NRS 55,000-75,000", mid: "NRS 105,000-155,000", senior: "NRS 185,000-320,000" },
       description: "Design and implement comprehensive security frameworks."
     },
     {
       title: "Cloud Infrastructure Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 54,000-74,000", mid: "NPR 105,000-155,000", senior: "NPR 185,000-310,000" },
+      avgSalary: { entry: "NRS 54,000-74,000", mid: "NRS 105,000-155,000", senior: "NRS 185,000-310,000" },
       description: "Manage and optimize cloud infrastructure at scale."
     },
     {
       title: "DevOps Architect",
       demand: "Very High",
-      avgSalary: { entry: "NPR 53,000-73,000", mid: "NPR 100,000-150,000", senior: "NPR 175,000-310,000" },
+      avgSalary: { entry: "NRS 53,000-73,000", mid: "NRS 100,000-150,000", senior: "NRS 175,000-310,000" },
       description: "Design CI/CD pipelines and automation frameworks."
     },
     {
       title: "IT Director",
       demand: "Medium",
-      avgSalary: { entry: "NPR 58,000-78,000", mid: "NPR 115,000-170,000", senior: "NPR 200,000-350,000" },
+      avgSalary: { entry: "NRS 58,000-78,000", mid: "NRS 115,000-170,000", senior: "NRS 200,000-350,000" },
       description: "Lead IT departments and set strategic technology direction."
     },
     {
       title: "Enterprise Architect",
       demand: "High",
-      avgSalary: { entry: "NPR 55,000-75,000", mid: "NPR 110,000-160,000", senior: "NPR 190,000-330,000" },
+      avgSalary: { entry: "NRS 55,000-75,000", mid: "NRS 110,000-160,000", senior: "NRS 190,000-330,000" },
       description: "Design enterprise IT solutions aligned with business strategy."
     },
     {
       title: "Cyber Security Manager",
       demand: "Very High",
-      avgSalary: { entry: "NPR 54,000-74,000", mid: "NPR 105,000-155,000", senior: "NPR 185,000-315,000" },
+      avgSalary: { entry: "NRS 54,000-74,000", mid: "NRS 105,000-155,000", senior: "NRS 185,000-315,000" },
       description: "Lead cybersecurity programs and threat prevention initiatives."
     }
   ],
@@ -1636,9 +1636,9 @@ careerDatabase.mit = {
     { name: "Certified Kubernetes Administrator", provider: "Linux Foundation", level: "Advanced", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 46000, max: 72000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 90000, max: 155000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 160000, max: 350000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 46000, max: 72000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 90000, max: 155000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 160000, max: 350000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 88,
@@ -1670,49 +1670,49 @@ careerDatabase.mscit = {
     {
       title: "Research Scientist",
       demand: "High",
-      avgSalary: { entry: "NPR 50,000-70,000", mid: "NPR 95,000-140,000", senior: "NPR 160,000-280,000" },
+      avgSalary: { entry: "NRS 50,000-70,000", mid: "NRS 95,000-140,000", senior: "NRS 160,000-280,000" },
       description: "Conduct research in computer science and develop innovative technologies."
     },
     {
       title: "Academic Researcher",
       demand: "Medium",
-      avgSalary: { entry: "NPR 45,000-65,000", mid: "NPR 85,000-130,000", senior: "NPR 150,000-260,000" },
+      avgSalary: { entry: "NRS 45,000-65,000", mid: "NRS 85,000-130,000", senior: "NRS 150,000-260,000" },
       description: "Pursue academic career in computer science with research and teaching."
     },
     {
       title: "AI Research Engineer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 56,000-76,000", mid: "NPR 110,000-160,000", senior: "NPR 195,000-330,000" },
+      avgSalary: { entry: "NRS 56,000-76,000", mid: "NRS 110,000-160,000", senior: "NRS 195,000-330,000" },
       description: "Conduct cutting-edge AI and machine learning research."
     },
     {
       title: "Computational Scientist",
       demand: "Very High",
-      avgSalary: { entry: "NPR 52,000-72,000", mid: "NPR 100,000-150,000", senior: "NPR 180,000-310,000" },
+      avgSalary: { entry: "NRS 52,000-72,000", mid: "NRS 100,000-150,000", senior: "NRS 180,000-310,000" },
       description: "Apply computational methods to solve complex scientific problems."
     },
     {
       title: "Software Architect",
       demand: "Very High",
-      avgSalary: { entry: "NPR 54,000-74,000", mid: "NPR 105,000-155,000", senior: "NPR 185,000-320,000" },
+      avgSalary: { entry: "NRS 54,000-74,000", mid: "NRS 105,000-155,000", senior: "NRS 185,000-320,000" },
       description: "Design sophisticated software systems with deep technical expertise."
     },
     {
       title: "Innovation Engineer",
       demand: "High",
-      avgSalary: { entry: "NPR 52,000-72,000", mid: "NPR 100,000-150,000", senior: "NPR 175,000-310,000" },
+      avgSalary: { entry: "NRS 52,000-72,000", mid: "NRS 100,000-150,000", senior: "NRS 175,000-310,000" },
       description: "Lead innovation initiatives and develop next-generation technologies."
     },
     {
       title: "Specialist Technical Consultant",
       demand: "High",
-      avgSalary: { entry: "NPR 53,000-73,000", mid: "NPR 105,000-155,000", senior: "NPR 190,000-330,000" },
+      avgSalary: { entry: "NRS 53,000-73,000", mid: "NRS 105,000-155,000", senior: "NRS 190,000-330,000" },
       description: "Provide specialized technical consulting on advanced topics."
     },
     {
       title: "Tech Lead/VP Engineering",
       demand: "High",
-      avgSalary: { entry: "NPR 58,000-78,000", mid: "NPR 115,000-170,000", senior: "NPR 210,000-380,000" },
+      avgSalary: { entry: "NRS 58,000-78,000", mid: "NRS 115,000-170,000", senior: "NRS 210,000-380,000" },
       description: "Lead engineering teams with deep technical knowledge."
     }
   ],
@@ -1787,9 +1787,9 @@ careerDatabase.mscit = {
     { name: "Microsoft Certified Data Scientist", provider: "Microsoft", level: "Advanced", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 45000, max: 72000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 90000, max: 160000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 170000, max: 380000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 45000, max: 72000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 90000, max: 160000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 170000, max: 380000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 89,
@@ -1821,61 +1821,61 @@ careerDatabase.bba = {
     {
       title: "Marketing Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-38,000", mid: "NPR 50,000-80,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 25,000-38,000", mid: "NRS 50,000-80,000", senior: "NRS 100,000-180,000" },
       description: "Develop and execute marketing strategies for products and services."
     },
     {
       title: "Finance Officer",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-190,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-190,000" },
       description: "Manage financial records and ensure regulatory compliance."
     },
     {
       title: "HR Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 52,000-82,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 52,000-82,000", senior: "NRS 100,000-180,000" },
       description: "Recruit, develop, and manage organizational human resources."
     },
     {
       title: "Business Consultant",
       demand: "Medium",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 115,000-205,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 115,000-205,000" },
       description: "Advise organizations on business strategy and operational improvement."
     },
     {
       title: "Sales Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Lead sales teams and achieve revenue targets."
     },
     {
       title: "Operations Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Oversee business operations and improve efficiency."
     },
     {
       title: "Entrepreneur",
       demand: "Medium",
-      avgSalary: { entry: "NPR 20,000-50,000", mid: "NPR 60,000-150,000", senior: "NPR 200,000-500,000+" },
+      avgSalary: { entry: "NRS 20,000-50,000", mid: "NRS 60,000-150,000", senior: "NRS 200,000-500,000+" },
       description: "Start and manage own business ventures."
     },
     {
       title: "Brand Manager",
       demand: "Medium",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 110,000-195,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 110,000-195,000" },
       description: "Develop and maintain brand identity and market positioning."
     },
     {
       title: "Investment Analyst",
       demand: "Medium",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 120,000-210,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 120,000-210,000" },
       description: "Analyze investment opportunities and provide recommendations."
     },
     {
       title: "Supply Chain Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-41,000", mid: "NPR 55,000-85,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 28,000-41,000", mid: "NRS 55,000-85,000", senior: "NRS 110,000-190,000" },
       description: "Manage logistics and optimize supply chain operations."
     }
   ],
@@ -1950,9 +1950,9 @@ careerDatabase.bba = {
     { name: "Executive Leadership Program", provider: "INSEAD/ISB", level: "Advanced", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 24000, max: 40000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 50000, max: 85000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 100000, max: 205000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 24000, max: 40000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 50000, max: 85000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 100000, max: 205000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "High",
   demandScore: 72,
@@ -1984,61 +1984,61 @@ careerDatabase.bbm = {
     {
       title: "Marketing Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-38,000", mid: "NPR 50,000-80,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 25,000-38,000", mid: "NRS 50,000-80,000", senior: "NRS 100,000-180,000" },
       description: "Develop marketing strategies and manage brand promotion campaigns."
     },
     {
       title: "Finance Officer",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-190,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-190,000" },
       description: "Manage financial operations and ensure compliance."
     },
     {
       title: "HR Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 52,000-82,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 52,000-82,000", senior: "NRS 100,000-180,000" },
       description: "Lead human resource functions and organizational development."
     },
     {
       title: "Business Consultant",
       demand: "Medium",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 115,000-205,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 115,000-205,000" },
       description: "Provide strategic business advice to organizations."
     },
     {
       title: "Sales Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Manage sales team performance and revenue generation."
     },
     {
       title: "Operations Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Ensure smooth operational execution and efficiency."
     },
     {
       title: "Entrepreneur",
       demand: "Medium",
-      avgSalary: { entry: "NPR 20,000-50,000", mid: "NPR 60,000-150,000", senior: "NPR 200,000-500,000+" },
+      avgSalary: { entry: "NRS 20,000-50,000", mid: "NRS 60,000-150,000", senior: "NRS 200,000-500,000+" },
       description: "Establish and run business ventures."
     },
     {
       title: "Brand Manager",
       demand: "Medium",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 110,000-195,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 110,000-195,000" },
       description: "Manage brand strategy and market positioning."
     },
     {
       title: "Investment Analyst",
       demand: "Medium",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 120,000-210,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 120,000-210,000" },
       description: "Evaluate investment opportunities and provide analysis."
     },
     {
       title: "Supply Chain Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 28,000-41,000", mid: "NPR 55,000-85,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 28,000-41,000", mid: "NRS 55,000-85,000", senior: "NRS 110,000-190,000" },
       description: "Manage supply chain and logistics operations."
     }
   ],
@@ -2113,9 +2113,9 @@ careerDatabase.bbm = {
     { name: "Certified Manager", provider: "AMA", level: "Advanced", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 23000, max: 38000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 48000, max: 82000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 95000, max: 195000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 23000, max: 38000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 48000, max: 82000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 95000, max: 195000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "High",
   demandScore: 70,
@@ -2147,43 +2147,43 @@ careerDatabase.mba = {
     {
       title: "Senior Manager",
       demand: "Very High",
-      avgSalary: { entry: "NPR 60,000-90,000", mid: "NPR 120,000-180,000", senior: "NPR 220,000-400,000" },
+      avgSalary: { entry: "NRS 60,000-90,000", mid: "NRS 120,000-180,000", senior: "NRS 220,000-400,000" },
       description: "Lead organizational units and drive strategic initiatives."
     },
     {
       title: "Business Analyst",
       demand: "High",
-      avgSalary: { entry: "NPR 55,000-80,000", mid: "NPR 110,000-160,000", senior: "NPR 200,000-350,000" },
+      avgSalary: { entry: "NRS 55,000-80,000", mid: "NRS 110,000-160,000", senior: "NRS 200,000-350,000" },
       description: "Analyze business processes and develop strategic solutions."
     },
     {
       title: "Finance Director",
       demand: "High",
-      avgSalary: { entry: "NPR 65,000-95,000", mid: "NPR 130,000-190,000", senior: "NPR 240,000-420,000" },
+      avgSalary: { entry: "NRS 65,000-95,000", mid: "NRS 130,000-190,000", senior: "NRS 240,000-420,000" },
       description: "Oversee financial strategy and corporate finance decisions."
     },
     {
       title: "Marketing Director",
       demand: "High",
-      avgSalary: { entry: "NPR 60,000-90,000", mid: "NPR 120,000-180,000", senior: "NPR 220,000-400,000" },
+      avgSalary: { entry: "NRS 60,000-90,000", mid: "NRS 120,000-180,000", senior: "NRS 220,000-400,000" },
       description: "Lead marketing strategy and brand management."
     },
     {
       title: "Consultant",
       demand: "Very High",
-      avgSalary: { entry: "NPR 60,000-90,000", mid: "NPR 130,000-200,000", senior: "NPR 250,000-450,000" },
+      avgSalary: { entry: "NRS 60,000-90,000", mid: "NRS 130,000-200,000", senior: "NRS 250,000-450,000" },
       description: "Provide strategic business consulting to client organizations."
     },
     {
       title: "Chief Operating Officer (COO)",
       demand: "High",
-      avgSalary: { entry: "NPR 80,000-120,000", mid: "NPR 160,000-240,000", senior: "NPR 300,000-500,000+" },
+      avgSalary: { entry: "NRS 80,000-120,000", mid: "NRS 160,000-240,000", senior: "NRS 300,000-500,000+" },
       description: "Oversee day-to-day business operations and strategy execution."
     },
     {
       title: "Business Development Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 58,000-85,000", mid: "NPR 115,000-170,000", senior: "NPR 210,000-370,000" },
+      avgSalary: { entry: "NRS 58,000-85,000", mid: "NRS 115,000-170,000", senior: "NRS 210,000-370,000" },
       description: "Identify growth opportunities and expand business operations."
     }
   ],
@@ -2258,9 +2258,9 @@ careerDatabase.mba = {
     { name: "Executive Coach Certification", provider: "ICF", level: "Advanced", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 40000, max: 65000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 100000, max: 180000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 200000, max: 500000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 40000, max: 65000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 100000, max: 180000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 200000, max: 500000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 78,
@@ -2292,49 +2292,49 @@ careerDatabase.bbs = {
     {
       title: "Accountant",
       demand: "High",
-      avgSalary: { entry: "NPR 23,000-35,000", mid: "NPR 45,000-70,000", senior: "NPR 85,000-155,000" },
+      avgSalary: { entry: "NRS 23,000-35,000", mid: "NRS 45,000-70,000", senior: "NRS 85,000-155,000" },
       description: "Manage financial records and accounting operations."
     },
     {
       title: "Auditor",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-37,000", mid: "NPR 50,000-75,000", senior: "NPR 95,000-170,000" },
+      avgSalary: { entry: "NRS 25,000-37,000", mid: "NRS 50,000-75,000", senior: "NRS 95,000-170,000" },
       description: "Conduct financial audits and ensure compliance with standards."
     },
     {
       title: "Tax Consultant",
       demand: "High",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 52,000-82,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 52,000-82,000", senior: "NRS 100,000-180,000" },
       description: "Provide tax planning and compliance advice."
     },
     {
       title: "Bank Officer",
       demand: "High",
-      avgSalary: { entry: "NPR 24,000-36,000", mid: "NPR 48,000-72,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 24,000-36,000", mid: "NRS 48,000-72,000", senior: "NRS 90,000-160,000" },
       description: "Manage banking operations and customer services."
     },
     {
       title: "Finance Assistant",
       demand: "Medium",
-      avgSalary: { entry: "NPR 20,000-30,000", mid: "NPR 40,000-60,000", senior: "NPR 75,000-135,000" },
+      avgSalary: { entry: "NRS 20,000-30,000", mid: "NRS 40,000-60,000", senior: "NRS 75,000-135,000" },
       description: "Support financial operations and accounting functions."
     },
     {
       title: "Bookkeeper",
       demand: "Medium",
-      avgSalary: { entry: "NPR 19,000-28,000", mid: "NPR 38,000-55,000", senior: "NPR 70,000-125,000" },
+      avgSalary: { entry: "NRS 19,000-28,000", mid: "NRS 38,000-55,000", senior: "NRS 70,000-125,000" },
       description: "Maintain financial records and transaction logs."
     },
     {
       title: "Financial Analyst",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Analyze financial data and provide investment insights."
     },
     {
       title: "Cost Accountant",
       demand: "Medium",
-      avgSalary: { entry: "NPR 24,000-36,000", mid: "NPR 48,000-72,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 24,000-36,000", mid: "NRS 48,000-72,000", senior: "NRS 90,000-160,000" },
       description: "Analyze and control production costs."
     }
   ],
@@ -2409,9 +2409,9 @@ careerDatabase.bbs = {
     { name: "Certified Internal Auditor (CIA)", provider: "IIA", level: "Advanced", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 20000, max: 35000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 45000, max: 75000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 85000, max: 185000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 20000, max: 35000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 45000, max: 75000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 85000, max: 185000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "High",
   demandScore: 65,
@@ -2443,49 +2443,49 @@ careerDatabase.bcom = {
     {
       title: "Accountant",
       demand: "High",
-      avgSalary: { entry: "NPR 23,000-35,000", mid: "NPR 45,000-70,000", senior: "NPR 85,000-155,000" },
+      avgSalary: { entry: "NRS 23,000-35,000", mid: "NRS 45,000-70,000", senior: "NRS 85,000-155,000" },
       description: "Handle accounting operations and financial record management."
     },
     {
       title: "Auditor",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-37,000", mid: "NPR 50,000-75,000", senior: "NPR 95,000-170,000" },
+      avgSalary: { entry: "NRS 25,000-37,000", mid: "NRS 50,000-75,000", senior: "NRS 95,000-170,000" },
       description: "Perform financial audits and compliance checks."
     },
     {
       title: "Tax Consultant",
       demand: "High",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 52,000-82,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 52,000-82,000", senior: "NRS 100,000-180,000" },
       description: "Advise on tax strategies and regulatory compliance."
     },
     {
       title: "Bank Officer",
       demand: "High",
-      avgSalary: { entry: "NPR 24,000-36,000", mid: "NPR 48,000-72,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 24,000-36,000", mid: "NRS 48,000-72,000", senior: "NRS 90,000-160,000" },
       description: "Manage banking services and operations."
     },
     {
       title: "Finance Assistant",
       demand: "Medium",
-      avgSalary: { entry: "NPR 20,000-30,000", mid: "NPR 40,000-60,000", senior: "NPR 75,000-135,000" },
+      avgSalary: { entry: "NRS 20,000-30,000", mid: "NRS 40,000-60,000", senior: "NRS 75,000-135,000" },
       description: "Support finance and accounting departments."
     },
     {
       title: "Bookkeeper",
       demand: "Medium",
-      avgSalary: { entry: "NPR 19,000-28,000", mid: "NPR 38,000-55,000", senior: "NPR 70,000-125,000" },
+      avgSalary: { entry: "NRS 19,000-28,000", mid: "NRS 38,000-55,000", senior: "NRS 70,000-125,000" },
       description: "Maintain accurate financial records."
     },
     {
       title: "Financial Analyst",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Analyze financial data for business decisions."
     },
     {
       title: "Cost Accountant",
       demand: "Medium",
-      avgSalary: { entry: "NPR 24,000-36,000", mid: "NPR 48,000-72,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 24,000-36,000", mid: "NRS 48,000-72,000", senior: "NRS 90,000-160,000" },
       description: "Manage cost accounting and budgeting."
     }
   ],
@@ -2560,9 +2560,9 @@ careerDatabase.bcom = {
     { name: "Certified Internal Auditor (CIA)", provider: "IIA", level: "Advanced", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 20000, max: 33000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 43000, max: 72000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 80000, max: 175000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 20000, max: 33000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 43000, max: 72000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 80000, max: 175000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "High",
   demandScore: 62,
@@ -2594,43 +2594,43 @@ careerDatabase.bhm = {
     {
       title: "Hotel Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-38,000", mid: "NPR 50,000-78,000", senior: "NPR 95,000-170,000" },
+      avgSalary: { entry: "NRS 25,000-38,000", mid: "NRS 50,000-78,000", senior: "NRS 95,000-170,000" },
       description: "Oversee all hotel operations and guest services."
     },
     {
       title: "Restaurant Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 22,000-35,000", mid: "NPR 45,000-70,000", senior: "NPR 85,000-155,000" },
+      avgSalary: { entry: "NRS 22,000-35,000", mid: "NRS 45,000-70,000", senior: "NRS 85,000-155,000" },
       description: "Manage restaurant staff and dining operations."
     },
     {
       title: "Tour Guide",
       demand: "Medium",
-      avgSalary: { entry: "NPR 18,000-28,000", mid: "NPR 35,000-55,000", senior: "NPR 65,000-120,000" },
+      avgSalary: { entry: "NRS 18,000-28,000", mid: "NRS 35,000-55,000", senior: "NRS 65,000-120,000" },
       description: "Guide tourists and provide travel information."
     },
     {
       title: "Event Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 23,000-36,000", mid: "NPR 48,000-75,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 23,000-36,000", mid: "NRS 48,000-75,000", senior: "NRS 90,000-160,000" },
       description: "Plan and execute hospitality events."
     },
     {
       title: "Travel Agent",
       demand: "Medium",
-      avgSalary: { entry: "NPR 20,000-32,000", mid: "NPR 40,000-65,000", senior: "NPR 75,000-135,000" },
+      avgSalary: { entry: "NRS 20,000-32,000", mid: "NRS 40,000-65,000", senior: "NRS 75,000-135,000" },
       description: "Arrange travel packages and bookings."
     },
     {
       title: "Front Office Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 24,000-37,000", mid: "NPR 48,000-73,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 24,000-37,000", mid: "NRS 48,000-73,000", senior: "NRS 90,000-160,000" },
       description: "Manage hotel reception and guest relations."
     },
     {
       title: "Food & Beverage Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 24,000-36,000", mid: "NPR 50,000-78,000", senior: "NPR 95,000-170,000" },
+      avgSalary: { entry: "NRS 24,000-36,000", mid: "NRS 50,000-78,000", senior: "NRS 95,000-170,000" },
       description: "Oversee food and beverage operations."
     }
   ],
@@ -2705,9 +2705,9 @@ careerDatabase.bhm = {
     { name: "Tourism Guide License", provider: "Ministry of Tourism", level: "Intermediate", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 20000, max: 35000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 45000, max: 75000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 85000, max: 170000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 20000, max: 35000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 45000, max: 75000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 85000, max: 170000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Medium",
   demandScore: 60,
@@ -2739,43 +2739,43 @@ careerDatabase.bed = {
     {
       title: "Teacher",
       demand: "High",
-      avgSalary: { entry: "NPR 18,000-28,000", mid: "NPR 35,000-55,000", senior: "NPR 65,000-125,000" },
+      avgSalary: { entry: "NRS 18,000-28,000", mid: "NRS 35,000-55,000", senior: "NRS 65,000-125,000" },
       description: "Teach subjects and develop students' academic and personal growth."
     },
     {
       title: "School Principal",
       demand: "Medium",
-      avgSalary: { entry: "NPR 35,000-50,000", mid: "NPR 70,000-100,000", senior: "NPR 130,000-220,000" },
+      avgSalary: { entry: "NRS 35,000-50,000", mid: "NRS 70,000-100,000", senior: "NRS 130,000-220,000" },
       description: "Lead schools and manage educational operations."
     },
     {
       title: "Curriculum Designer",
       demand: "Medium",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 105,000-185,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 105,000-185,000" },
       description: "Design educational curricula and learning materials."
     },
     {
       title: "Edtech Specialist",
       demand: "Very High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 115,000-205,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 115,000-205,000" },
       description: "Develop and implement educational technology solutions."
     },
     {
       title: "Education Consultant",
       demand: "Medium",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 115,000-205,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 115,000-205,000" },
       description: "Advise on educational policies and improvement strategies."
     },
     {
       title: "Corporate Trainer",
       demand: "High",
-      avgSalary: { entry: "NPR 25,000-38,000", mid: "NPR 50,000-78,000", senior: "NPR 95,000-170,000" },
+      avgSalary: { entry: "NRS 25,000-38,000", mid: "NRS 50,000-78,000", senior: "NRS 95,000-170,000" },
       description: "Develop and deliver corporate training programs."
     },
     {
       title: "Academic Coordinator",
       demand: "Medium",
-      avgSalary: { entry: "NPR 23,000-35,000", mid: "NPR 48,000-72,000", senior: "NPR 90,000-160,000" },
+      avgSalary: { entry: "NRS 23,000-35,000", mid: "NRS 48,000-72,000", senior: "NRS 90,000-160,000" },
       description: "Coordinate academic activities and student development."
     }
   ],
@@ -2850,9 +2850,9 @@ careerDatabase.bed = {
     { name: "Google Certified Educator", provider: "Google", level: "Intermediate", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 18000, max: 28000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 40000, max: 70000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 85000, max: 220000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 18000, max: 28000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 40000, max: 70000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 85000, max: 220000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Medium",
   demandScore: 58,
@@ -2884,37 +2884,37 @@ careerDatabase.bph = {
     {
       title: "Public Health Officer",
       demand: "High",
-      avgSalary: { entry: "NPR 24,000-36,000", mid: "NPR 50,000-78,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 24,000-36,000", mid: "NRS 50,000-78,000", senior: "NRS 100,000-180,000" },
       description: "Plan and implement public health programs at government level."
     },
     {
       title: "Epidemiologist",
       demand: "Medium",
-      avgSalary: { entry: "NPR 28,000-42,000", mid: "NPR 58,000-90,000", senior: "NPR 120,000-210,000" },
+      avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 58,000-90,000", senior: "NRS 120,000-210,000" },
       description: "Study disease patterns and develop prevention strategies."
     },
     {
       title: "Health Program Manager",
       demand: "High",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 55,000-85,000", senior: "NPR 110,000-195,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 55,000-85,000", senior: "NRS 110,000-195,000" },
       description: "Manage and coordinate health programs and initiatives."
     },
     {
       title: "Community Health Worker",
       demand: "High",
-      avgSalary: { entry: "NPR 16,000-24,000", mid: "NPR 30,000-48,000", senior: "NPR 65,000-120,000" },
+      avgSalary: { entry: "NRS 16,000-24,000", mid: "NRS 30,000-48,000", senior: "NRS 65,000-120,000" },
       description: "Provide health education and services at community level."
     },
     {
       title: "Health Researcher",
       demand: "Medium",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 110,000-190,000" },
       description: "Conduct research on health issues and interventions."
     },
     {
       title: "NGO Health Coordinator",
       demand: "High",
-      avgSalary: { entry: "NPR 24,000-36,000", mid: "NPR 50,000-78,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 24,000-36,000", mid: "NRS 50,000-78,000", senior: "NRS 100,000-180,000" },
       description: "Coordinate health programs in non-profit organizations."
     }
   ],
@@ -2989,9 +2989,9 @@ careerDatabase.bph = {
     { name: "Geographic Information Systems (GIS)", provider: "ESRI", level: "Intermediate", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 20000, max: 36000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 48000, max: 85000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 100000, max: 210000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 20000, max: 36000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 48000, max: 85000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 100000, max: 210000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Medium",
   demandScore: 62,
@@ -3023,43 +3023,43 @@ careerDatabase.bn = {
     {
       title: "Registered Nurse",
       demand: "Very High",
-      avgSalary: { entry: "NPR 26,000-39,000", mid: "NPR 55,000-85,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 26,000-39,000", mid: "NRS 55,000-85,000", senior: "NRS 110,000-190,000" },
       description: "Provide direct patient care and nursing services in healthcare facilities."
     },
     {
       title: "Head Nurse",
       demand: "High",
-      avgSalary: { entry: "NPR 32,000-48,000", mid: "NPR 65,000-100,000", senior: "NPR 130,000-220,000" },
+      avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 130,000-220,000" },
       description: "Lead nursing teams and manage ward operations."
     },
     {
       title: "Hospital Administrator",
       demand: "High",
-      avgSalary: { entry: "NPR 35,000-52,000", mid: "NPR 75,000-115,000", senior: "NPR 150,000-260,000" },
+      avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-115,000", senior: "NRS 150,000-260,000" },
       description: "Manage hospital operations and administrative functions."
     },
     {
       title: "Community Health Nurse",
       demand: "High",
-      avgSalary: { entry: "NPR 24,000-36,000", mid: "NPR 50,000-78,000", senior: "NPR 100,000-180,000" },
+      avgSalary: { entry: "NRS 24,000-36,000", mid: "NRS 50,000-78,000", senior: "NRS 100,000-180,000" },
       description: "Provide health education and nursing care in communities."
     },
     {
       title: "ICU Nurse",
       demand: "Very High",
-      avgSalary: { entry: "NPR 30,000-45,000", mid: "NPR 60,000-95,000", senior: "NPR 120,000-210,000" },
+      avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-95,000", senior: "NRS 120,000-210,000" },
       description: "Provide specialized care to critically ill patients."
     },
     {
       title: "Pediatric Nurse",
       demand: "High",
-      avgSalary: { entry: "NPR 27,000-40,000", mid: "NPR 55,000-85,000", senior: "NPR 110,000-190,000" },
+      avgSalary: { entry: "NRS 27,000-40,000", mid: "NRS 55,000-85,000", senior: "NRS 110,000-190,000" },
       description: "Provide nursing care to children and pediatric patients."
     },
     {
       title: "Healthcare Manager",
       demand: "Medium",
-      avgSalary: { entry: "NPR 33,000-49,000", mid: "NPR 70,000-110,000", senior: "NPR 140,000-240,000" },
+      avgSalary: { entry: "NRS 33,000-49,000", mid: "NRS 70,000-110,000", senior: "NRS 140,000-240,000" },
       description: "Manage healthcare services and organizational operations."
     }
   ],
@@ -3134,9 +3134,9 @@ careerDatabase.bn = {
     { name: "Midwifery Certification", provider: "Health Ministry", level: "Intermediate", relevance: "Medium" }
   ],
   salaryRange: {
-    entry: { min: 24000, max: 39000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 50000, max: 85000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 110000, max: 240000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 24000, max: 39000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 50000, max: 85000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 110000, max: 240000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 65,
@@ -3168,49 +3168,49 @@ careerDatabase.mbbs = {
     {
       title: "Medical Doctor",
       demand: "Very High",
-      avgSalary: { entry: "NPR 60,000-100,000", mid: "NPR 120,000-200,000", senior: "NPR 200,000-500,000" },
+      avgSalary: { entry: "NRS 60,000-100,000", mid: "NRS 120,000-200,000", senior: "NRS 200,000-500,000" },
       description: "Provide comprehensive patient care and medical treatment."
     },
     {
       title: "Surgeon",
       demand: "Very High",
-      avgSalary: { entry: "NPR 80,000-120,000", mid: "NPR 150,000-250,000", senior: "NPR 300,000-600,000+" },
+      avgSalary: { entry: "NRS 80,000-120,000", mid: "NRS 150,000-250,000", senior: "NRS 300,000-600,000+" },
       description: "Perform surgical procedures and specialized surgical care."
     },
     {
       title: "Psychiatrist",
       demand: "High",
-      avgSalary: { entry: "NPR 70,000-110,000", mid: "NPR 140,000-220,000", senior: "NPR 250,000-480,000" },
+      avgSalary: { entry: "NRS 70,000-110,000", mid: "NRS 140,000-220,000", senior: "NRS 250,000-480,000" },
       description: "Provide mental health treatment and psychiatric care."
     },
     {
       title: "Pediatrician",
       demand: "High",
-      avgSalary: { entry: "NPR 65,000-105,000", mid: "NPR 130,000-210,000", senior: "NPR 220,000-450,000" },
+      avgSalary: { entry: "NRS 65,000-105,000", mid: "NRS 130,000-210,000", senior: "NRS 220,000-450,000" },
       description: "Provide medical care to children and infants."
     },
     {
       title: "Researcher",
       demand: "Medium",
-      avgSalary: { entry: "NPR 60,000-100,000", mid: "NPR 120,000-200,000", senior: "NPR 200,000-400,000" },
+      avgSalary: { entry: "NRS 60,000-100,000", mid: "NRS 120,000-200,000", senior: "NRS 200,000-400,000" },
       description: "Conduct medical research and clinical trials."
     },
     {
       title: "Medical Officer",
       demand: "Very High",
-      avgSalary: { entry: "NPR 55,000-90,000", mid: "NPR 110,000-180,000", senior: "NPR 180,000-350,000" },
+      avgSalary: { entry: "NRS 55,000-90,000", mid: "NRS 110,000-180,000", senior: "NRS 180,000-350,000" },
       description: "Work in hospitals and health institutions providing medical services."
     },
     {
       title: "Hospital Director",
       demand: "Medium",
-      avgSalary: { entry: "NPR 90,000-140,000", mid: "NPR 180,000-280,000", senior: "NPR 350,000-700,000+" },
+      avgSalary: { entry: "NRS 90,000-140,000", mid: "NRS 180,000-280,000", senior: "NRS 350,000-700,000+" },
       description: "Lead hospital operations and strategic management."
     },
     {
       title: "Specialist Consultant",
       demand: "Very High",
-      avgSalary: { entry: "NPR 100,000-150,000", mid: "NPR 200,000-350,000", senior: "NPR 400,000-800,000+" },
+      avgSalary: { entry: "NRS 100,000-150,000", mid: "NRS 200,000-350,000", senior: "NRS 400,000-800,000+" },
       description: "Provide specialized medical expertise and consultation."
     }
   ],
@@ -3285,9 +3285,9 @@ careerDatabase.mbbs = {
     { name: "Trauma Certification", provider: "ATLS", level: "Intermediate", relevance: "High" }
   ],
   salaryRange: {
-    entry: { min: 60000, max: 100000, currency: "NPR", experience: "0-2 years" },
-    mid: { min: 120000, max: 200000, currency: "NPR", experience: "2-5 years" },
-    senior: { min: 200000, max: 500000, currency: "NPR", experience: "5+ years" }
+    entry: { min: 60000, max: 100000, currency: "NRS", experience: "0-2 years" },
+    mid: { min: 120000, max: 200000, currency: "NRS", experience: "2-5 years" },
+    senior: { min: 200000, max: 500000, currency: "NRS", experience: "5+ years" }
   },
   industryDemand: "Very High",
   demandScore: 78,
@@ -3311,3 +3311,4 @@ careerDatabase.mbbs = {
 };
 
 module.exports = careerDatabase;
+

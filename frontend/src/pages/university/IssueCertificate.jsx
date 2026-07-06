@@ -157,10 +157,10 @@ const IssueCertificate = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="university" />
 
-      <div className="flex-1 main-content">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden main-content">
         <div className="p-8">
           <h1 className="text-4xl font-bold text-blue-dark mb-8">Issue Certificate</h1>
 

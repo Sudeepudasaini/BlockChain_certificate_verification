@@ -89,8 +89,10 @@ const CertificateCard = ({ certificate, showActions = true }) => {
       {/* QR Code Modal */}
       {showQR && certificate.qrCode && (
         <div className="modal-backdrop">
-          <div className="modal-panel">
-            <div className="flex justify-between items-center mb-4">
+          <div
+            className="modal-panel flex max-h-[90vh] w-fit min-w-[280px] max-w-[340px] flex-col items-stretch overflow-y-auto"
+          >
+            <div className="flex items-center justify-between gap-4 pb-4">
               <h3 className="text-lg font-bold">Certificate QR Code</h3>
               <button
                 onClick={() => setShowQR(false)}
@@ -100,7 +102,15 @@ const CertificateCard = ({ certificate, showActions = true }) => {
                 ✕
               </button>
             </div>
-            <img src={certificate.qrCode} alt="QR Code" className="w-56 h-56 mx-auto" />
+            <div className="flex justify-center rounded-2xl border border-gray-200 bg-gray-50 p-4 shadow-sm sm:p-5">
+              <div className="flex h-[180px] w-[180px] items-center justify-center lg:h-[220px] lg:w-[220px]">
+                <img
+                  src={certificate.qrCode}
+                  alt="QR Code"
+                  className="block max-w-full max-h-full object-contain"
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -30,6 +30,11 @@ function getIconStyle(index) {
   return styles[index % styles.length]
 }
 
+function formatSalaryText(value) {
+  if (typeof value !== 'string') return value
+  return value.replace(/\$/g, 'NRS ')
+}
+
 function normalizeRecommendations(recommendations) {
   if (Array.isArray(recommendations)) return recommendations
   if (recommendations?.recommendations && Array.isArray(recommendations.recommendations)) return recommendations.recommendations
@@ -78,7 +83,7 @@ export function CareerPathsTabPanel({ recommendations = [], studentSkills = [], 
               {career.description || 'No description available.'}
             </p>
             <div className="mt-4 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-              <span>{career.salaryRange || 'Salary pending'}</span>
+              <span>{formatSalaryText(career.salaryRange) || 'Salary pending'}</span>
               <span>{career.level || 'Next step'}</span>
             </div>
           </button>
@@ -87,7 +92,7 @@ export function CareerPathsTabPanel({ recommendations = [], studentSkills = [], 
 
       {selectedCareer && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setSelectedCareer(null)}>
-          <div className="card max-w-lg w-full p-6" onClick={(event) => event.stopPropagation()}>
+          <div className="card !w-[92vw] sm:!w-auto !max-w-[95vw] sm:!max-w-md md:!max-w-lg p-4 sm:p-5 md:p-6 max-h-[calc(100vh-2rem)] overflow-y-auto mx-auto" onClick={(event) => event.stopPropagation()}>
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h3 className="font-semibold text-gray-900 dark:text-white text-lg">{selectedCareer.title}</h3>
@@ -109,7 +114,7 @@ export function CareerPathsTabPanel({ recommendations = [], studentSkills = [], 
               </div>
               <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-800 border-l-4 border-purple-500">
                 <p className="text-xs text-gray-500">Salary</p>
-                <p className="text-sm font-semibold text-gray-900 dark:text-white mt-1">{selectedCareer.salaryRange || 'Pending'}</p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-white mt-1">{formatSalaryText(selectedCareer.salaryRange) || 'Pending'}</p>
               </div>
             </div>
 

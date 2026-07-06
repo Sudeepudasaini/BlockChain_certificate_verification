@@ -95,9 +95,9 @@ const VerifierDashboard = () => {
 
   if (loading) {
     return (
-      <div className="flex">
+      <div className="flex h-screen overflow-hidden bg-gray-50">
         <Sidebar role="verifier" />
-          <div className="flex-1 main-content flex items-center justify-center min-h-screen">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden main-content flex items-center justify-center min-h-screen">
           <LoadingSpinner text="Verifying certificate..." />
         </div>
       </div>
@@ -105,10 +105,10 @@ const VerifierDashboard = () => {
   }
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="verifier" />
 
-      <div className="flex-1 main-content">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden main-content">
         <div className="p-8">
             <h1 className="text-4xl font-bold text-blue-dark mb-8">Certificate Verification</h1>
 

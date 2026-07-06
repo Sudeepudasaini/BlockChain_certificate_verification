@@ -52,14 +52,15 @@ const AdminUsers = () => {
   if (loading) return <LoadingSpinner />
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="admin" />
-      <div className="flex-1 main-content p-8">
-        <div className="flex flex-col gap-6">
-          <div className="flex items-center justify-between">
-            <h1 className="text-4xl font-bold text-blue-dark">Manage Users</h1>
+      <div className="flex-1 overflow-y-auto overflow-x-hidden main-content p-4 sm:p-6 lg:p-8">
+        <div className="mx-auto w-full max-w-6xl flex flex-col gap-4 sm:gap-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-dark">Manage Users</h1>
           </div>
-          <div className="card-base p-6 overflow-x-auto">
+          <div className="card-base p-4 sm:p-6 overflow-x-auto">
+            <div className="min-w-[780px]">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-gray-200">
@@ -83,27 +84,30 @@ const AdminUsers = () => {
                       </span>
                     </td>
                     <td className="p-3 text-sm text-gray-500">{new Date(user.createdAt).toLocaleDateString()}</td>
-                    <td className="p-3 space-x-2">
-                      <button onClick={() => toggleStatus(user._id)} className="px-3 py-2 bg-primary-600 text-white rounded-md text-xs">
-                        {user.isActive ? 'Deactivate' : 'Activate'}
-                      </button>
-                      <button onClick={() => deleteUser(user._id)} className="px-3 py-2 bg-red-100 text-red-700 rounded-md text-xs">
-                        Delete
-                      </button>
-                      <button title="Reset Password" className="px-3 py-2 bg-yellow-100 text-yellow-700 rounded-md text-xs" onClick={(e) => { e.stopPropagation(); setSelectedUser(user); setPasswordForm({ newPassword: '', confirmPassword: '' }); setShowPasswordModal(true); }}>
-                        Reset Password
-                      </button>
+                    <td className="p-3">
+                      <div className="flex flex-wrap gap-2">
+                        <button onClick={() => toggleStatus(user._id)} className="w-full sm:w-auto px-3 py-2 bg-primary-600 text-white rounded-md text-xs">
+                          {user.isActive ? 'Deactivate' : 'Activate'}
+                        </button>
+                        <button onClick={() => deleteUser(user._id)} className="w-full sm:w-auto px-3 py-2 bg-red-100 text-red-700 rounded-md text-xs">
+                          Delete
+                        </button>
+                        <button title="Reset Password" className="w-full sm:w-auto px-3 py-2 bg-yellow-100 text-yellow-700 rounded-md text-xs" onClick={(e) => { e.stopPropagation(); setSelectedUser(user); setPasswordForm({ newPassword: '', confirmPassword: '' }); setShowPasswordModal(true); }}>
+                          Reset Password
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
         {/* PASSWORD MODAL */}
         {showPasswordModal && selectedUser && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="card max-w-sm w-full">
+            <div className="card w-full max-w-md lg:max-w-lg">
               <div className="flex items-center justify-between p-6 border-b border-gray-100">
                 <h3 className="font-semibold text-gray-900">Reset Password</h3>
                 <button className="text-gray-400 hover:text-gray-600" onClick={() => setShowPasswordModal(false)}>✕</button>
@@ -119,9 +123,9 @@ const AdminUsers = () => {
                   <input type="password" className="form-input" value={passwordForm.confirmPassword} onChange={e => setPasswordForm(p => ({ ...p, confirmPassword: e.target.value }))} />
                 </div>
               </div>
-              <div className="flex justify-end gap-3 p-6 border-t border-gray-100">
-                <button className="btn-ghost" onClick={() => setShowPasswordModal(false)}>Cancel</button>
-                <button className="btn-primary" disabled={modalLoading} onClick={async () => {
+              <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-3 p-6 border-t border-gray-100">
+                <button className="w-full sm:w-auto btn-ghost" onClick={() => setShowPasswordModal(false)}>Cancel</button>
+                <button className="w-full sm:w-auto btn-primary" disabled={modalLoading} onClick={async () => {
                   if (passwordForm.newPassword !== passwordForm.confirmPassword) return toast.error('Passwords do not match')
                   if (passwordForm.newPassword.length < 8) return toast.error('Password must be 8+ characters')
                   try {

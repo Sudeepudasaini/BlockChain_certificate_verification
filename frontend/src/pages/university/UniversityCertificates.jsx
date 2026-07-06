@@ -31,9 +31,9 @@ const UniversityCertificates = () => {
 
   return (
     <>
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="university" />
-      <div className="flex-1 main-content p-8">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden main-content p-8">
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <h1 className="text-4xl font-bold text-blue-dark">University Certificates</h1>

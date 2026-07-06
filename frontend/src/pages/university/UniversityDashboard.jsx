@@ -36,10 +36,10 @@ const UniversityDashboard = () => {
   const blockchainStored = certificates.filter((c) => c.blockchainStored).length
 
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar role="university" />
 
-      <div className="flex-1 main-content">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden main-content">
         <div className="p-8">
           {/* Header */}
           <div className="flex justify-between items-center mb-8">

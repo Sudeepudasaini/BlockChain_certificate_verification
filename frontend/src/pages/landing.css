@@ -64,6 +64,34 @@ body {
 }
 .lp-nav-links a:hover { color: var(--indigo); }
 .lp-nav-right { display: flex; align-items: center; gap: 10px; }
+.lp-nav-toggle { display: none; flex-direction: column; gap: 4px; padding: 6px; border: 0; background: transparent; cursor: pointer; }
+.lp-nav-toggle span { width: 20px; height: 2px; border-radius: 999px; background: var(--text); transition: all .2s; }
+
+@media (max-width: 900px) {
+  .lp-nav { padding: 0 16px; }
+  .lp-nav-toggle { display: inline-flex; }
+  .lp-nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 16px 16px;
+    background: var(--bg);
+    border-bottom: 0.5px solid var(--border);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
+  .lp-nav-links.open { display: flex; }
+  .lp-nav-right { margin-left: auto; }
+}
+
+@media (max-width: 640px) {
+  .lp-nav { height: auto; min-height: 60px; padding: 10px 14px; }
+  .lp-nav-right { gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  .btn-nav-primary, .login-dropdown-btn { width: auto; }
+}
 
 /* ── THEME TOGGLE ── */
 .theme-toggle {
