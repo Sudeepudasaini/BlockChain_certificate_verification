@@ -1,11 +1,25 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import api from '../api/axios'
 import Navbar from '../components/Navbar'
 
 const VerifyResultPage = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const result = location.state?.result
+
+  const handlePreviewPdf = async () => {
+    try {
+      const response = await api.get(`/certificates/${result.certificate?.certId}/download`, {
+        responseType: 'blob',
+      })
+      const pdfUrl = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }))
+      window.open(pdfUrl, '_blank')
+      setTimeout(() => window.URL.revokeObjectURL(pdfUrl), 10000)
+    } catch (error) {
+      console.error('Failed to preview certificate PDF', error)
+    }
+  }
 
   if (!result) {
     return (
@@ -93,8 +107,11 @@ const VerifyResultPage = () => {
                 >
                   Verify Another
                 </button>
-                <button className="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg font-bold hover:bg-green-700 transition-all">
-                  Download Certificate
+                <button
+                  onClick={handlePreviewPdf}
+                  className="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg font-bold hover:bg-green-700 transition-all"
+                >
+                  Preview PDF
                 </button>
               </div>
             </div>
