@@ -86,15 +86,6 @@ const Navbar = () => {
                 <div className="ldi-desc">Verify credentials</div>
               </div>
             </Link>
-            <Link to="/admin/login" className="login-dropdown-item" role="menuitem" onClick={()=>setShowLoginDropdown(false)}>
-              <div className="icon-circle" style={{background:'#F8FAFC'}}>
-                <i className="ti ti-shield-lock" style={{color:'#475569'}} aria-hidden="true">🔒</i>
-              </div>
-              <div>
-                <div className="ldi-label">Admin</div>
-                <div className="ldi-desc">System management</div>
-              </div>
-            </Link>
           </div>
         </div>
 

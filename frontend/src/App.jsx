@@ -45,6 +45,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/verify" element={<VerifyPage />} />
         <Route path="/verify/result" element={<VerifyResultPage />} />
+        <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
 
         {/* Admin Routes */}
         <Route
