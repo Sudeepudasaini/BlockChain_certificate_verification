@@ -23,6 +23,28 @@ const careers = [
     salaryRange: "$60k-$120k",
     jobRoles: ["Frontend Developer", "Backend Developer", "MERN Stack Developer"],
   },
+  //added
+   {
+    title: "Frontend Developer",
+    subjects: ["Web Development", "Human-Computer Interaction", "Data Structures", "web development", "programming", "UI/UX", "software development"],
+    skills: ["HTML", "CSS", "JavaScript", "React", "Vue", "Responsive Design", "programming", "web development", "UI/UX", "software development"],
+    level: "mid",
+    description: "Builds responsive, user-facing interfaces and ensures a seamless client-side experience for web applications.",
+    certifications: ["Meta Front-End Developer Certificate", "JavaScript Algorithms and Data Structures (freeCodeCamp)"],
+    salaryRange: "$55k-$115k",
+    jobRoles: ["UI Developer", "React Developer", "Web Developer"],
+  },
+  {
+    title: "Backend Developer",
+    subjects: ["Data Structures", "Databases", "Web Development", "networking", "programming", "database", "software development"],
+    skills: ["Node.js", "Express", "REST APIs", "SQL", "MongoDB", "Authentication & Security", "programming", "database", "networking", "software development"],
+    level: "mid",
+    description: "Designs and maintains server-side logic, APIs, and databases that power web and mobile applications.",
+    certifications: ["AWS Certified Developer", "Node.js Application Developer Certification"],
+    salaryRange: "$60k-$125k",
+    jobRoles: ["API Developer", "Server-side Engineer", "Node.js Developer"],
+  },
+  
   {
     title: "Data Scientist",
     subjects: ["Statistics", "Linear Algebra", "Machine Learning", "python", "algorithms", "mathematics", "data structures"],

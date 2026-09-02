@@ -1,10 +1,170 @@
 const careerDatabase = {};
 
+// careerDatabase.bca = {
+//   programName: "Bachelor of Computer Application",
+//   shortName: "BCA",
+//   category: "Technology",
+//   description: "BCA is a 4-year undergraduate degree focused on practical computer science and software development. Graduates are skilled in programming, web development, and database management, making them highly employable in IT companies across Nepal and globally.",
+//   careers: [
+//     {
+//       title: "Software Developer",
+//       demand: "Very High",
+//       avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-90,000", senior: "NRS 120,000-200,000" },
+//       description: "Develop web and desktop applications using languages like Java, Python, and JavaScript for companies like F1Soft and Leapfrog."
+//     },
+//     {
+//       title: "Full Stack Developer",
+//       demand: "Very High",
+//       avgSalary: { entry: "NRS 35,000-50,000", mid: "NRS 70,000-100,000", senior: "NRS 130,000-220,000" },
+//       description: "Build complete web applications from frontend to backend, handling both client and server-side technologies."
+//     },
+//     {
+//       title: "Frontend Developer",
+//       demand: "High",
+//       avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 100,000-180,000" },
+//       description: "Create responsive user interfaces using React, Vue, and Angular for modern web applications."
+//     },
+//     {
+//       title: "Backend Developer",
+//       demand: "Very High",
+//       avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-95,000", senior: "NRS 125,000-210,000" },
+//       description: "Develop server-side logic and APIs using Node.js, Python Django, or Java Spring frameworks."
+//     },
+//     {
+//       title: "Database Administrator",
+//       demand: "High",
+//       avgSalary: { entry: "NRS 30,000-45,000", mid: "NRS 60,000-90,000", senior: "NRS 110,000-190,000" },
+//       description: "Manage and optimize databases like MySQL, PostgreSQL, and MongoDB for organizations."
+//     },
+//     {
+//       title: "QA Engineer/Tester",
+//       demand: "High",
+//       avgSalary: { entry: "NRS 25,000-38,000", mid: "NRS 50,000-75,000", senior: "NRS 85,000-150,000" },
+//       description: "Test software applications for bugs and quality assurance, using automation tools."
+//     },
+//     {
+//       title: "DevOps Engineer",
+//       demand: "Very High",
+//       avgSalary: { entry: "NRS 35,000-52,000", mid: "NRS 75,000-110,000", senior: "NRS 140,000-240,000" },
+//       description: "Manage deployment, infrastructure, and CI/CD pipelines using Docker, Kubernetes, and AWS."
+//     },
+//     {
+//       title: "Mobile App Developer",
+//       demand: "Very High",
+//       avgSalary: { entry: "NRS 32,000-48,000", mid: "NRS 65,000-100,000", senior: "NRS 130,000-220,000" },
+//       description: "Develop iOS and Android applications using React Native, Flutter, or native technologies."
+//     },
+//     {
+//       title: "Data Analyst",
+//       demand: "High",
+//       avgSalary: { entry: "NRS 28,000-42,000", mid: "NRS 55,000-85,000", senior: "NRS 100,000-170,000" },
+//       description: "Analyze data patterns and generate insights using SQL, Python, and visualization tools."
+//     }
+//   ],
+//   skills: {
+//     technical: [
+//       "Java",
+//       "Python",
+//       "JavaScript",
+//       "C++",
+//       "SQL",
+//       "HTML/CSS",
+//       "Web Development",
+//       "Database Design",
+//       "API Development",
+//       "Object-Oriented Programming"
+//     ],
+//     soft: [
+//       "Problem Solving",
+//       "Communication",
+//       "Team Collaboration",
+//       "Time Management",
+//       "Critical Thinking"
+//     ],
+//     tools: [
+//       "Git",
+//       "VS Code",
+//       "IntelliJ IDEA",
+//       "MySQL Workbench",
+//       "Postman",
+//       "Docker"
+//     ]
+//   },
+//   roadmap: {
+//     beginner: {
+//       duration: "0-6 months",
+//       topics: [
+//         "Core Programming (Java/Python)",
+//         "HTML/CSS Basics",
+//         "Database Fundamentals",
+//         "Git Version Control",
+//         "Problem Solving Algorithms",
+//         "Linux/Command Line"
+//       ]
+//     },
+//     intermediate: {
+//       duration: "6-18 months",
+//       topics: [
+//         "Web Framework (Django/Spring/Express)",
+//         "React or Angular",
+//         "RESTful API Design",
+//         "SQL Optimization",
+//         "Authentication & Security",
+//         "Testing Frameworks"
+//       ]
+//     },
+//     advanced: {
+//       duration: "18-36 months",
+//       topics: [
+//         "Microservices Architecture",
+//         "Cloud Deployment (AWS/Azure)",
+//         "System Design",
+//         "DevOps Practices",
+//         "Advanced Database Design",
+//         "Full Stack Project Development"
+//       ]
+//     }
+//   },
+//   certifications: [
+//     { name: "AWS Certified Associate Developer", provider: "AWS", level: "Intermediate", relevance: "High" },
+//     { name: "Oracle Java Programmer", provider: "Oracle", level: "Intermediate", relevance: "High" },
+//     { name: "Microsoft Azure Developer", provider: "Microsoft", level: "Intermediate", relevance: "High" },
+//     { name: "Google Cloud Associate Cloud Engineer", provider: "Google", level: "Intermediate", relevance: "Medium" }
+//   ],
+//   salaryRange: {
+//     entry: { min: 25000, max: 45000, currency: "NRS", experience: "0-2 years" },
+//     mid: { min: 55000, max: 95000, currency: "NRS", experience: "2-5 years" },
+//     senior: { min: 110000, max: 220000, currency: "NRS", experience: "5+ years" }
+//   },
+//   industryDemand: "Very High",
+//   demandScore: 94,
+//   growthPath: [
+//     { level: 1, title: "Intern", duration: "6 months" },
+//     { level: 2, title: "Junior Developer", duration: "1-2 years" },
+//     { level: 3, title: "Software Developer", duration: "2-3 years" },
+//     { level: 4, title: "Senior Developer", duration: "3-5 years" },
+//     { level: 5, title: "Tech Lead", duration: "5-8 years" },
+//     { level: 6, title: "Architect/Manager", duration: "8+ years" }
+//   ],
+//   futureScope: "With Nepal's growing IT sector and increasing demand for skilled developers, BCA graduates have excellent career prospects. Remote work opportunities are expanding, allowing graduates to work for international companies while based in Nepal.",
+//   topEmployers: [
+//     "F1Soft International",
+//     "Leapfrog Technology",
+//     "Cotiviti Nepal",
+//     "CloudFactory",
+//     "Deloitte Nepal"
+//   ],
+//   relatedPrograms: ["BSc CSIT", "BIM", "MCA", "MIT"]
+// };
+
+//new
+const careerDatabase = {};
+
 careerDatabase.bca = {
   programName: "Bachelor of Computer Application",
   shortName: "BCA",
   category: "Technology",
-  description: "BCA is a 4-year undergraduate degree focused on practical computer science and software development. Graduates are skilled in programming, web development, and database management, making them highly employable in IT companies across Nepal and globally.",
+  description: "BCA is a 4-year undergraduate degree (Tribhuvan University, Faculty of Humanities and Social Sciences) focused on practical computer science and software development. Graduates are skilled in programming, web development, and database management, making them highly employable in IT companies across Nepal and globally.",
   careers: [
     {
       title: "Software Developer",
@@ -63,16 +223,16 @@ careerDatabase.bca = {
   ],
   skills: {
     technical: [
-      "Java",
-      "Python",
-      "JavaScript",
-      "C++",
-      "SQL",
-      "HTML/CSS",
-      "Web Development",
-      "Database Design",
-      "API Development",
-      "Object-Oriented Programming"
+      "C Programming",
+      "Java (OOP)",
+      "DotNet Technology",
+      "SQL / Database Management System",
+      "HTML/CSS/Web Technology",
+      "Data Structures and Algorithms",
+      "Scripting Languages",
+      "Mobile Programming",
+      "Computer Networking",
+      "Software Engineering"
     ],
     soft: [
       "Problem Solving",
@@ -90,38 +250,176 @@ careerDatabase.bca = {
       "Docker"
     ]
   },
+  curriculum: {
+    university: "Tribhuvan University",
+    faculty: "Faculty of Humanities and Social Sciences",
+    totalCreditHours: 126,
+    years: [
+      {
+        year: 1,
+        semesters: [
+          {
+            name: "First Semester",
+            totalCreditHours: 16,
+            courses: [
+              { code: "CACS101", title: "Computer Fundamentals and Applications", creditHrs: 4 },
+              { code: "CASO102", title: "Society & Technology", creditHrs: 3 },
+              { code: "CAEN103", title: "English I", creditHrs: 3 },
+              { code: "CAMT104", title: "Mathematics I", creditHrs: 3 },
+              { code: "CACS105", title: "Digital Logic", creditHrs: 3 }
+            ]
+          },
+          {
+            name: "Second Semester",
+            totalCreditHours: 16,
+            courses: [
+              { code: "CACS151", title: "C Programming", creditHrs: 4 },
+              { code: "CAAC152", title: "Financial Accounting", creditHrs: 3 },
+              { code: "CAEN153", title: "English II", creditHrs: 3 },
+              { code: "CAMT154", title: "Mathematics II", creditHrs: 3 },
+              { code: "CACS155", title: "Microprocessor and Computer Architecture", creditHrs: 3 }
+            ]
+          }
+        ]
+      },
+      {
+        year: 2,
+        semesters: [
+          {
+            name: "Third Semester",
+            totalCreditHours: 15,
+            courses: [
+              { code: "CACS201", title: "Data Structure and Algorithm", creditHrs: 3 },
+              { code: "CAST202", title: "Probability & Statistics", creditHrs: 3 },
+              { code: "CACS203", title: "System Analysis and Design", creditHrs: 3 },
+              { code: "CACS204", title: "OOP in Java", creditHrs: 3 },
+              { code: "CACS205", title: "Web Technology", creditHrs: 3 }
+            ]
+          },
+          {
+            name: "Fourth Semester",
+            totalCreditHours: 17,
+            courses: [
+              { code: "CACS251", title: "Operating System", creditHrs: 3 },
+              { code: "CACS252", title: "Numerical Methods", creditHrs: 3 },
+              { code: "CACS253", title: "Software Engineering", creditHrs: 3 },
+              { code: "CACS254", title: "Scripting Languages", creditHrs: 3 },
+              { code: "CACS255", title: "Database Management System", creditHrs: 3 },
+              { code: "CAPJ256", title: "Project I", creditHrs: 2 }
+            ]
+          }
+        ]
+      },
+      {
+        year: 3,
+        semesters: [
+          {
+            name: "Fifth Semester",
+            totalCreditHours: 15,
+            courses: [
+              { code: "CACS301", title: "MIS and e-Business", creditHrs: 3 },
+              { code: "CACS302", title: "DotNet Technology", creditHrs: 3 },
+              { code: "CACS303", title: "Computer Networking", creditHrs: 3 },
+              { code: "CAMG304", title: "Introduction to Management", creditHrs: 3 },
+              { code: "CACS305", title: "Computer Graphics and Animation", creditHrs: 3 }
+            ]
+          },
+          {
+            name: "Sixth Semester",
+            totalCreditHours: 17,
+            courses: [
+              { code: "CACS351", title: "Mobile Programming", creditHrs: 3 },
+              { code: "CACS352", title: "Distributed System", creditHrs: 3 },
+              { code: "CACS353", title: "Applied Economics", creditHrs: 3 },
+              { code: "CACS354", title: "Advance Java Programming", creditHrs: 3 },
+              { code: "CACS355", title: "Network Programming", creditHrs: 3 },
+              { code: "CAPJ356", title: "Project II", creditHrs: 2 }
+            ]
+          }
+        ]
+      },
+      {
+        year: 4,
+        semesters: [
+          {
+            name: "Seventh Semester",
+            totalCreditHours: 15,
+            courses: [
+              { code: "CACS401", title: "Cyber Law & Professional Ethics", creditHrs: 3 },
+              { code: "CACS402", title: "Cloud Computing", creditHrs: 3 },
+              { code: "CAIN403", title: "Internships", creditHrs: 3 },
+              { code: "ELECTIVE", title: "Elective I", creditHrs: 3 },
+              { code: "ELECTIVE", title: "Elective II", creditHrs: 3 }
+            ],
+            electiveOptions: [
+              { code: "CACS404", title: "Image Processing", creditHrs: 3 },
+              { code: "CACS405", title: "Database Administration", creditHrs: 3 },
+              { code: "CACS406", title: "Network Administration", creditHrs: 3 },
+              { code: "CACS407", title: "Software Project Management", creditHrs: 3 },
+              { code: "CACS408", title: "Advanced .Net Technology", creditHrs: 3 },
+              { code: "CACS409", title: "E-Governance", creditHrs: 3 },
+              { code: "CACS410", title: "Artificial Intelligence", creditHrs: 3 },
+              { code: "N/A", title: "Applied Psychology", creditHrs: 3 }
+            ]
+          },
+          {
+            name: "Eighth Semester",
+            totalCreditHours: 15,
+            courses: [
+              { code: "CAOR451", title: "Operational Research", creditHrs: 3 },
+              { code: "CAPJ452", title: "Project III", creditHrs: 6 },
+              { code: "ELECTIVE", title: "Elective III", creditHrs: 3 },
+              { code: "ELECTIVE", title: "Elective IV", creditHrs: 3 }
+            ],
+            electiveOptions: [
+              { code: "CACS453", title: "Database Programming", creditHrs: 3 },
+              { code: "CACS454", title: "Graphical Information System", creditHrs: 3 },
+              { code: "CACS455", title: "Data Analysis & Visualization", creditHrs: 3 },
+              { code: "CACS456", title: "Machine Learning", creditHrs: 3 },
+              { code: "CACS457", title: "Multimedia System", creditHrs: 3 },
+              { code: "CACS458", title: "Knowledge Engineering", creditHrs: 3 },
+              { code: "CACS459", title: "Information Security", creditHrs: 3 },
+              { code: "CACS460", title: "Internet of Things", creditHrs: 3 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   roadmap: {
     beginner: {
-      duration: "0-6 months",
+      duration: "Year 1 (Semesters 1-2)",
       topics: [
-        "Core Programming (Java/Python)",
-        "HTML/CSS Basics",
-        "Database Fundamentals",
-        "Git Version Control",
-        "Problem Solving Algorithms",
-        "Linux/Command Line"
+        "Computer Fundamentals and Applications",
+        "Digital Logic",
+        "C Programming",
+        "Microprocessor and Computer Architecture",
+        "Mathematics I & II",
+        "Financial Accounting"
       ]
     },
     intermediate: {
-      duration: "6-18 months",
+      duration: "Year 2-3 (Semesters 3-6)",
       topics: [
-        "Web Framework (Django/Spring/Express)",
-        "React or Angular",
-        "RESTful API Design",
-        "SQL Optimization",
-        "Authentication & Security",
-        "Testing Frameworks"
+        "Data Structure and Algorithm",
+        "OOP in Java / Advance Java Programming",
+        "Web Technology & DotNet Technology",
+        "Database Management System",
+        "Software Engineering & System Analysis and Design",
+        "Computer Networking & Network Programming",
+        "Mobile Programming",
+        "Distributed System"
       ]
     },
     advanced: {
-      duration: "18-36 months",
+      duration: "Year 4 (Semesters 7-8)",
       topics: [
-        "Microservices Architecture",
-        "Cloud Deployment (AWS/Azure)",
-        "System Design",
-        "DevOps Practices",
-        "Advanced Database Design",
-        "Full Stack Project Development"
+        "Cloud Computing",
+        "Cyber Law & Professional Ethics",
+        "Internship",
+        "Electives (e.g. Artificial Intelligence, Machine Learning, Information Security, IoT, Database Administration)",
+        "Operational Research",
+        "Major Project (Project I, II & III)"
       ]
     }
   },
@@ -156,6 +454,7 @@ careerDatabase.bca = {
   ],
   relatedPrograms: ["BSc CSIT", "BIM", "MCA", "MIT"]
 };
+
 
 careerDatabase.bit = {
   programName: "Bachelor of Information Technology",
