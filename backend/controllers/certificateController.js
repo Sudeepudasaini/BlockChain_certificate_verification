@@ -319,7 +319,6 @@ const updateCertificate = async (req, res) => {
     const { id } = req.params
     const allowedFields = [
       'studentName',
-      'studentId',
       'studentEmail',
       'degree',
       'major',

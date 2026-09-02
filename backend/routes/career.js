@@ -57,29 +57,85 @@ STRICT RULES:
       { role: "user", content: question }
     ];
 
-    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.GROQ_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        messages,
-        max_tokens: 600,
-        temperature: 0.7
-      })
-    });
+    const modelEnv = process.env.GROQ_MODEL || 'llama-3.1-8b-instant';
+    const fallbackEnv = process.env.GROQ_MODEL_FALLBACK || 'llama-3-8b-instant,llama-3.1,gpt-4o-mini';
+    const fallbackModels = fallbackEnv.split(',').map(s => s.trim()).filter(Boolean);
+    const modelsToTry = [modelEnv, ...fallbackModels.filter(m => m !== modelEnv)];
+    console.log('GROQ models to try:', modelsToTry);
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("Groq API error:", data);
-      return res.status(500).json({ error: "AI service error", details: data });
+    // Try discovering available models for the provided API key
+    try {
+      const mres = await fetch('https://api.groq.com/openai/v1/models', { method: 'GET', headers: { Authorization: `Bearer ${process.env.GROQ_API_KEY}` } })
+      if (mres.ok) {
+        const mdata = await mres.json()
+        const available = (mdata?.data || mdata?.models || []).map(m => m.id || m.name || m)
+        if (Array.isArray(available) && available.length) {
+          for (const a of available) if (a && !modelsToTry.includes(a)) modelsToTry.push(a)
+          console.log('Discovered GROQ models for this key:', available)
+        }
+      } else {
+        console.warn('Could not fetch GROQ models list — continuing with configured models')
+      }
+    } catch (e) {
+      console.warn('Error while attempting to discover GROQ models:', e)
     }
 
-    const answer = data?.choices?.[0]?.message?.content || "Sorry, I could not generate a response. Please try again.";
-    return res.json({ success: true, answer });
+    let lastErrorDetails = null;
+    for (const modelName of modelsToTry) {
+      console.log('Attempting GROQ model:', modelName);
+      let response;
+      try {
+        response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.GROQ_API_KEY}`
+          },
+          body: JSON.stringify({ model: modelName, messages, max_tokens: 600, temperature: 0.7 })
+        });
+      } catch (e) {
+        console.error('Network error when calling GROQ:', e);
+        lastErrorDetails = e;
+        continue;
+      }
+
+      let data;
+      try {
+        data = await response.json();
+      } catch (e) {
+        console.error('Groq API returned non-JSON response', e);
+        lastErrorDetails = e;
+        continue;
+      }
+
+      if (!response.ok) {
+        const code = data?.error?.code || data?.code || null;
+        const msg = data?.error?.message || data?.message || '';
+        console.warn(`GROQ response not ok for model=${modelName} code=${code} message=${msg}`);
+        lastErrorDetails = data;
+        if (code === 'model_not_found' || /does not exist|not found|no access/i.test(String(msg))) {
+          continue;
+        }
+        return res.status(500).json({ error: "AI service error", details: data });
+      }
+
+      const answer =
+        data?.choices?.[0]?.message?.content ||
+        data?.choices?.[0]?.text ||
+        data?.choices?.[0]?.message ||
+        (Array.isArray(data?.output) && data.output[0]?.content?.map(c => c?.text || c?.[0]).join('')) ||
+        data?.output?.[0]?.content?.[0]?.text ||
+        data?.result?.[0]?.content?.[0]?.text ||
+        data?.text ||
+        data?.message?.content ||
+        null;
+
+      const finalAnswer = answer || "Sorry, I could not generate a response. Please try again.";
+      return res.json({ success: true, answer: finalAnswer });
+    }
+
+    console.error('All GROQ model attempts failed', lastErrorDetails);
+    return res.status(500).json({ error: 'AI service error', details: lastErrorDetails || 'No response from GROQ' });
 
   } catch (error) {
     console.error("Error in /ask:", error);

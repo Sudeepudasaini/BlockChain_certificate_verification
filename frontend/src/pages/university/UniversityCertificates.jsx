@@ -134,7 +134,6 @@ const UniversityCertificates = () => {
                 try {
                   const payload = {
                     studentName: editForm.studentName,
-                    studentId: editForm.studentId,
                     studentEmail: editForm.studentEmail,
                     degree: editForm.degree,
                     major: editForm.major,
@@ -159,7 +158,7 @@ const UniversityCertificates = () => {
                 <input className="form-input" value={editForm.studentName} onChange={(e) => setEditForm((s) => ({ ...s, studentName: e.target.value }))} />
 
                 <label className="text-sm">Student ID</label>
-                <input className="form-input" value={editForm.studentId} onChange={(e) => setEditForm((s) => ({ ...s, studentId: e.target.value }))} />
+                <input className="form-input bg-gray-100 cursor-not-allowed" value={editForm.studentId} readOnly />
 
                 <label className="text-sm">Student Email</label>
                 <input className="form-input" value={editForm.studentEmail} onChange={(e) => setEditForm((s) => ({ ...s, studentEmail: e.target.value.toLowerCase().trim() }))} />
