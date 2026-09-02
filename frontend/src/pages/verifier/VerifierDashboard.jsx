@@ -93,6 +93,17 @@ const VerifierDashboard = () => {
     toast.success('History cleared')
   }
 
+  const deleteHistoryItem = (index) => {
+    const updatedHistory = history.filter((_, itemIndex) => itemIndex !== index)
+    setHistory(updatedHistory)
+    if (updatedHistory.length === 0) {
+      localStorage.removeItem('verifyHistory')
+    } else {
+      localStorage.setItem('verifyHistory', JSON.stringify(updatedHistory))
+    }
+    toast.success('History item removed')
+  }
+
   if (loading) {
     return (
       <div className="flex h-screen overflow-hidden bg-gray-50">
@@ -281,6 +292,13 @@ const VerifierDashboard = () => {
                               {new Date(item.timestamp).toLocaleTimeString()}
                             </p>
                           </div>
+                          <button
+                            type="button"
+                            onClick={() => deleteHistoryItem(i)}
+                            className="text-red-600 hover:text-red-700 text-xs font-semibold ml-2"
+                          >
+                            Delete
+                          </button>
                         </div>
                       </div>
                     ))}
